@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Tables, types, clés, cardinalités, intégrité" name="description"/>
+<meta content="light dark" name="color-scheme"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Découvrir les bases relationnelles | Crystal Clear Code</title>
+<link href="../assets/c-cubed.svg" rel="icon" sizes="any" type="image/svg+xml"/>
+<script src="../assets/theme.js"></script>
+<script defer="" src="../assets/template-interactions.js"></script>
+<link href="../assets/shell.css" rel="stylesheet"/>
+<link href="../assets/academy.css" rel="stylesheet"/><link href="../assets/course.css" rel="stylesheet"/><script defer="" src="../assets/search-index.js"></script><script defer="" src="../assets/academy.js"></script><script defer="" src="../assets/figure-viewer.js"></script><script defer="" src="../assets/course.js"></script></head>
+<body>
+<a class="ccc-skip-link" href="#ccc-main">Aller au contenu</a>
+<header class="ccc-site-header" id="ccc-page-top" tabindex="-1">
+<a aria-label="Crystal Clear Code - Accueil" class="ccc-brand" href="../index.html">
+<img alt="" class="ccc-brand-logo" height="56" src="../assets/c-cubed.svg" width="56"/>
+</a>
+<div class="ccc-header-tools">
+<span class="ccc-course-title">SQL · La librairie · Préparation ENI</span>
+<a class="ccc-header-link" href="../index.html">Sommaire</a>
+<a class="ccc-header-link" href="../index.html#ccc-reading-guide">Aide</a>
+<button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button>
+</div>
+</header>
+<div class="ccc-shell">
+<aside class="ccc-sidebar"><div class="ccc-sidebar-inner"><p class="ccc-sidebar-kicker">CRYSTAL CLEAR CODE</p><details class="ccc-sidebar-disclosure" data-ccc-course-navigation="" open=""><summary class="ccc-sidebar-toggle">Sommaire du cours <span class="ccc-sidebar-current">16 chapitres disponibles sur 16</span></summary><nav aria-label="Chapitres et références"><h2 class="ccc-sidebar-title">SQL · La librairie</h2><p class="ccc-sidebar-subtitle">Préparation à la certification ENI</p><ul class="ccc-navigation-list" data-ccc-depth="0"><li><a href="../index.html">Accueil et parcours</a></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">I · Fondations</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/00-environnement.html"><span class="ccc-nav-chapter-number">00</span>Préparer son environnement</a></li><li><a aria-current="page" href="../units/01-bases-relationnelles.html"><span class="ccc-nav-chapter-number">01</span>Découvrir les bases relationnelles</a></li><li><a href="../units/02-modeliser.html"><span class="ccc-nav-chapter-number">02</span>Modéliser notre librairie</a></li><li><a href="../units/03-creer-base.html"><span class="ccc-nav-chapter-number">03</span>Créer la base et les utilisateurs</a></li><li><a href="../units/04-creer-tables.html"><span class="ccc-nav-chapter-number">04</span>Créer les tables</a></li><li><a href="../units/05-inserer.html"><span class="ccc-nav-chapter-number">05</span>Insérer les premières données</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/06-premieres-requetes.html"><span class="ccc-nav-chapter-number">06</span>Effectuer les premières requêtes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1/C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/07-calculs-agregats.html"><span class="ccc-nav-chapter-number">07</span>Calculer et agréger</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">III · Requêtes complexes (C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/08-jointures.html"><span class="ccc-nav-chapter-number">08</span>Relier plusieurs tables</a></li><li><a href="../units/09-sous-requetes.html"><span class="ccc-nav-chapter-number">09</span>Interroger avec des sous-requêtes</a></li><li><a href="../units/10-ensembles.html"><span class="ccc-nav-chapter-number">10</span>Utiliser les opérateurs ensemblistes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">IV · Modifier et réutiliser (C.3/C.4)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/11-manipuler.html"><span class="ccc-nav-chapter-number">11</span>Manipuler les données en sécurité</a></li><li><a href="../units/12-tables-vues.html"><span class="ccc-nav-chapter-number">12</span>Tables temporaires et vues</a></li><li><a href="../units/13-fonctions.html"><span class="ccc-nav-chapter-number">13</span>Fonctions et techniques complémentaires</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">V · Valider</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/14-revisions.html"><span class="ccc-nav-chapter-number">14</span>Révisions ENI</a></li><li><a href="../units/15-examen-blanc.html"><span class="ccc-nav-chapter-number">15</span>Examen blanc</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">Références</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../docs/diagnostic.html">Diagnostic initial</a></li><li><a href="../docs/cheatsheet.html">Cheatsheet SQL</a></li><li><a href="../docs/eni-coverage.html">Matrice de couverture ENI</a></li><li><a href="../docs/sources.html">Sources et contrôles</a></li></ul></li></ul></nav></details><div class="ccc-sidebar-note"><strong>Tout fonctionne hors ligne</strong>Aucun CDN, aucun serveur : ouvrez index.html.</div></div></aside>
+<main class="ccc-reading-area" id="ccc-main" tabindex="-1"><nav aria-label="Fil d’Ariane" class="ccc-breadcrumbs"><ol><li><a href="../index.html">Accueil</a></li><li>Chapitre 01</li></ol></nav><header class="ccc-chapter-heading ccc-premium-heading" id="ccc-understand"><p class="ccc-eyebrow">I · Fondations · Chapitre 01</p><h1>Découvrir les bases relationnelles</h1><p class="ccc-introduction">Tables, types, clés, cardinalités, intégrité.</p><div class="ccc-meta-tags"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Projet fil rouge : librairie</span></div></header><nav aria-label="Parcours pédagogique" class="ccc-learning-path"><ol><li><a data-ccc-step-target="ccc-understand" href="#ccc-understand"><span class="ccc-step-number">01</span>Comprendre</a></li><li><a data-ccc-step-target="ccc-observe" href="#ccc-observe"><span class="ccc-step-number">02</span>Observer</a></li><li><a data-ccc-step-target="ccc-practise" href="#ccc-practise"><span class="ccc-step-number">03</span>Pratiquer</a></li><li><a data-ccc-step-target="ccc-validate" href="#ccc-validate"><span class="ccc-step-number">04</span>Valider</a></li></ol></nav><section class="ccc-content-section ccc-card"><p class="ccc-card-label">Objectifs pédagogiques</p><ul><li>Expliquer pourquoi un tableur ne suffit pas à gérer des données qui se répètent</li><li>Définir table, colonne, ligne, valeur, type de données et NULL</li><li>Expliquer le rôle d’une clé primaire et d’une clé étrangère</li><li>Lire une cardinalité (un-à-plusieurs, zéro-ou-un…)</li><li>Décrire ce que garantit l’intégrité référentielle</li></ul></section><nav aria-label="Sommaire du chapitre" class="ccc-breadcrumbs ccc-local-toc"><strong>Dans ce chapitre :</strong> <a href="#s-pourquoi-ne-pas-tout-mettre-dans-excel">Pourquoi ne pas tout mettre dans Excel ?</a> · <a href="#s-tables-colonnes-lignes-et-valeurs">Tables, colonnes, lignes et valeurs</a> · <a href="#s-les-types-de-donnes">Les types de données</a> · <a href="#s-la-valeur-null-labsence-de-valeur">La valeur NULL : l’absence de valeur</a> · <a href="#s-cl-primaire-identifier-chaque-ligne">Clé primaire : identifier chaque ligne</a> · <a href="#s-cl-trangre-relier-les-tables">Clé étrangère : relier les tables</a> · <a href="#s-les-cardinalits">Les cardinalités</a> · <a href="#s-contraintes-et-intgrit">Contraintes et intégrité</a></nav><article class="ccc-lesson-prose" id="ccc-observe"><h2 id="s-pourquoi-ne-pas-tout-mettre-dans-excel">Pourquoi ne pas tout mettre dans Excel ?</h2>
+<p>Imaginons que la librairie note ses ventes dans un seul tableau.</p>
+<table>
+<thead>
+<tr>
+<th>commande</th>
+<th>client</th>
+<th>ville du client</th>
+<th>livre</th>
+<th>prix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Camille Durand</td>
+<td>Marseille</td>
+<td>Les Misérables</td>
+<td>11,90</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Camille Durand</td>
+<td>Marseille</td>
+<td>Le Crime de l’Orient-Express</td>
+<td>7,90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Camille Durand</td>
+<td>Marseille</td>
+<td>Vingt mille lieues sous les mers</td>
+<td>10,50</td>
+</tr>
+</tbody>
+</table>
+<p>Trois problèmes apparaissent déjà :</p>
+<ol>
+<li><strong>Répétition.</strong> Le nom et la ville de Camille sont recopiés à chaque ligne. Avec 100 000 lignes, on recopie 100 000 fois la même information.</li>
+<li><strong>Incohérence.</strong> Si Camille déménage et que l’on corrige seulement deux lignes sur trois, le tableau contient deux villes différentes pour la même personne. Quelle est la bonne ?</li>
+<li><strong>Aucune règle.</strong> Rien n’empêche de saisir un prix négatif, une date « 31 février » ou un client qui n’existe pas.</li>
+</ol>
+<p>Une base relationnelle résout ces trois problèmes : chaque information est écrite <strong>une seule fois</strong>, dans la table qui lui correspond, et les tables sont <strong>reliées</strong> entre elles.</p>
+<h2 id="s-tables-colonnes-lignes-et-valeurs">Tables, colonnes, lignes et valeurs</h2>
+<ul>
+<li>Une <strong>table</strong> regroupe les informations sur <strong>un même type de chose</strong> (les clients, les livres…).</li>
+<li>Une <strong>colonne</strong> est une caractéristique commune à toutes les lignes (<code>email</code>, <code>unit_price</code>). Elle a un nom et un <strong>type</strong>.</li>
+<li>Une <strong>ligne</strong> (ou <em>enregistrement</em>) décrit <strong>une</strong> chose précise : un client, un livre.</li>
+<li>Une <strong>valeur</strong> est le contenu d’une cellule, à l’intersection d’une ligne et d’une colonne.</li>
+</ul>
+<p>Regardons deux lignes réelles de la table <code>customers</code>, avec une première requête. <code>SELECT</code> signifie « sélectionner » ; <code>FROM customers</code> indique la table lue. Le chapitre 6 détaille cette syntaxe : pour l’instant, observez le résultat.</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">phone</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id, first_name, last_name, city, phone
+FROM customers
+WHERE customer_id IN (1, 2)
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th><th scope="col">first_name</th><th scope="col">last_name</th><th scope="col">city</th><th scope="col">phone</th></tr></thead><tbody><tr><td class="num">1</td><td>Camille</td><td>Durand</td><td>Marseille</td><td>0601020304</td></tr><tr><td class="num">2</td><td>Lucas</td><td>Martin</td><td>Lyon</td><td class="null">NULL</td></tr></tbody></table></div></div><p>Chaque ligne est un client, chaque colonne une caractéristique. Remarquez la case <strong>NULL</strong> pour le téléphone de Lucas : nous y revenons ci-dessous.</p>
+<h2 id="s-les-types-de-donnes">Les types de données</h2>
+<p>Chaque colonne n’accepte que des valeurs d’un certain <strong>type</strong> : cela évite de stocker du texte à la place d’un nombre.</p>
+<table>
+<thead>
+<tr>
+<th>Besoin</th>
+<th>PostgreSQL</th>
+<th>MySQL</th>
+<th>SQLite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entier</td>
+<td><code>INTEGER</code></td>
+<td><code>INT</code></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td>Texte</td>
+<td><code>VARCHAR(n)</code></td>
+<td><code>VARCHAR(n)</code></td>
+<td><code>VARCHAR(n)</code> ou <code>TEXT</code></td>
+</tr>
+<tr>
+<td>Montant exact</td>
+<td><code>NUMERIC(8,2)</code></td>
+<td><code>DECIMAL(8,2)</code></td>
+<td><code>NUMERIC(8,2)</code> (voir ci-dessous)</td>
+</tr>
+<tr>
+<td>Date</td>
+<td><code>DATE</code></td>
+<td><code>DATE</code></td>
+<td><code>DATE</code> (stockée comme du texte)</td>
+</tr>
+<tr>
+<td>Vrai / faux</td>
+<td><code>BOOLEAN</code></td>
+<td><code>BOOLEAN</code> (alias de <code>TINYINT(1)</code>)</td>
+<td><code>BOOLEAN</code> (stocké comme 0 ou 1)</td>
+</tr>
+</tbody>
+</table>
+<aside class="course-callout course-callout--warning"><span class="course-callout-title">SQLite est « souple » avec les types</span><p>SQLite ne contraint pas strictement le type : il applique une <strong>affinité</strong> (une préférence). Une colonne <code>NUMERIC(8,2)</code> peut y être stockée en nombre à virgule flottante, ce qui peut produire de minuscules erreurs d’arrondi. C’est pourquoi les sommes d’argent seront arrondies avec <code>ROUND(…, 2)</code> au chapitre 7.</p>
+</aside><h2 id="s-la-valeur-null-labsence-de-valeur">La valeur NULL : l’absence de valeur</h2>
+<p><strong>NULL</strong> ne veut pas dire « zéro » ni « texte vide » : cela veut dire <strong>« on ne connaît pas la valeur, ou elle n’existe pas »</strong>. Le téléphone d’un client qui n’en a pas donné est NULL. La date d’expédition d’une commande pas encore expédiée aussi.</p>
+<p>Conséquence capitale : <strong>on ne peut pas comparer avec <code>=</code> à NULL</strong>. La question « le téléphone est-il égal à inconnu ? » n’a pas de réponse vrai/faux ; elle est <em>inconnue</em>. On écrit donc <code>IS NULL</code> (chapitre 6). Une colonne déclarée <code>NOT NULL</code> interdit cette absence.</p>
+<h2 id="s-cl-primaire-identifier-chaque-ligne">Clé primaire : identifier chaque ligne</h2>
+<p>Deux clients peuvent avoir le même prénom, voire le même nom. Pour distinguer <strong>sans ambiguïté</strong> chaque ligne, on ajoute une colonne d’identifiant : la <strong>clé primaire</strong> (<em>primary key</em>, PK).</p>
+<p>Règles d’une clé primaire : <strong>unique</strong> (pas deux lignes identiques) et <strong>jamais NULL</strong>. Dans la librairie : <code>customer_id</code>, <code>book_id</code>, <code>order_id</code>… Ce sont souvent de simples numéros générés automatiquement.</p>
+<h2 id="s-cl-trangre-relier-les-tables">Clé étrangère : relier les tables</h2>
+<p>Une commande doit savoir <strong>à quel client</strong> elle appartient. On ne recopie pas le client : on stocke seulement son identifiant. Cette colonne, qui contient la clé primaire d’une autre table, s’appelle une <strong>clé étrangère</strong> (<em>foreign key</em>, FK).</p>
+<figure class="ccc-course-illustration"><img alt="Les commandes 1 à 4 pointent vers le client 1, la 5 vers le client 2, la 7 vers le client 3 ; une commande vers un client 99 inexistant est refusée." height="720" loading="lazy" src="../assets/illustrations/foreign-key-link.svg" width="1280"/><button class="ccc-figure-open" data-ccc-figure-open="" hidden="" type="button">Agrandir le schéma</button><figcaption>orders.customer_id contient un customer_id existant : c’est le lien entre les deux tables.</figcaption></figure>
+<p>Sur le schéma, quatre commandes pointent vers le client 1 : <strong>un client peut avoir plusieurs commandes</strong>. Le client 12 n’en a aucune : c’est permis. La ligne rouge est une tentative de commande pour un client 99 qui n’existe pas : le moteur la <strong>refuse</strong>. Cette garantie s’appelle l’<strong>intégrité référentielle</strong>.</p>
+<h2 id="s-les-cardinalits">Les cardinalités</h2>
+<p>La <strong>cardinalité</strong> exprime <em>combien</em> de lignes d’un côté peuvent correspondre à <em>combien</em> de l’autre. On la note par deux nombres minimum et maximum.</p>
+<table>
+<thead>
+<tr>
+<th>Relation</th>
+<th>Lecture</th>
+<th>Cardinalité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>client → commandes</td>
+<td>Un client passe zéro, une ou plusieurs commandes</td>
+<td>1 – 0..N</td>
+</tr>
+<tr>
+<td>commande → client</td>
+<td>Une commande appartient à exactement un client</td>
+<td>1 – 1</td>
+</tr>
+<tr>
+<td>commande → paiement</td>
+<td>Une commande a <strong>au plus un</strong> paiement</td>
+<td>1 – 0..1</td>
+</tr>
+<tr>
+<td>commande → lignes</td>
+<td>Une commande contient au moins une ligne</td>
+<td>1 – 1..N</td>
+</tr>
+<tr>
+<td>livre → lignes</td>
+<td>Un livre peut figurer dans zéro, une ou plusieurs lignes</td>
+<td>1 – 0..N</td>
+</tr>
+</tbody>
+</table>
+<p>Nous décidons ici qu’<strong>une commande a au plus un paiement</strong> (pas de paiement en plusieurs fois). Cette règle sera appliquée dans le schéma (chapitre 4) par une contrainte d’unicité.</p>
+<h2 id="s-contraintes-et-intgrit">Contraintes et intégrité</h2>
+<p>Une <strong>contrainte</strong> est une règle que le moteur fait respecter à chaque modification :</p>
+<ul>
+<li><code>PRIMARY KEY</code> : identifiant unique et non nul ;</li>
+<li><code>FOREIGN KEY</code> : la valeur doit exister dans la table référencée ;</li>
+<li><code>NOT NULL</code> : l’absence de valeur est interdite ;</li>
+<li><code>UNIQUE</code> : pas de doublon (par exemple l’adresse e-mail d’un client) ;</li>
+<li><code>CHECK</code> : une condition doit être vraie (par exemple <code>quantity &gt; 0</code>) ;</li>
+<li><code>DEFAULT</code> : une valeur utilisée si rien n’est fournie.</li>
+</ul>
+<p>L’<strong>intégrité</strong> est l’état d’une base dont toutes les contraintes sont respectées. C’est elle qui rend les données <strong>fiables</strong>.</p>
+<section class="course-exercise" id="ccc-practise"><span class="course-level">Niveau 1 · guidé</span><br/><h3>Exercice guidé : trouver le type de relation</h3><p>Une librairie veut aussi mémoriser l’éditeur de chaque livre. Un éditeur publie plusieurs livres ; chaque livre a un seul éditeur. Dans quelle table placeriez-vous la clé étrangère, et pourquoi ?</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>La clé étrangère se place <strong>du côté « plusieurs »</strong>, c’est-à-dire dans la table <code>books</code> : chaque livre stocke l’identifiant de son éditeur (<code>publisher_id</code>). Si on la plaçait dans la table des éditeurs, il faudrait y stocker une liste de livres dans une seule cellule, ce qui est impossible dans le modèle relationnel (chapitre 2, première forme normale).</p>
+<p>Règle pratique : <strong>dans une relation un-à-plusieurs, la FK est toujours côté « plusieurs ».</strong></p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 2 · autonome</span><br/><h3>Exercice autonome : NULL ou pas NULL ?</h3><p>Pour chaque colonne, dites si elle doit autoriser NULL : <code>customers.email</code>, <code>customers.phone</code>, <code>orders.shipped_date</code>, <code>books.publication_year</code>. Justifiez.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><ul>
+<li><code>customers.email</code> : <strong>NOT NULL</strong> (et UNIQUE) : c’est l’identifiant de contact du client.</li>
+<li><code>customers.phone</code> : <strong>NULL autorisé</strong> : le client peut ne pas en fournir (voir Lucas Martin dans le jeu de données).</li>
+<li><code>orders.shipped_date</code> : <strong>NULL autorisé</strong> : tant que la commande n’est pas expédiée, la date n’existe pas.</li>
+<li><code>books.publication_year</code> : <strong>NULL autorisé</strong> : l’année est inconnue pour <em>La Guerre des Gaules</em> dans notre catalogue.</li>
+</ul>
+<p>Critère : une colonne est nullable lorsque l’information <strong>peut légitimement manquer</strong>, pas lorsqu’on est paresseux.</p>
+</details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new="" id="ccc-validate"><p class="ccc-card-label">Valider · question 1</p><fieldset><legend>Dans quelle table se trouve la clé étrangère qui relie une commande à son client ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="0"/><span>customers</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="1"/><span>orders</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="2"/><span>books</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — customers</strong> : customers contient la clé primaire customer_id ; elle est référencée, elle ne référence personne.</li><li><strong>Bonne réponse — orders</strong> : orders possède la colonne customer_id qui référence customers.customer_id.</li><li><strong>Incorrect — books</strong> : books n’a aucun lien direct avec les clients.</li></ul></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="2" data-ccc-quiz-new=""><p class="ccc-card-label">Valider · question 2</p><fieldset><legend>Que signifie la valeur NULL dans la colonne phone ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="0"/><span>Le téléphone vaut 0</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="1"/><span>Le téléphone est une chaîne vide</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="2"/><span>Le téléphone est inconnu ou non renseigné</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Le téléphone vaut 0</strong> : Zéro est une valeur ; NULL est l’absence de valeur.</li><li><strong>Incorrect — Le téléphone est une chaîne vide</strong> : Une chaîne vide est une valeur connue (du texte sans caractère).</li><li><strong>Bonne réponse — Le téléphone est inconnu ou non renseigné</strong> : NULL représente l’absence ou l’inconnue.</li></ul></details></section></article><section class="ccc-completion-card ccc-card"><h2>Chapitre terminé ?</h2><p>La progression est enregistrée localement dans ce navigateur si le stockage est disponible ; rien n’est envoyé à un serveur.</p><button class="ccc-secondary-action" data-ccc-complete="01-bases-relationnelles" hidden="">Marquer ce chapitre terminé</button><p aria-live="polite" data-ccc-progress-message=""></p></section><nav aria-label="Chapitre précédent et suivant" class="ccc-page-navigation ccc-chapter-pagination"><a class="ccc-lesson-nav-prev" href="00-environnement.html">← Préparer son environnement</a><a class="ccc-lesson-nav-next" href="02-modeliser.html">Modéliser notre librairie →</a></nav></main>
+</div>
+<footer class="ccc-site-footer"><p>Crystal Clear Code · Cours SQL « La librairie » · Préparation à la certification ENI (préparation non officielle)</p><p><a href="../index.html">Sommaire</a> · <a href="../docs/cheatsheet.html">Cheatsheet</a> · <a href="../docs/eni-coverage.html">Couverture ENI</a> · <a href="../docs/sources.html">Sources</a></p></footer>
+<a aria-label="Retour en haut" class="ccc-back-to-top" data-ccc-back-to-top="" href="#ccc-page-top">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 11l6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</body>
+</html>

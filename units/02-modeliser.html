@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Entités, UML, modèle relationnel, normalisation" name="description"/>
+<meta content="light dark" name="color-scheme"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Modéliser notre librairie | Crystal Clear Code</title>
+<link href="../assets/c-cubed.svg" rel="icon" sizes="any" type="image/svg+xml"/>
+<script src="../assets/theme.js"></script>
+<script defer="" src="../assets/template-interactions.js"></script>
+<link href="../assets/shell.css" rel="stylesheet"/>
+<link href="../assets/academy.css" rel="stylesheet"/><link href="../assets/course.css" rel="stylesheet"/><script defer="" src="../assets/search-index.js"></script><script defer="" src="../assets/academy.js"></script><script defer="" src="../assets/figure-viewer.js"></script><script defer="" src="../assets/course.js"></script></head>
+<body>
+<a class="ccc-skip-link" href="#ccc-main">Aller au contenu</a>
+<header class="ccc-site-header" id="ccc-page-top" tabindex="-1">
+<a aria-label="Crystal Clear Code - Accueil" class="ccc-brand" href="../index.html">
+<img alt="" class="ccc-brand-logo" height="56" src="../assets/c-cubed.svg" width="56"/>
+</a>
+<div class="ccc-header-tools">
+<span class="ccc-course-title">SQL · La librairie · Préparation ENI</span>
+<a class="ccc-header-link" href="../index.html">Sommaire</a>
+<a class="ccc-header-link" href="../index.html#ccc-reading-guide">Aide</a>
+<button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button>
+</div>
+</header>
+<div class="ccc-shell">
+<aside class="ccc-sidebar"><div class="ccc-sidebar-inner"><p class="ccc-sidebar-kicker">CRYSTAL CLEAR CODE</p><details class="ccc-sidebar-disclosure" data-ccc-course-navigation="" open=""><summary class="ccc-sidebar-toggle">Sommaire du cours <span class="ccc-sidebar-current">16 chapitres disponibles sur 16</span></summary><nav aria-label="Chapitres et références"><h2 class="ccc-sidebar-title">SQL · La librairie</h2><p class="ccc-sidebar-subtitle">Préparation à la certification ENI</p><ul class="ccc-navigation-list" data-ccc-depth="0"><li><a href="../index.html">Accueil et parcours</a></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">I · Fondations</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/00-environnement.html"><span class="ccc-nav-chapter-number">00</span>Préparer son environnement</a></li><li><a href="../units/01-bases-relationnelles.html"><span class="ccc-nav-chapter-number">01</span>Découvrir les bases relationnelles</a></li><li><a aria-current="page" href="../units/02-modeliser.html"><span class="ccc-nav-chapter-number">02</span>Modéliser notre librairie</a></li><li><a href="../units/03-creer-base.html"><span class="ccc-nav-chapter-number">03</span>Créer la base et les utilisateurs</a></li><li><a href="../units/04-creer-tables.html"><span class="ccc-nav-chapter-number">04</span>Créer les tables</a></li><li><a href="../units/05-inserer.html"><span class="ccc-nav-chapter-number">05</span>Insérer les premières données</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/06-premieres-requetes.html"><span class="ccc-nav-chapter-number">06</span>Effectuer les premières requêtes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1/C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/07-calculs-agregats.html"><span class="ccc-nav-chapter-number">07</span>Calculer et agréger</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">III · Requêtes complexes (C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/08-jointures.html"><span class="ccc-nav-chapter-number">08</span>Relier plusieurs tables</a></li><li><a href="../units/09-sous-requetes.html"><span class="ccc-nav-chapter-number">09</span>Interroger avec des sous-requêtes</a></li><li><a href="../units/10-ensembles.html"><span class="ccc-nav-chapter-number">10</span>Utiliser les opérateurs ensemblistes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">IV · Modifier et réutiliser (C.3/C.4)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/11-manipuler.html"><span class="ccc-nav-chapter-number">11</span>Manipuler les données en sécurité</a></li><li><a href="../units/12-tables-vues.html"><span class="ccc-nav-chapter-number">12</span>Tables temporaires et vues</a></li><li><a href="../units/13-fonctions.html"><span class="ccc-nav-chapter-number">13</span>Fonctions et techniques complémentaires</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">V · Valider</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/14-revisions.html"><span class="ccc-nav-chapter-number">14</span>Révisions ENI</a></li><li><a href="../units/15-examen-blanc.html"><span class="ccc-nav-chapter-number">15</span>Examen blanc</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">Références</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../docs/diagnostic.html">Diagnostic initial</a></li><li><a href="../docs/cheatsheet.html">Cheatsheet SQL</a></li><li><a href="../docs/eni-coverage.html">Matrice de couverture ENI</a></li><li><a href="../docs/sources.html">Sources et contrôles</a></li></ul></li></ul></nav></details><div class="ccc-sidebar-note"><strong>Tout fonctionne hors ligne</strong>Aucun CDN, aucun serveur : ouvrez index.html.</div></div></aside>
+<main class="ccc-reading-area" id="ccc-main" tabindex="-1"><nav aria-label="Fil d’Ariane" class="ccc-breadcrumbs"><ol><li><a href="../index.html">Accueil</a></li><li>Chapitre 02</li></ol></nav><header class="ccc-chapter-heading ccc-premium-heading" id="ccc-understand"><p class="ccc-eyebrow">I · Fondations · Chapitre 02</p><h1>Modéliser notre librairie</h1><p class="ccc-introduction">Entités, UML, modèle relationnel, normalisation.</p><div class="ccc-meta-tags"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Projet fil rouge : librairie</span></div></header><nav aria-label="Parcours pédagogique" class="ccc-learning-path"><ol><li><a data-ccc-step-target="ccc-understand" href="#ccc-understand"><span class="ccc-step-number">01</span>Comprendre</a></li><li><a data-ccc-step-target="ccc-observe" href="#ccc-observe"><span class="ccc-step-number">02</span>Observer</a></li><li><a data-ccc-step-target="ccc-practise" href="#ccc-practise"><span class="ccc-step-number">03</span>Pratiquer</a></li><li><a data-ccc-step-target="ccc-validate" href="#ccc-validate"><span class="ccc-step-number">04</span>Valider</a></li></ol></nav><section class="ccc-content-section ccc-card"><p class="ccc-card-label">Objectifs pédagogiques</p><ul><li>Traduire un besoin métier en entités, attributs et relations</li><li>Lire un diagramme de classes UML avec ses multiplicités</li><li>Transformer le modèle en tables relationnelles (PK, FK, UNIQUE)</li><li>Distinguer le formalisme UML du schéma relationnel</li><li>Reconnaître les trois premières formes normales sur des exemples simples</li></ul></section><nav aria-label="Sommaire du chapitre" class="ccc-breadcrumbs ccc-local-toc"><strong>Dans ce chapitre :</strong> <a href="#s-du-besoin-mtier-au-modle">Du besoin métier au modèle</a> · <a href="#s-le-diagramme-de-classes-uml">Le diagramme de classes UML</a> · <a href="#s-transformer-le-modle-en-tables">Transformer le modèle en tables</a> · <a href="#s-la-normalisation-sans-excs-de-thorie">La normalisation, sans excès de théorie</a></nav><article class="ccc-lesson-prose" id="ccc-observe"><h2 id="s-du-besoin-mtier-au-modle">Du besoin métier au modèle</h2>
+<p>Avant d’écrire la moindre instruction <code>CREATE TABLE</code>, on <strong>modélise</strong> : on décide quelles informations conserver et comment elles se relient. Mal modélisée, une base devient vite incohérente ; bien modélisée, les requêtes deviennent naturelles.</p>
+<p>Le besoin de la librairie, en français : <em>« Nous vendons des livres rangés par catégorie. Des clients passent des commandes. Chaque commande contient une ou plusieurs lignes, chacune pour un livre et une quantité. Une commande peut être réglée par un paiement. »</em></p>
+<h3>Étape 1 : repérer les entités</h3>
+<p>Une <strong>entité</strong> est une chose dont on veut mémoriser des informations. On les trouve souvent en cherchant les <strong>noms</strong> de la description : <em>client, livre, catégorie, commande, ligne de commande, paiement</em>. Six entités, donc six tables.</p>
+<h3>Étape 2 : déterminer les attributs</h3>
+<p>Un <strong>attribut</strong> est une caractéristique d’une entité. Pour chaque entité, on se demande : <em>quelles informations devons-nous réellement conserver ?</em> Exemple pour un livre : ISBN, titre, auteur, prix, stock, année de publication, éditeur.</p>
+<h3>Étape 3 : identifier les relations</h3>
+<p>Une <strong>relation</strong> (ou association) relie deux entités ; on lui attache des <strong>multiplicités</strong> : un client passe <strong>0 à N</strong> commandes, une commande appartient à <strong>1</strong> client, etc.</p>
+<h2 id="s-le-diagramme-de-classes-uml">Le diagramme de classes UML</h2>
+<p><strong>UML</strong> (<em>Unified Modeling Language</em>) est un langage graphique de modélisation. Son <strong>diagramme de classes</strong> représente chaque entité par un rectangle : nom en haut, attributs en dessous. Les traits entre rectangles sont les relations, annotées de multiplicités.</p>
+<figure class="ccc-course-illustration"><img alt="Un client passe zéro à plusieurs commandes ; une commande se compose d’une à plusieurs lignes et est réglée par au plus un paiement ; une ligne concerne un livre ; un livre appartient à une catégorie." height="720" loading="lazy" src="../assets/illustrations/uml-classes.svg" width="1280"/><button class="ccc-figure-open" data-ccc-figure-open="" hidden="" type="button">Agrandir le schéma</button><figcaption>Diagramme de classes UML : six classes et leurs multiplicités.</figcaption></figure>
+<p>À lire sur le schéma :</p>
+<ul>
+<li><code>Customer 1 — 0..* Order</code> : un client passe zéro, une ou plusieurs commandes ; une commande a un seul client.</li>
+<li><code>Order 1 — 0..1 Payment</code> : une commande est réglée par <strong>au plus un</strong> paiement.</li>
+<li><code>Order ◆— 1..* OrderItem</code> : le losange plein est une <strong>composition</strong> : une ligne n’existe pas sans sa commande.</li>
+<li><code>Book 1 — 0..* OrderItem</code> : un livre peut apparaître dans de nombreuses lignes.</li>
+<li><code>Category 1 — 0..* Book</code> : une catégorie regroupe zéro, un ou plusieurs livres.</li>
+</ul>
+<aside class="course-callout course-callout--note"><span class="course-callout-title">UML et schéma relationnel ne sont pas la même chose</span><p>Le diagramme UML décrit des <strong>objets du métier</strong> (sans clés étrangères). Le schéma relationnel, vu plus bas, décrit des <strong>tables</strong> avec leurs clés. On passe de l’un à l’autre par des règles de transformation.</p>
+</aside><h2 id="s-transformer-le-modle-en-tables">Transformer le modèle en tables</h2>
+<table>
+<thead>
+<tr>
+<th>Règle</th>
+<th>Application dans la librairie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chaque classe devient une table ; chaque attribut devient une colonne</td>
+<td>6 tables : <code>customers</code>, <code>categories</code>, <code>books</code>, <code>orders</code>, <code>order_items</code>, <code>payments</code></td>
+</tr>
+<tr>
+<td>Chaque table reçoit une clé primaire</td>
+<td><code>customer_id</code>, <code>category_id</code>, <code>book_id</code>, <code>order_id</code>, <code>order_item_id</code>, <code>payment_id</code></td>
+</tr>
+<tr>
+<td>Relation 1 – N : la FK va <strong>côté N</strong></td>
+<td><code>orders.customer_id</code>, <code>books.category_id</code>, <code>order_items.order_id</code>, <code>order_items.book_id</code></td>
+</tr>
+<tr>
+<td>Relation 1 – 0..1 : FK + contrainte <strong>UNIQUE</strong></td>
+<td><code>payments.order_id UNIQUE</code> : au plus un paiement par commande</td>
+</tr>
+<tr>
+<td>Les noms passent en <code>snake_case</code> anglais</td>
+<td><code>firstName</code> → <code>first_name</code>, <code>unitPrice</code> → <code>unit_price</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="ccc-course-illustration"><img alt="Six tables avec leurs clés ; les flèches vont de chaque clé étrangère vers la clé primaire référencée." height="720" loading="lazy" src="../assets/illustrations/relational-schema.svg" width="1280"/><button class="ccc-figure-open" data-ccc-figure-open="" hidden="" type="button">Agrandir le schéma</button><figcaption>Le schéma relationnel : tables, PK, FK et colonnes optionnelles (NULL).</figcaption></figure>
+<p>Les flèches vont de la <strong>clé étrangère</strong> vers la <strong>clé primaire</strong> qu’elle référence. Comparez avec le diagramme UML : ici apparaissent des colonnes techniques (<code>customer_id</code>, <code>order_id</code>…) qui n’existaient pas comme attributs métier.</p>
+<h3>Hypothèses métier retenues</h3>
+<p>Ces règles sont fixées une fois pour toutes ; toutes les requêtes du cours s’y conforment.</p>
+<table>
+<thead>
+<tr>
+<th>Sujet</th>
+<th>Règle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prix et montants</td>
+<td>Montants exacts à deux décimales (<code>NUMERIC(8,2)</code> / <code>DECIMAL</code>)</td>
+</tr>
+<tr>
+<td>Prix dans une ligne</td>
+<td><code>order_items.unit_price</code> <strong>mémorise le prix au moment de la commande</strong> : si le catalogue change, l’historique reste exact</td>
+</tr>
+<tr>
+<td>Quantité</td>
+<td>Toujours strictement positive (<code>CHECK (quantity &gt; 0)</code>)</td>
+</tr>
+<tr>
+<td>Paiement</td>
+<td>Une commande a <strong>0 ou 1</strong> paiement ; le montant égale le total des lignes</td>
+</tr>
+<tr>
+<td>Statuts de commande</td>
+<td><code>pending</code>, <code>paid</code>, <code>shipped</code>, <code>cancelled</code> ; seules les commandes <code>paid</code> et <code>shipped</code> ont un paiement</td>
+</tr>
+<tr>
+<td>Suppressions</td>
+<td>Impossible de supprimer un client ou un livre référencé (<code>RESTRICT</code>) ; supprimer une commande supprime ses lignes (<code>CASCADE</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s-la-normalisation-sans-excs-de-thorie">La normalisation, sans excès de théorie</h2>
+<p>La <strong>normalisation</strong> est une méthode pour éviter la répétition et les incohérences vues au chapitre 1. On l’applique par « formes normales ».</p>
+<p><strong>1re forme normale (1NF) : une seule valeur par cellule.</strong> Une colonne <code>categories</code> contenant <code>"Roman, Policier"</code> pour un même livre viole la 1NF : on ne pourrait ni compter proprement ni filtrer. Solution : une table séparée et une relation.</p>
+<p><strong>2e forme normale (2NF) : tout dépend de la clé entière.</strong> Si <code>order_items</code> stockait le titre du livre, ce titre dépendrait seulement de <code>book_id</code> (une <em>partie</em> de la clé order_id + book_id), pas de la ligne entière. Solution : garder le titre dans <code>books</code> uniquement.</p>
+<p><strong>3e forme normale (3NF) : pas de dépendance cachée entre colonnes non clés.</strong> Exemple : dans <code>customers</code>, <code>country</code> dépend de <code>city</code> (Bruxelles → Belgique). Une 3NF stricte demanderait une table <code>cities</code>. Nous <strong>gardons volontairement</strong> <code>country</code> dans <code>customers</code> pour ne pas alourdir un cours d’initiation : c’est un compromis assumé, à connaître.</p>
+<aside class="course-callout course-callout--note"><span class="course-callout-title">Pourquoi `unit_price` apparaît dans books et dans order_items ?</span><p>Ce n’est <strong>pas</strong> une répétition fautive : ce sont deux informations différentes. <code>books.unit_price</code> est le prix <strong>actuel</strong> ; <code>order_items.unit_price</code> est le prix <strong>payé à la date de la commande</strong>. Le jeu de données le montre : <em>Les Misérables</em> coûte aujourd’hui 12,90 € mais a été commandé à 11,90 € en début d’année.</p>
+</aside><aside class="course-callout course-callout--eni"><span class="course-callout-title">Périmètre ENI</span><p>La modélisation UML et la normalisation sont des <strong>prérequis et bonnes pratiques</strong>, absentes des critères d’évaluation du référentiel ENI. Elles vous aident à comprendre pourquoi les requêtes de jointure (chapitre 8) sont nécessaires.</p>
+</aside><section class="course-exercise" id="ccc-practise"><span class="course-level">Niveau 1 · guidé</span><br/><h3>Exercice guidé : lire des multiplicités</h3><p>Que signifie « Order 1 — 0..1 Payment » ? Une commande peut-elle avoir deux paiements ? Peut-il exister un paiement sans commande ?</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Côté <code>Payment</code>, la multiplicité <code>0..1</code> signifie « au plus un » : <strong>une commande a zéro ou un paiement</strong>, jamais deux. Côté <code>Order</code>, la multiplicité <code>1</code> signifie qu’<strong>un paiement est lié à exactement une commande</strong> : un paiement sans commande n’existe pas. Dans les tables, cela se traduit par <code>payments.order_id NOT NULL UNIQUE</code> (une FK obligatoire et unique).</p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 2 · autonome</span><br/><h3>Exercice autonome : ajouter une entité</h3><p>La librairie veut gérer des <strong>avis</strong> : un client peut laisser plusieurs avis, un livre peut en recevoir plusieurs, et un client ne note un livre qu’une fois. Proposez la table <code>reviews</code>, ses clés et sa contrainte d’unicité.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Table <code>reviews</code> : <code>review_id</code> (PK), <code>customer_id</code> (FK vers <code>customers</code>), <code>book_id</code> (FK vers <code>books</code>), <code>rating</code>, <code>comment</code>. Les deux relations sont de type 1 – N, donc les deux FK se placent dans <code>reviews</code>. Pour imposer « un avis par client et par livre », on ajoute <code>UNIQUE (customer_id, book_id)</code>. On pourrait ajouter <code>CHECK (rating BETWEEN 1 AND 5)</code> pour valider la note.</p>
+<p>Remarque : <code>reviews</code> est une table d’<strong>association</strong> entre <code>customers</code> et <code>books</code> (relation N – N résolue par une table intermédiaire), exactement comme <code>order_items</code> relie <code>orders</code> et <code>books</code>.</p>
+</details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new="" id="ccc-validate"><p class="ccc-card-label">Valider · question 1</p><fieldset><legend>Où place-t-on la clé étrangère dans une relation un-à-plusieurs ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="0"/><span>Du côté « un »</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="1"/><span>Du côté « plusieurs »</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="2"/><span>Dans une troisième table obligatoire</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Du côté « un »</strong> : Elle devrait alors contenir plusieurs valeurs, ce qui est impossible dans une cellule.</li><li><strong>Bonne réponse — Du côté « plusieurs »</strong> : Chaque ligne du côté « plusieurs » stocke l’identifiant de son unique parent.</li><li><strong>Incorrect — Dans une troisième table obligatoire</strong> : Une table intermédiaire n’est nécessaire que pour les relations plusieurs-à-plusieurs.</li></ul></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new=""><p class="ccc-card-label">Valider · question 2</p><fieldset><legend>Pourquoi order_items.unit_price n’est-il pas une redondance fautive ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="0"/><span>Parce que SQL l’impose</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="1"/><span>Parce qu’il mémorise le prix au moment de la commande, qui peut différer du prix actuel</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="2"/><span>Parce que books n’a pas de colonne prix</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Parce que SQL l’impose</strong> : SQL n’impose rien de tel.</li><li><strong>Bonne réponse — Parce qu’il mémorise le prix au moment de la commande, qui peut différer du prix actuel</strong> : Les deux colonnes portent deux informations distinctes.</li><li><strong>Incorrect — Parce que books n’a pas de colonne prix</strong> : Elle existe : books.unit_price.</li></ul></details></section></article><section class="ccc-completion-card ccc-card"><h2>Chapitre terminé ?</h2><p>La progression est enregistrée localement dans ce navigateur si le stockage est disponible ; rien n’est envoyé à un serveur.</p><button class="ccc-secondary-action" data-ccc-complete="02-modeliser" hidden="">Marquer ce chapitre terminé</button><p aria-live="polite" data-ccc-progress-message=""></p></section><nav aria-label="Chapitre précédent et suivant" class="ccc-page-navigation ccc-chapter-pagination"><a class="ccc-lesson-nav-prev" href="01-bases-relationnelles.html">← Découvrir les bases relationnelles</a><a class="ccc-lesson-nav-next" href="03-creer-base.html">Créer la base et les utilisateurs →</a></nav></main>
+</div>
+<footer class="ccc-site-footer"><p>Crystal Clear Code · Cours SQL « La librairie » · Préparation à la certification ENI (préparation non officielle)</p><p><a href="../index.html">Sommaire</a> · <a href="../docs/cheatsheet.html">Cheatsheet</a> · <a href="../docs/eni-coverage.html">Couverture ENI</a> · <a href="../docs/sources.html">Sources</a></p></footer>
+<a aria-label="Retour en haut" class="ccc-back-to-top" data-ccc-back-to-top="" href="#ccc-page-top">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 11l6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</body>
+</html>

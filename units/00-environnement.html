@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Outils, moteurs, client SQL, première requête" name="description"/>
+<meta content="light dark" name="color-scheme"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Préparer son environnement | Crystal Clear Code</title>
+<link href="../assets/c-cubed.svg" rel="icon" sizes="any" type="image/svg+xml"/>
+<script src="../assets/theme.js"></script>
+<script defer="" src="../assets/template-interactions.js"></script>
+<link href="../assets/shell.css" rel="stylesheet"/>
+<link href="../assets/academy.css" rel="stylesheet"/><link href="../assets/course.css" rel="stylesheet"/><script defer="" src="../assets/search-index.js"></script><script defer="" src="../assets/academy.js"></script><script defer="" src="../assets/figure-viewer.js"></script><script defer="" src="../assets/course.js"></script></head>
+<body>
+<a class="ccc-skip-link" href="#ccc-main">Aller au contenu</a>
+<header class="ccc-site-header" id="ccc-page-top" tabindex="-1">
+<a aria-label="Crystal Clear Code - Accueil" class="ccc-brand" href="../index.html">
+<img alt="" class="ccc-brand-logo" height="56" src="../assets/c-cubed.svg" width="56"/>
+</a>
+<div class="ccc-header-tools">
+<span class="ccc-course-title">SQL · La librairie · Préparation ENI</span>
+<a class="ccc-header-link" href="../index.html">Sommaire</a>
+<a class="ccc-header-link" href="../index.html#ccc-reading-guide">Aide</a>
+<button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button>
+</div>
+</header>
+<div class="ccc-shell">
+<aside class="ccc-sidebar"><div class="ccc-sidebar-inner"><p class="ccc-sidebar-kicker">CRYSTAL CLEAR CODE</p><details class="ccc-sidebar-disclosure" data-ccc-course-navigation="" open=""><summary class="ccc-sidebar-toggle">Sommaire du cours <span class="ccc-sidebar-current">16 chapitres disponibles sur 16</span></summary><nav aria-label="Chapitres et références"><h2 class="ccc-sidebar-title">SQL · La librairie</h2><p class="ccc-sidebar-subtitle">Préparation à la certification ENI</p><ul class="ccc-navigation-list" data-ccc-depth="0"><li><a href="../index.html">Accueil et parcours</a></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">I · Fondations</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a aria-current="page" href="../units/00-environnement.html"><span class="ccc-nav-chapter-number">00</span>Préparer son environnement</a></li><li><a href="../units/01-bases-relationnelles.html"><span class="ccc-nav-chapter-number">01</span>Découvrir les bases relationnelles</a></li><li><a href="../units/02-modeliser.html"><span class="ccc-nav-chapter-number">02</span>Modéliser notre librairie</a></li><li><a href="../units/03-creer-base.html"><span class="ccc-nav-chapter-number">03</span>Créer la base et les utilisateurs</a></li><li><a href="../units/04-creer-tables.html"><span class="ccc-nav-chapter-number">04</span>Créer les tables</a></li><li><a href="../units/05-inserer.html"><span class="ccc-nav-chapter-number">05</span>Insérer les premières données</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/06-premieres-requetes.html"><span class="ccc-nav-chapter-number">06</span>Effectuer les premières requêtes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1/C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/07-calculs-agregats.html"><span class="ccc-nav-chapter-number">07</span>Calculer et agréger</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">III · Requêtes complexes (C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/08-jointures.html"><span class="ccc-nav-chapter-number">08</span>Relier plusieurs tables</a></li><li><a href="../units/09-sous-requetes.html"><span class="ccc-nav-chapter-number">09</span>Interroger avec des sous-requêtes</a></li><li><a href="../units/10-ensembles.html"><span class="ccc-nav-chapter-number">10</span>Utiliser les opérateurs ensemblistes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">IV · Modifier et réutiliser (C.3/C.4)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/11-manipuler.html"><span class="ccc-nav-chapter-number">11</span>Manipuler les données en sécurité</a></li><li><a href="../units/12-tables-vues.html"><span class="ccc-nav-chapter-number">12</span>Tables temporaires et vues</a></li><li><a href="../units/13-fonctions.html"><span class="ccc-nav-chapter-number">13</span>Fonctions et techniques complémentaires</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">V · Valider</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/14-revisions.html"><span class="ccc-nav-chapter-number">14</span>Révisions ENI</a></li><li><a href="../units/15-examen-blanc.html"><span class="ccc-nav-chapter-number">15</span>Examen blanc</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">Références</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../docs/diagnostic.html">Diagnostic initial</a></li><li><a href="../docs/cheatsheet.html">Cheatsheet SQL</a></li><li><a href="../docs/eni-coverage.html">Matrice de couverture ENI</a></li><li><a href="../docs/sources.html">Sources et contrôles</a></li></ul></li></ul></nav></details><div class="ccc-sidebar-note"><strong>Tout fonctionne hors ligne</strong>Aucun CDN, aucun serveur : ouvrez index.html.</div></div></aside>
+<main class="ccc-reading-area" id="ccc-main" tabindex="-1"><nav aria-label="Fil d’Ariane" class="ccc-breadcrumbs"><ol><li><a href="../index.html">Accueil</a></li><li>Chapitre 00</li></ol></nav><header class="ccc-chapter-heading ccc-premium-heading" id="ccc-understand"><p class="ccc-eyebrow">I · Fondations · Chapitre 00</p><h1>Préparer son environnement</h1><p class="ccc-introduction">Outils, moteurs, client SQL, première requête.</p><div class="ccc-meta-tags"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Projet fil rouge : librairie</span></div></header><nav aria-label="Parcours pédagogique" class="ccc-learning-path"><ol><li><a data-ccc-step-target="ccc-understand" href="#ccc-understand"><span class="ccc-step-number">01</span>Comprendre</a></li><li><a data-ccc-step-target="ccc-observe" href="#ccc-observe"><span class="ccc-step-number">02</span>Observer</a></li><li><a data-ccc-step-target="ccc-practise" href="#ccc-practise"><span class="ccc-step-number">03</span>Pratiquer</a></li><li><a data-ccc-step-target="ccc-validate" href="#ccc-validate"><span class="ccc-step-number">04</span>Valider</a></li></ol></nav><section class="ccc-content-section ccc-card"><p class="ccc-card-label">Objectifs pédagogiques</p><ul><li>Décrire ce que l’on va construire : la base de données d’une librairie en ligne</li><li>Distinguer SGBDR, serveur, client SQL et fichier de base de données</li><li>Comparer PostgreSQL, MySQL et SQLite et choisir un moteur pour s’entraîner</li><li>Installer un moteur et un client graphique, ouvrir une connexion</li><li>Exécuter une première instruction SQL et lire les erreurs de connexion courantes</li></ul></section><nav aria-label="Sommaire du chapitre" class="ccc-breadcrumbs ccc-local-toc"><strong>Dans ce chapitre :</strong> <a href="#s-ce-que-nous-allons-construire">Ce que nous allons construire</a> · <a href="#s-comprendre-les-mots-base-sgbdr-sql">Comprendre les mots : base, SGBDR, SQL</a> · <a href="#s-le-trajet-dune-requte">Le trajet d’une requête</a> · <a href="#s-postgresql-mysql-et-sqlite-trois-moteurs-un-mme-sql">PostgreSQL, MySQL et SQLite : trois moteurs, un même SQL</a> · <a href="#s-installer-les-outils">Installer les outils</a> · <a href="#s-ouvrir-une-connexion">Ouvrir une connexion</a> · <a href="#s-votre-premire-instruction-sql">Votre première instruction SQL</a> · <a href="#s-comprendre-les-erreurs-de-connexion-courantes">Comprendre les erreurs de connexion courantes</a></nav><article class="ccc-lesson-prose" id="ccc-observe"><h2 id="s-ce-que-nous-allons-construire">Ce que nous allons construire</h2>
+<p>Pendant tout ce cours, vous construisez <strong>une seule base de données</strong> : celle d’une librairie fictive qui vend des livres en ligne. Elle devra mémoriser ses <strong>clients</strong>, son <strong>catalogue de livres</strong>, les <strong>catégories</strong> de livres, les <strong>commandes</strong>, les <strong>lignes de commande</strong> (quels livres, en quelle quantité) et les <strong>paiements</strong>.</p>
+<p>Pourquoi un projet unique ? Parce qu’un apprentissage est plus solide quand les exemples se répondent. Une requête écrite au chapitre 6 sera réutilisée au chapitre 9 ; une table créée au chapitre 4 servira jusqu’à l’examen blanc. Les noms techniques (tables, colonnes) sont en anglais, comme dans la plupart des entreprises ; toutes les explications sont en français.</p>
+<aside class="course-callout course-callout--note"><span class="course-callout-title">Pour les grands débutants</span><p>Vous n’avez besoin d’aucune connaissance préalable. Chaque mot technique est expliqué <strong>avant</strong> d’être utilisé. Si un terme vous échappe, relisez la section où il est défini : il y est toujours.</p>
+</aside><h2 id="s-comprendre-les-mots-base-sgbdr-sql">Comprendre les mots : base, SGBDR, SQL</h2>
+<p>Une <strong>base de données</strong> est un ensemble organisé d’informations stockées pour être retrouvées et modifiées facilement. Une <strong>base de données relationnelle</strong> range ces informations dans des <strong>tables</strong> (comme des feuilles de tableur) reliées entre elles.</p>
+<p>Un <strong>SGBDR</strong> (Système de Gestion de Bases de Données Relationnelles) est le <strong>logiciel</strong> qui gère ces tables : il stocke les données, vérifie qu’elles respectent les règles, et répond aux demandes. PostgreSQL, MySQL et SQLite sont trois SGBDR.</p>
+<p><strong>SQL</strong> (<em>Structured Query Language</em>) est le <strong>langage</strong> que l’on utilise pour parler à un SGBDR. Une <strong>requête</strong> est une demande écrite en SQL, par exemple « donne-moi les livres qui coûtent plus de 10 € ». Une <strong>instruction</strong> est n’importe quelle commande SQL, qu’elle lise ou modifie les données.</p>
+<h2 id="s-le-trajet-dune-requte">Le trajet d’une requête</h2>
+<p>Quatre acteurs interviennent chaque fois que vous exécutez du SQL :</p>
+<ul>
+<li><strong>vous</strong>, qui écrivez la demande ;</li>
+<li>le <strong>client SQL</strong>, le programme dans lequel vous tapez (DBeaver, <code>psql</code>, <code>mysql</code>, <code>sqlite3</code>…) ;</li>
+<li>le <strong>serveur</strong> (le moteur du SGBDR), qui comprend la demande et la traite ;</li>
+<li>les <strong>fichiers de données</strong> sur le disque, où les tables sont réellement stockées.</li>
+</ul>
+<figure class="ccc-course-illustration"><img alt="Schéma de l’architecture d’un SGBDR : personne, client SQL, serveur avec analyseur, optimiseur et exécuteur, puis fichiers de données." height="720" loading="lazy" src="../assets/illustrations/dbms-architecture.svg" width="1280"/><button class="ccc-figure-open" data-ccc-figure-open="" hidden="" type="button">Agrandir le schéma</button><figcaption>Le client envoie du texte SQL ; le moteur l’analyse, l’optimise et l’exécute sur les fichiers.</figcaption></figure>
+<p>Le schéma montre l’idée essentielle : <strong>le client ne lit jamais les fichiers lui-même</strong>. Il envoie du texte ; le moteur décide comment obtenir le résultat. C’est pour cela qu’on dit que SQL est un langage <strong>déclaratif</strong> : vous décrivez <em>ce que vous voulez</em>, pas <em>comment le calculer</em>.</p>
+<p>Le diagramme de séquence UML ci-dessous détaille l’ordre des échanges.</p>
+<figure class="ccc-course-illustration"><img alt="Diagramme de séquence UML entre la personne, le client SQL, le serveur SGBDR et les fichiers de données." height="720" loading="lazy" src="../assets/illustrations/sequence-requete.svg" width="1280"/><button class="ccc-figure-open" data-ccc-figure-open="" hidden="" type="button">Agrandir le schéma</button><figcaption>Sept messages pour afficher un résultat : saisie, envoi, analyse, lecture, retour des lignes, affichage.</figcaption></figure>
+<h2 id="s-postgresql-mysql-et-sqlite-trois-moteurs-un-mme-sql">PostgreSQL, MySQL et SQLite : trois moteurs, un même SQL</h2>
+<p>Le cours utilise <strong>PostgreSQL comme dialecte de référence</strong>, avec les variantes MySQL et SQLite chaque fois qu’elles diffèrent. Un <strong>dialecte</strong> est la façon propre à un moteur d’écrire certaines instructions : le cœur du langage est commun, les bords changent.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PostgreSQL</th>
+<th>MySQL</th>
+<th>SQLite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fonctionnement</td>
+<td>Serveur séparé</td>
+<td>Serveur séparé</td>
+<td>Bibliothèque intégrée à l’application</td>
+</tr>
+<tr>
+<td>Où sont les données ?</td>
+<td>Répertoire géré par le serveur</td>
+<td>Répertoire géré par le serveur</td>
+<td>Un seul fichier (par exemple <code>bookstore.db</code>)</td>
+</tr>
+<tr>
+<td>Comptes utilisateurs SQL</td>
+<td>Oui (rôles)</td>
+<td>Oui</td>
+<td><strong>Non</strong> : pas de <code>CREATE USER</code></td>
+</tr>
+<tr>
+<td>Installation</td>
+<td>Plus longue</td>
+<td>Plus longue</td>
+<td>Quasi immédiate</td>
+</tr>
+<tr>
+<td>Idéal pour</td>
+<td>Applications professionnelles</td>
+<td>Applications web</td>
+<td>Apprendre, prototyper, applications locales</td>
+</tr>
+</tbody>
+</table>
+<aside class="course-callout course-callout--eni"><span class="course-callout-title">Périmètre ENI</span><p>Le référentiel ENI évalue le <strong>langage SQL</strong> (instructions de type DML : lire, ajouter, modifier, supprimer) et les vues. L’installation d’un moteur, la création de bases et d’utilisateurs sont ici des <strong>prérequis pratiques</strong>, pas des critères officiels.</p>
+</aside><p><strong>Versions de référence du cours :</strong> PostgreSQL 16 ou plus, MySQL 8.4 LTS (avec les réserves indiquées dans la page « Sources »), SQLite 3.39 ou plus. Les scripts ont été exécutés pour de vrai sur PostgreSQL 16.15, MySQL 8.0.46 et SQLite 3.45.1.</p>
+<aside class="course-callout course-callout--tip"><span class="course-callout-title">Que choisir pour débuter ?</span><p><strong>SQLite</strong> si vous voulez commencer en cinq minutes sans rien configurer. <strong>PostgreSQL</strong> si vous visez un usage professionnel. Vous pouvez suivre tout le cours avec un seul moteur ; les onglets de comparaison vous montrent ce qui change ailleurs.</p>
+</aside><h2 id="s-installer-les-outils">Installer les outils</h2>
+<p>Les commandes ci-dessous sont des repères ; les procédures évoluent, vérifiez toujours la page officielle de téléchargement de chaque moteur.</p>
+<div class="course-tabs" data-course-tabs="" id="tabs-00-0-3328"><div class="course-tabpanel" data-label="PostgreSQL" id="tabs-00-0-3328-p0"><h4>PostgreSQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">POSTGRESQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell"><span class="c1"># Linux (Debian/Ubuntu)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql
+<span class="c1"># macOS (Homebrew)</span>
+brew<span class="w"> </span>install<span class="w"> </span>postgresql@16
+<span class="c1"># Windows : installateur officiel sur postgresql.org/download</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4"># Linux (Debian/Ubuntu)
+sudo apt install postgresql
+# macOS (Homebrew)
+brew install postgresql@16
+# Windows : installateur officiel sur postgresql.org/download</textarea></label></div></div></div><div class="course-tabpanel" data-label="MySQL" id="tabs-00-0-3328-p1"><h4>MySQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">MYSQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell"><span class="c1"># Linux (Debian/Ubuntu)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-server
+<span class="c1"># macOS (Homebrew)</span>
+brew<span class="w"> </span>install<span class="w"> </span>mysql
+<span class="c1"># Windows : « MySQL Installer » sur dev.mysql.com/downloads</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4"># Linux (Debian/Ubuntu)
+sudo apt install mysql-server
+# macOS (Homebrew)
+brew install mysql
+# Windows : « MySQL Installer » sur dev.mysql.com/downloads</textarea></label></div></div></div><div class="course-tabpanel" data-label="SQLite" id="tabs-00-0-3328-p2"><h4>SQLite</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQLITE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell"><span class="c1"># Linux (Debian/Ubuntu)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>sqlite3
+<span class="c1"># macOS : sqlite3 est généralement déjà présent</span>
+<span class="c1"># Windows : archive « sqlite-tools » sur sqlite.org/download.html</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4"># Linux (Debian/Ubuntu)
+sudo apt install sqlite3
+# macOS : sqlite3 est généralement déjà présent
+# Windows : archive « sqlite-tools » sur sqlite.org/download.html</textarea></label></div></div></div></div><p>Pour un client graphique adapté aux débutants, installez <strong>DBeaver Community</strong> (gratuit, dbeaver.io). Il se connecte aux trois moteurs. Au premier lancement d’une connexion, DBeaver propose de télécharger le <strong>pilote</strong> (le petit programme qui sait parler à ce moteur) : une connexion Internet est alors nécessaire une seule fois.</p>
+<aside class="course-callout course-callout--warning"><span class="course-callout-title">Mots de passe</span><p>Les mots de passe des scripts du cours (<code>change_me_please</code>) sont des <strong>exemples pour une machine d’entraînement locale</strong>. Ne les réutilisez jamais sur un serveur accessible depuis Internet.</p>
+</aside><h2 id="s-ouvrir-une-connexion">Ouvrir une connexion</h2>
+<p>Se connecter, c’est dire au client <strong>où</strong> se trouve le moteur et <strong>qui</strong> vous êtes. Il faut en général : un hôte (<code>localhost</code> = votre propre machine), un port (5432 pour PostgreSQL, 3306 pour MySQL), un nom de base, un utilisateur et un mot de passe. Avec SQLite, il suffit d’indiquer le <strong>chemin du fichier</strong> de base.</p>
+<div class="course-tabs" data-course-tabs="" id="tabs-00-0-5012"><div class="course-tabpanel" data-label="PostgreSQL" id="tabs-00-0-5012-p0"><h4>PostgreSQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">POSTGRESQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell">psql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-U<span class="w"> </span>bookstore_user<span class="w"> </span>-d<span class="w"> </span>bookstore
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">psql -h localhost -U bookstore_user -d bookstore</textarea></label></div></div></div><div class="course-tabpanel" data-label="MySQL" id="tabs-00-0-5012-p1"><h4>MySQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">MYSQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell">mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>bookstore_user<span class="w"> </span>-p<span class="w"> </span>bookstore
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">mysql -h localhost -u bookstore_user -p bookstore</textarea></label></div></div></div><div class="course-tabpanel" data-label="SQLite" id="tabs-00-0-5012-p2"><h4>SQLite</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQLITE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-shell">sqlite3<span class="w"> </span>bookstore.db
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">sqlite3 bookstore.db</textarea></label></div></div></div></div><p>Les bases, utilisateurs et scripts d’initialisation sont préparés au chapitre 3 et dans le dossier <code>sql/</code>.</p>
+<h2 id="s-votre-premire-instruction-sql">Votre première instruction SQL</h2>
+<p>Une fois connecté, tapez cette requête. Elle n’utilise aucune table : le moteur calcule simplement un résultat. <code>AS result</code> donne un nom (un <strong>alias</strong>) à la colonne affichée.</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">result</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT 1 + 1 AS result;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">result</th></tr></thead><tbody><tr><td class="num">2</td></tr></tbody></table></div></div><p>Le point-virgule <code>;</code> termine l’instruction. Le résultat est un tableau d’une colonne et d’une ligne : le moteur a évalué <code>1 + 1</code>. Cette même ligne fonctionne <strong>à l’identique</strong> sur les trois moteurs.</p>
+<p>Pour afficher la version du moteur, en revanche, la commande change :</p>
+<div class="course-tabs" data-course-tabs="" id="tabs-00-3-1186"><div class="course-tabpanel" data-label="PostgreSQL" id="tabs-00-3-1186-p0"><h4>PostgreSQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">POSTGRESQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="k">version</span><span class="p">();</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT version();</textarea></label></div></div></div><div class="course-tabpanel" data-label="MySQL" id="tabs-00-3-1186-p1"><h4>MySQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">MYSQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="k">version</span><span class="p">();</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT version();</textarea></label></div></div></div><div class="course-tabpanel" data-label="SQLite" id="tabs-00-3-1186-p2"><h4>SQLite</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQLITE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">sqlite_version</span><span class="p">();</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT sqlite_version();</textarea></label></div></div></div></div><h2 id="s-comprendre-les-erreurs-de-connexion-courantes">Comprendre les erreurs de connexion courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Message (extrait)</th>
+<th>Cause probable</th>
+<th>Que faire ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>connection refused</em> / <em>Can’t connect to server</em></td>
+<td>Le serveur n’est pas démarré, ou le port est faux</td>
+<td>Démarrer le service ; vérifier le port</td>
+</tr>
+<tr>
+<td><em>password authentication failed</em> / <em>Access denied</em></td>
+<td>Mot de passe ou nom d’utilisateur incorrect</td>
+<td>Retaper avec soin ; vérifier l’utilisateur créé</td>
+</tr>
+<tr>
+<td><em>database "x" does not exist</em> / <em>Unknown database</em></td>
+<td>La base n’a pas été créée ou le nom est faux</td>
+<td>Créer la base (chapitre 3) ; corriger le nom</td>
+</tr>
+<tr>
+<td><em>no such table</em> avec SQLite</td>
+<td>Vous avez ouvert <strong>un autre fichier</strong> (ou un fichier neuf, vide)</td>
+<td>Vérifier le chemin et le répertoire courant</td>
+</tr>
+</tbody>
+</table>
+<aside class="course-callout course-callout--error"><span class="course-callout-title">Piège SQLite</span><p>Si vous tapez <code>sqlite3 bookstore.db</code> dans le mauvais dossier, SQLite <strong>crée silencieusement un fichier vide</strong> au lieu de signaler une erreur. Les tables « disparaissent » alors qu’elles sont dans un autre dossier.</p>
+</aside><section class="course-exercise" id="ccc-practise"><span class="course-level">Niveau 1 · guidé</span><br/><h3>Exercice guidé : prédire avant d’exécuter</h3><p>Sans exécuter, prédisez le résultat de <code>SELECT 10 / 4 AS ratio;</code> sur PostgreSQL et sur MySQL, puis expliquez pourquoi les deux moteurs peuvent donner des résultats différents.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Sur <strong>PostgreSQL</strong>, <code>10 / 4</code> vaut <code>2</code> : entre deux entiers, <code>/</code> fait une <strong>division entière</strong>. Sur <strong>MySQL</strong>, le résultat est <code>2.5000</code> : <code>/</code> donne un résultat décimal. Pour obtenir un résultat identique, forcez un décimal : <code>10 / 4.0</code>. SQLite se comporte comme PostgreSQL (division entière).</p>
+<p>Retenez : <strong>un même symbole peut avoir un sens légèrement différent selon le moteur</strong>. Ce type de différence sera signalé chaque fois qu’il compte.</p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 1 · autonome</span><br/><h3>Exercice autonome : première requête</h3><p>Écrivez une requête qui affiche une seule colonne nommée <code>message</code> contenant le texte <code>Bonjour, librairie</code>.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="s1">'Bonjour, librairie'</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">message</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT 'Bonjour, librairie' AS message;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">message</th></tr></thead><tbody><tr><td>Bonjour, librairie</td></tr></tbody></table></div></div><p>Le texte est entre <strong>apostrophes simples</strong> <code>'…'</code>. Les guillemets doubles <code>"…"</code> servent, selon les moteurs, à désigner des noms de colonnes ou de tables : une erreur fréquente chez les débutants est de les utiliser pour du texte.</p>
+</details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new="" id="ccc-validate"><p class="ccc-card-label">Valider · question 1</p><fieldset><legend>Quel élément exécute réellement la requête et lit les fichiers de données ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="0"/><span>Le client SQL (DBeaver)</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="1"/><span>Le moteur du SGBDR</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="2"/><span>Le navigateur web</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Le client SQL (DBeaver)</strong> : Il envoie le texte de la requête et affiche le résultat, mais ne lit pas les fichiers.</li><li><strong>Bonne réponse — Le moteur du SGBDR</strong> : C’est lui qui analyse, optimise puis exécute la requête sur les fichiers de données.</li><li><strong>Incorrect — Le navigateur web</strong> : Il n’intervient pas dans l’exécution d’une requête SQL.</li></ul></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new=""><p class="ccc-card-label">Valider · question 2</p><fieldset><legend>Quelle affirmation sur SQLite est exacte ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="0"/><span>On crée ses utilisateurs avec CREATE USER</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="1"/><span>La base est stockée dans un seul fichier et le moteur est intégré à l’application</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="2"/><span>Il faut démarrer un serveur avant de s’y connecter</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — On crée ses utilisateurs avec CREATE USER</strong> : SQLite n’a pas de gestion native de comptes SQL ; cette instruction n’existe pas.</li><li><strong>Bonne réponse — La base est stockée dans un seul fichier et le moteur est intégré à l’application</strong> : C’est ce qui rend SQLite très simple à installer.</li><li><strong>Incorrect — Il faut démarrer un serveur avant de s’y connecter</strong> : Il n’y a pas de serveur séparé avec SQLite.</li></ul></details></section></article><section class="ccc-completion-card ccc-card"><h2>Chapitre terminé ?</h2><p>La progression est enregistrée localement dans ce navigateur si le stockage est disponible ; rien n’est envoyé à un serveur.</p><button class="ccc-secondary-action" data-ccc-complete="00-environnement" hidden="">Marquer ce chapitre terminé</button><p aria-live="polite" data-ccc-progress-message=""></p></section><nav aria-label="Chapitre précédent et suivant" class="ccc-page-navigation ccc-chapter-pagination"><a href="../index.html">← Accueil</a><a class="ccc-lesson-nav-next" href="01-bases-relationnelles.html">Découvrir les bases relationnelles →</a></nav></main>
+</div>
+<footer class="ccc-site-footer"><p>Crystal Clear Code · Cours SQL « La librairie » · Préparation à la certification ENI (préparation non officielle)</p><p><a href="../index.html">Sommaire</a> · <a href="../docs/cheatsheet.html">Cheatsheet</a> · <a href="../docs/eni-coverage.html">Couverture ENI</a> · <a href="../docs/sources.html">Sources</a></p></footer>
+<a aria-label="Retour en haut" class="ccc-back-to-top" data-ccc-back-to-top="" href="#ccc-page-top">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 11l6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</body>
+</html>

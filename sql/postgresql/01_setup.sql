@@ -1,0 +1,25 @@
+-- PostgreSQL setup (reference version: 16+).
+-- Run once from the project root, with psql in PATH and PostgreSQL running
+-- on localhost:5432. Choose an existing PostgreSQL superuser below.
+--
+-- | OS           | Shell             | Setup command |
+-- | ------------ | ----------------- | ------------- |
+-- | macOS        | zsh / bash        | psql -h localhost -U "$USER" -d postgres -f sql/postgresql/01_setup.sql |
+-- | Unix / Linux | sh / bash / zsh   | psql -h localhost -U "$USER" -d postgres -f sql/postgresql/01_setup.sql |
+-- | Windows      | PowerShell        | psql -h localhost -U postgres -d postgres -f sql/postgresql/01_setup.sql |
+-- | Windows      | Command Prompt    | psql -h localhost -U postgres -d postgres -f sql/postgresql/01_setup.sql |
+--
+-- macOS / Unix / Linux: $USER is the OS account name. A PostgreSQL superuser
+-- with that name must already exist (common with Homebrew on macOS, but not
+-- guaranteed on Unix / Linux). If the superuser is postgres, use -U postgres.
+-- Windows: postgres is the usual installer-created administrator role.
+-- Replace it if your installation uses another role. If the role matches your
+-- Windows account, use -U "$env:USERNAME" in PowerShell or -U "%USERNAME%" in cmd.
+-- If prompted, enter the chosen PostgreSQL superuser's password.
+-- -U selects a role; -d postgres selects the administrative database.
+-- The database postgres does not require a role named postgres.
+-- Creates a dedicated training role and database (least privilege).
+-- Change the password before any use outside a local training machine.
+CREATE ROLE bookstore_user LOGIN PASSWORD 'change_me_please';
+CREATE DATABASE bookstore OWNER bookstore_user ENCODING 'UTF8';
+-- Then connect with: psql -h localhost -U bookstore_user -d bookstore

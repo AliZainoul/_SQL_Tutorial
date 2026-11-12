@@ -1,0 +1,23 @@
+[
+ {"skill":"C.1","criterion":"Le contenu d'une table est affiché à l'aide d'une requête SELECT simple","sql":"SELECT, FROM","chapters":["06"]},
+ {"skill":"C.1","criterion":"Les données retournées sont filtrées à l'aide de critères simples","sql":"WHERE","chapters":["06"]},
+ {"skill":"C.1","criterion":"Le résultat contient un ou plusieurs calculs issus des fonctions d'agrégation","sql":"MIN, MAX, AVG, COUNT","chapters":["07"]},
+ {"skill":"C.1","criterion":"Le résultat retourné est trié selon les critères souhaités","sql":"ORDER BY","chapters":["06"]},
+ {"skill":"C.2","criterion":"Le résultat est rendu plus lisible par des alias de colonnes ou de tables","sql":"AS","chapters":["07","08"]},
+ {"skill":"C.2","criterion":"Les données de plusieurs tables sont mises en relation par des critères de jointure","sql":"INNER JOIN, OUTER JOIN ou FROM + WHERE","chapters":["08"]},
+ {"skill":"C.2","criterion":"Les données sont filtrées à l'aide de critères de restriction avancés","sql":"WHERE (AND, OR, IN, BETWEEN, LIKE, IS NULL)","chapters":["06","09"]},
+ {"skill":"C.2","criterion":"Le résultat des calculs affichés provient de plusieurs tables","sql":"GROUP BY","chapters":["07","08"]},
+ {"skill":"C.2","criterion":"Les données sont sélectionnées à l'aide d'opérateurs ensemblistes","sql":"EXCEPT, INTERSECT","chapters":["10"]},
+ {"skill":"C.2","criterion":"La sélection utilise des sous-requêtes imbriquées ou corrélées","sql":"EXISTS ou sous-requête imbriquée","chapters":["09"]},
+ {"skill":"C.2","criterion":"Le recours aux tables temporaires permet de fournir un résultat complexe","sql":"INTO (SELECT INTO / CREATE TABLE AS)","chapters":["12"]},
+ {"skill":"C.2","criterion":"Les fonctions d'agrégation recherchent des données dans plusieurs tables","sql":"MIN, MAX, AVG, COUNT","chapters":["08"]},
+ {"skill":"C.3","criterion":"Une requête est écrite pour ajouter des données dans une table","sql":"INSERT","chapters":["05","11"]},
+ {"skill":"C.3","criterion":"Des requêtes de modification de données d'une table sont réalisées","sql":"UPDATE","chapters":["11"]},
+ {"skill":"C.3","criterion":"Une requête modifie les données qui répondent à certains critères","sql":"UPDATE + WHERE","chapters":["11"]},
+ {"skill":"C.3","criterion":"Des requêtes de suppression de lignes sont réalisées","sql":"DELETE","chapters":["11"]},
+ {"skill":"C.3","criterion":"Une requête supprime les données qui répondent aux critères voulus","sql":"DELETE + WHERE","chapters":["11"]},
+ {"skill":"C.4","criterion":"La vue créée s'appuie sur une requête simple","sql":"CREATE VIEW","chapters":["12"]},
+ {"skill":"C.4","criterion":"Le résultat de calculs est accessible au travers d'une vue","sql":"AS (alias de calcul)","chapters":["12"]},
+ {"skill":"C.4","criterion":"La vue créée utilise une ou plusieurs sous-requêtes","sql":"CREATE VIEW + sous-requête","chapters":["12"]},
+ {"skill":"C.4","criterion":"Les fonctions du moteur sont utilisées pour mieux filtrer les données","sql":"WHERE + NOT IN, IS NULL, LIKE","chapters":["09","12","13"]}
+]

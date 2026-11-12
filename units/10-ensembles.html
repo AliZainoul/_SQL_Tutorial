@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="UNION, INTERSECT, EXCEPT" name="description"/>
+<meta content="light dark" name="color-scheme"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Utiliser les opérateurs ensemblistes | Crystal Clear Code</title>
+<link href="../assets/c-cubed.svg" rel="icon" sizes="any" type="image/svg+xml"/>
+<script src="../assets/theme.js"></script>
+<script defer="" src="../assets/template-interactions.js"></script>
+<link href="../assets/shell.css" rel="stylesheet"/>
+<link href="../assets/academy.css" rel="stylesheet"/><link href="../assets/course.css" rel="stylesheet"/><script defer="" src="../assets/search-index.js"></script><script defer="" src="../assets/academy.js"></script><script defer="" src="../assets/figure-viewer.js"></script><script defer="" src="../assets/course.js"></script></head>
+<body>
+<a class="ccc-skip-link" href="#ccc-main">Aller au contenu</a>
+<header class="ccc-site-header" id="ccc-page-top" tabindex="-1">
+<a aria-label="Crystal Clear Code - Accueil" class="ccc-brand" href="../index.html">
+<img alt="" class="ccc-brand-logo" height="56" src="../assets/c-cubed.svg" width="56"/>
+</a>
+<div class="ccc-header-tools">
+<span class="ccc-course-title">SQL · La librairie · Préparation ENI</span>
+<a class="ccc-header-link" href="../index.html">Sommaire</a>
+<a class="ccc-header-link" href="../index.html#ccc-reading-guide">Aide</a>
+<button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button>
+</div>
+</header>
+<div class="ccc-shell">
+<aside class="ccc-sidebar"><div class="ccc-sidebar-inner"><p class="ccc-sidebar-kicker">CRYSTAL CLEAR CODE</p><details class="ccc-sidebar-disclosure" data-ccc-course-navigation="" open=""><summary class="ccc-sidebar-toggle">Sommaire du cours <span class="ccc-sidebar-current">16 chapitres disponibles sur 16</span></summary><nav aria-label="Chapitres et références"><h2 class="ccc-sidebar-title">SQL · La librairie</h2><p class="ccc-sidebar-subtitle">Préparation à la certification ENI</p><ul class="ccc-navigation-list" data-ccc-depth="0"><li><a href="../index.html">Accueil et parcours</a></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">I · Fondations</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/00-environnement.html"><span class="ccc-nav-chapter-number">00</span>Préparer son environnement</a></li><li><a href="../units/01-bases-relationnelles.html"><span class="ccc-nav-chapter-number">01</span>Découvrir les bases relationnelles</a></li><li><a href="../units/02-modeliser.html"><span class="ccc-nav-chapter-number">02</span>Modéliser notre librairie</a></li><li><a href="../units/03-creer-base.html"><span class="ccc-nav-chapter-number">03</span>Créer la base et les utilisateurs</a></li><li><a href="../units/04-creer-tables.html"><span class="ccc-nav-chapter-number">04</span>Créer les tables</a></li><li><a href="../units/05-inserer.html"><span class="ccc-nav-chapter-number">05</span>Insérer les premières données</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/06-premieres-requetes.html"><span class="ccc-nav-chapter-number">06</span>Effectuer les premières requêtes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1/C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/07-calculs-agregats.html"><span class="ccc-nav-chapter-number">07</span>Calculer et agréger</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">III · Requêtes complexes (C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/08-jointures.html"><span class="ccc-nav-chapter-number">08</span>Relier plusieurs tables</a></li><li><a href="../units/09-sous-requetes.html"><span class="ccc-nav-chapter-number">09</span>Interroger avec des sous-requêtes</a></li><li><a aria-current="page" href="../units/10-ensembles.html"><span class="ccc-nav-chapter-number">10</span>Utiliser les opérateurs ensemblistes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">IV · Modifier et réutiliser (C.3/C.4)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/11-manipuler.html"><span class="ccc-nav-chapter-number">11</span>Manipuler les données en sécurité</a></li><li><a href="../units/12-tables-vues.html"><span class="ccc-nav-chapter-number">12</span>Tables temporaires et vues</a></li><li><a href="../units/13-fonctions.html"><span class="ccc-nav-chapter-number">13</span>Fonctions et techniques complémentaires</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">V · Valider</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/14-revisions.html"><span class="ccc-nav-chapter-number">14</span>Révisions ENI</a></li><li><a href="../units/15-examen-blanc.html"><span class="ccc-nav-chapter-number">15</span>Examen blanc</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">Références</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../docs/diagnostic.html">Diagnostic initial</a></li><li><a href="../docs/cheatsheet.html">Cheatsheet SQL</a></li><li><a href="../docs/eni-coverage.html">Matrice de couverture ENI</a></li><li><a href="../docs/sources.html">Sources et contrôles</a></li></ul></li></ul></nav></details><div class="ccc-sidebar-note"><strong>Tout fonctionne hors ligne</strong>Aucun CDN, aucun serveur : ouvrez index.html.</div></div></aside>
+<main class="ccc-reading-area" id="ccc-main" tabindex="-1"><nav aria-label="Fil d’Ariane" class="ccc-breadcrumbs"><ol><li><a href="../index.html">Accueil</a></li><li>Chapitre 10</li></ol></nav><header class="ccc-chapter-heading ccc-premium-heading" id="ccc-understand"><p class="ccc-eyebrow">III · Requêtes complexes (C.2) · Chapitre 10</p><h1>Utiliser les opérateurs ensemblistes</h1><p class="ccc-introduction">UNION, INTERSECT, EXCEPT.</p><div class="ccc-meta-tags"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Projet fil rouge : librairie</span></div></header><nav aria-label="Parcours pédagogique" class="ccc-learning-path"><ol><li><a data-ccc-step-target="ccc-understand" href="#ccc-understand"><span class="ccc-step-number">01</span>Comprendre</a></li><li><a data-ccc-step-target="ccc-observe" href="#ccc-observe"><span class="ccc-step-number">02</span>Observer</a></li><li><a data-ccc-step-target="ccc-practise" href="#ccc-practise"><span class="ccc-step-number">03</span>Pratiquer</a></li><li><a data-ccc-step-target="ccc-validate" href="#ccc-validate"><span class="ccc-step-number">04</span>Valider</a></li></ol></nav><section class="ccc-content-section ccc-card"><p class="ccc-card-label">Objectifs pédagogiques</p><ul><li>Combiner des résultats avec UNION et UNION ALL</li><li>Calculer une intersection avec INTERSECT et une différence avec EXCEPT</li><li>Respecter les règles de compatibilité des colonnes et placer correctement ORDER BY</li><li>Connaître les écarts entre moteurs (versions, priorités)</li><li>Reformuler INTERSECT et EXCEPT avec IN, EXISTS ou une jointure</li></ul></section><nav aria-label="Sommaire du chapitre" class="ccc-breadcrumbs ccc-local-toc"><strong>Dans ce chapitre :</strong> <a href="#s-raisonner-en-ensembles">Raisonner en ensembles</a> · <a href="#s-union-et-union-all">UNION et UNION ALL</a> · <a href="#s-intersect-ce-quils-ont-en-commun">INTERSECT : ce qu’ils ont en commun</a> · <a href="#s-except-la-diffrence">EXCEPT : la différence</a> · <a href="#s-doublons-et-null">Doublons et NULL</a> · <a href="#s-diffrences-entre-moteurs">Différences entre moteurs</a></nav><article class="ccc-lesson-prose" id="ccc-observe"><aside class="course-callout course-callout--eni"><span class="course-callout-title">Périmètre ENI · compétence C.2</span><p>Critère : « les données sont sélectionnées à l’aide d’opérateurs ensemblistes » : <code>EXCEPT</code> et <code>INTERSECT</code>. <code>UNION</code> et <code>UNION ALL</code> sont ajoutés comme prérequis.</p>
+</aside><h2 id="s-raisonner-en-ensembles">Raisonner en ensembles</h2>
+<p>Un résultat de requête est un ensemble de lignes. Les <strong>opérateurs ensemblistes</strong> combinent <strong>deux résultats</strong> (et non deux tables) :</p>
+<table>
+<thead>
+<tr>
+<th>Opérateur</th>
+<th>Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNION</code></td>
+<td>Les lignes de l’un <strong>ou</strong> de l’autre, sans doublon</td>
+</tr>
+<tr>
+<td><code>UNION ALL</code></td>
+<td>Toutes les lignes des deux, <strong>doublons conservés</strong></td>
+</tr>
+<tr>
+<td><code>INTERSECT</code></td>
+<td>Les lignes présentes dans <strong>les deux</strong></td>
+</tr>
+<tr>
+<td><code>EXCEPT</code></td>
+<td>Les lignes du premier <strong>absentes</strong> du second</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Règles</strong> : les deux requêtes doivent avoir le <strong>même nombre de colonnes</strong>, avec des <strong>types compatibles</strong> dans le même ordre ; les noms de colonnes du résultat sont ceux de la <strong>première</strong> requête ; un <code>ORDER BY</code> éventuel se place <strong>à la fin</strong>, une seule fois.</p>
+<h2 id="s-union-et-union-all">UNION et UNION ALL</h2>
+<p>Clients ayant une commande expédiée ou une commande payée :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shipped'</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'paid'</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id FROM orders WHERE status = 'shipped'
+UNION
+SELECT customer_id FROM orders WHERE status = 'paid'
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th></tr></thead><tbody><tr><td class="num">1</td></tr><tr><td class="num">2</td></tr><tr><td class="num">3</td></tr><tr><td class="num">4</td></tr><tr><td class="num">5</td></tr><tr><td class="num">7</td></tr><tr><td class="num">8</td></tr></tbody></table></div></div><p>Sept clients, chacun <strong>une seule fois</strong> : <code>UNION</code> élimine les doublons. Avec <code>UNION ALL</code>, rien n’est éliminé :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shipped'</span>
+<span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'paid'</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id FROM orders WHERE status = 'shipped'
+UNION ALL
+SELECT customer_id FROM orders WHERE status = 'paid'
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th></tr></thead><tbody><tr><td class="num">1</td></tr><tr><td class="num">1</td></tr><tr><td class="num">1</td></tr><tr><td class="num">2</td></tr><tr><td class="num">3</td></tr><tr><td class="num">3</td></tr><tr><td class="num">4</td></tr><tr><td class="num">5</td></tr><tr><td class="num">7</td></tr><tr><td class="num">8</td></tr></tbody></table></div></div><p>Dix lignes : les clients 1 et 3 apparaissent plusieurs fois. <code>UNION ALL</code> est <strong>plus rapide</strong> (pas de recherche de doublons) et doit être préféré quand les doublons sont impossibles ou souhaités. <code>UNION</code> sert aussi à combiner des sources de natures différentes :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">'client'</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">kind</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">author</span><span class="p">,</span><span class="w"> </span><span class="s1">'auteur'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">book_id</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">kind</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT first_name AS name, 'client' AS kind FROM customers WHERE customer_id &lt;= 2
+UNION
+SELECT author, 'auteur' FROM books WHERE book_id &lt;= 2
+ORDER BY kind, name;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">name</th><th scope="col">kind</th></tr></thead><tbody><tr><td>Stendhal</td><td>auteur</td></tr><tr><td>Victor Hugo</td><td>auteur</td></tr><tr><td>Camille</td><td>client</td></tr><tr><td>Lucas</td><td>client</td></tr></tbody></table></div></div><h2 id="s-intersect-ce-quils-ont-en-commun">INTERSECT : ce qu’ils ont en commun</h2>
+<p>Clients qui ont <strong>à la fois</strong> une commande expédiée <strong>et</strong> une commande payée :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shipped'</span>
+<span class="k">INTERSECT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'paid'</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id FROM orders WHERE status = 'shipped'
+INTERSECT
+SELECT customer_id FROM orders WHERE status = 'paid'
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th></tr></thead><tbody><tr><td class="num">1</td></tr><tr><td class="num">3</td></tr></tbody></table></div></div><p>Les clients 1 et 3. Équivalent avec une sous-requête :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">TEXTE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-text">SELECT DISTINCT customer_id FROM orders
+WHERE status = 'shipped'
+  AND customer_id IN (SELECT customer_id FROM orders WHERE status = 'paid')
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT DISTINCT customer_id FROM orders
+WHERE status = 'shipped'
+  AND customer_id IN (SELECT customer_id FROM orders WHERE status = 'paid')</textarea></label></div></div><h2 id="s-except-la-diffrence">EXCEPT : la différence</h2>
+<p>Clients qui ont une commande expédiée <strong>mais aucune</strong> payée :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shipped'</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'paid'</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id FROM orders WHERE status = 'shipped'
+EXCEPT
+SELECT customer_id FROM orders WHERE status = 'paid'
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th></tr></thead><tbody><tr><td class="num">2</td></tr><tr><td class="num">4</td></tr><tr><td class="num">8</td></tr></tbody></table></div></div><p>Les clients 2, 4 et 8. <strong>L’ordre compte</strong> : <code>A EXCEPT B</code> n’est pas <code>B EXCEPT A</code>. Équivalent avec <code>NOT EXISTS</code> ; on retrouve la logique du chapitre 9.</p>
+<aside class="course-callout course-callout--note"><span class="course-callout-title">Oracle</span><p>Oracle appelle <code>MINUS</code> l’opérateur que le standard SQL, PostgreSQL, MySQL et SQLite appellent <code>EXCEPT</code>.</p>
+</aside><h2 id="s-doublons-et-null">Doublons et NULL</h2>
+<p><code>UNION</code>, <code>INTERSECT</code> et <code>EXCEPT</code> (sans <code>ALL</code>) <strong>éliminent les doublons</strong> et considèrent deux <code>NULL</code> comme <strong>identiques</strong> pour cette comparaison, contrairement à <code>=</code>. C’est cohérent avec <code>DISTINCT</code> (chapitre 6).</p>
+<h2 id="s-diffrences-entre-moteurs">Différences entre moteurs</h2>
+<table>
+<thead>
+<tr>
+<th>Sujet</th>
+<th>PostgreSQL</th>
+<th>MySQL</th>
+<th>SQLite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNION</code> / <code>UNION ALL</code></td>
+<td>Oui</td>
+<td>Oui</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td><code>INTERSECT</code>, <code>EXCEPT</code></td>
+<td>Oui</td>
+<td><strong>8.0.31 ou plus</strong> (testé sur 8.0.46)</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td><code>INTERSECT ALL</code>, <code>EXCEPT ALL</code></td>
+<td>Oui</td>
+<td>Oui (à partir de 8.0.31)</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Priorité entre opérateurs</td>
+<td><code>INTERSECT</code> avant <code>UNION</code> / <code>EXCEPT</code></td>
+<td>Standard</td>
+<td><strong>Tous au même niveau, de gauche à droite</strong></td>
+</tr>
+<tr>
+<td>Parenthèses autour d’une requête</td>
+<td>Oui</td>
+<td>Oui</td>
+<td><strong>Non</strong></td>
+</tr>
+</tbody>
+</table>
+<aside class="course-callout course-callout--warning"><span class="course-callout-title">Priorité sous SQLite</span><p>Selon le standard, <code>SELECT 1 UNION SELECT 2 INTERSECT SELECT 3</code> calcule d’abord <code>2 INTERSECT 3</code> (vide) puis réunit avec 1 : le résultat est <code>1</code> (c’est ce que renvoient PostgreSQL et MySQL, <strong>constaté</strong>). SQLite évalue de gauche à droite : <code>(1 UNION 2) INTERSECT 3</code> donne un <strong>résultat vide</strong> (constaté sur SQLite 3.45). Quand vous mélangez plusieurs opérateurs ensemblistes, décomposez la requête avec des tables dérivées plutôt que de dépendre de la priorité.</p>
+</aside><p>Si votre MySQL est plus ancien que 8.0.31, <code>INTERSECT</code> et <code>EXCEPT</code> n’existent pas : utilisez <code>IN</code> / <code>EXISTS</code> / <code>NOT EXISTS</code> (chapitre 9).</p>
+<section class="course-exercise" id="ccc-practise"><span class="course-level">Niveau 2 · guidé</span><br/><h3>Exercice guidé : trois ensembles</h3><p>Trouvez les clients qui ont une commande <strong>annulée</strong> mais <strong>aucune</strong> commande payée ou expédiée. Écrivez d’abord les trois ensembles, puis combinez.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Ensemble A : clients ayant une commande annulée. Ensemble B : clients ayant une commande payée ou expédiée. On veut <code>A EXCEPT B</code>.</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'cancelled'</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'paid'</span><span class="p">,</span><span class="w"> </span><span class="s1">'shipped'</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id FROM orders WHERE status = 'cancelled'
+EXCEPT
+SELECT customer_id FROM orders WHERE status IN ('paid', 'shipped')
+ORDER BY customer_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">customer_id</th></tr></thead><tbody><tr><td class="num">9</td></tr></tbody></table></div></div><p>Le client 2 a une commande annulée <strong>et</strong> une expédiée : il est retiré. Seul le client 9 reste. <code>IN ('paid','shipped')</code> évite un <code>UNION</code> supplémentaire.</p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 3 · autonome</span><br/><h3>Exercice autonome : livres jamais commandés, de trois façons</h3><p>Obtenez les identifiants des livres jamais commandés avec <code>EXCEPT</code>, puis avec <code>NOT EXISTS</code>.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Avec <code>EXCEPT</code> (une seule colonne dans chaque requête) :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">book_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">books</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">book_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">order_items</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">book_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT book_id FROM books
+EXCEPT
+SELECT book_id FROM order_items
+ORDER BY book_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">book_id</th></tr></thead><tbody><tr><td class="num">6</td></tr><tr><td class="num">13</td></tr></tbody></table></div></div><p>Avec <code>NOT EXISTS</code> :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">book_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">oi</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">book_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">book_id</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">book_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT b.book_id
+FROM books AS b
+WHERE NOT EXISTS (SELECT 1 FROM order_items AS oi WHERE oi.book_id = b.book_id)
+ORDER BY b.book_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">book_id</th></tr></thead><tbody><tr><td class="num">6</td></tr><tr><td class="num">13</td></tr></tbody></table></div></div><p>Livres 6 et 13 dans les deux cas. <code>EXCEPT</code> ne renvoie que les colonnes sélectionnées : pour afficher aussi le titre, la forme <code>NOT EXISTS</code> (ou une jointure) est plus simple.</p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 2 · débogage</span><br/><h3>Exercice de débogage : colonnes incompatibles</h3><p>Cette requête échoue. Pourquoi ?</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">TEXTE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-text">SELECT customer_id, city FROM customers
+UNION
+SELECT order_id FROM orders;
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id, city FROM customers
+UNION
+SELECT order_id FROM orders;</textarea></label></div></div><details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><p>Les deux requêtes n’ont pas le même nombre de colonnes (2 contre 1). Les types doivent aussi être compatibles : combiner un identifiant numérique et une ville (texte) est refusé ou ambigu selon les moteurs.</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">SELECT customer_id, city FROM customers
+UNION
+SELECT order_id FROM orders;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Message d’erreur obtenu avec SQLite (les messages de PostgreSQL et MySQL sont rédigés autrement, mais l’instruction est aussi refusée) :</p><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">ERREUR</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-text">OperationalError: SELECTs to the left and right of UNION do not have the same number of result columns
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">OperationalError: SELECTs to the left and right of UNION do not have the same number of result columns</textarea></label></div></div></div></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new="" id="ccc-validate"><p class="ccc-card-label">Valider · question 1</p><fieldset><legend>Quelle différence entre UNION et UNION ALL ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="0"/><span>UNION trie, UNION ALL ne trie pas</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="1"/><span>UNION supprime les doublons, UNION ALL les conserve</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="2"/><span>UNION ALL combine plus de deux requêtes</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — UNION trie, UNION ALL ne trie pas</strong> : Aucun des deux ne garantit un tri.</li><li><strong>Bonne réponse — UNION supprime les doublons, UNION ALL les conserve</strong> : UNION ALL est donc plus rapide.</li><li><strong>Incorrect — UNION ALL combine plus de deux requêtes</strong> : Les deux peuvent en combiner plusieurs.</li></ul></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new=""><p class="ccc-card-label">Valider · question 2</p><fieldset><legend>Que renvoie « A EXCEPT B » ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="0"/><span>Les lignes communes à A et B</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="1"/><span>Les lignes de A qui ne figurent pas dans B</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="2"/><span>Les lignes de B absentes de A</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Les lignes communes à A et B</strong> : C’est INTERSECT.</li><li><strong>Bonne réponse — Les lignes de A qui ne figurent pas dans B</strong> : L’ordre des opérandes compte.</li><li><strong>Incorrect — Les lignes de B absentes de A</strong> : Ce serait B EXCEPT A.</li></ul></details></section></article><section class="ccc-completion-card ccc-card"><h2>Chapitre terminé ?</h2><p>La progression est enregistrée localement dans ce navigateur si le stockage est disponible ; rien n’est envoyé à un serveur.</p><button class="ccc-secondary-action" data-ccc-complete="10-ensembles" hidden="">Marquer ce chapitre terminé</button><p aria-live="polite" data-ccc-progress-message=""></p></section><nav aria-label="Chapitre précédent et suivant" class="ccc-page-navigation ccc-chapter-pagination"><a class="ccc-lesson-nav-prev" href="09-sous-requetes.html">← Interroger avec des sous-requêtes</a><a class="ccc-lesson-nav-next" href="11-manipuler.html">Manipuler les données en sécurité →</a></nav></main>
+</div>
+<footer class="ccc-site-footer"><p>Crystal Clear Code · Cours SQL « La librairie » · Préparation à la certification ENI (préparation non officielle)</p><p><a href="../index.html">Sommaire</a> · <a href="../docs/cheatsheet.html">Cheatsheet</a> · <a href="../docs/eni-coverage.html">Couverture ENI</a> · <a href="../docs/sources.html">Sources</a></p></footer>
+<a aria-label="Retour en haut" class="ccc-back-to-top" data-ccc-back-to-top="" href="#ccc-page-top">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 11l6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</body>
+</html>

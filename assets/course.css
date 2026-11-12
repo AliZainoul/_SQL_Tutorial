@@ -1,0 +1,55 @@
+/* Crystal Clear Code - bookstore SQL course: additions to shell.css / academy.css.
+   Only template variables are used so light and dark themes keep working. */
+.course-callout{border:1px solid var(--ccc-reading-border,var(--ccc-divider));border-left:4px solid #F91562;border-radius:10px;padding:.9rem 1.1rem;margin:1.4rem 0;background:var(--ccc-reading-subtle,var(--ccc-panel-subtle))}
+.course-callout>.course-callout-title{display:block;font-weight:700;margin:0 0 .35rem;color:var(--ccc-text)}
+.course-callout p:last-child{margin-bottom:0}
+.course-callout--warning{border-left-color:#B45309;background:var(--ccc-warning-surface)}
+.course-callout--error{border-left-color:#B42318;background:var(--ccc-error-surface)}
+.course-callout--tip{border-left-color:#15803D;background:var(--ccc-success-surface)}
+.course-callout--eni{border-left-color:var(--ccc-text-muted)}
+.course-result{margin:.2rem 0 1.4rem}
+.course-result-caption{font-size:.88rem;color:var(--ccc-text-muted);margin:.4rem 0 .3rem}
+.course-result table{border-collapse:collapse;width:100%;font-size:.92rem}
+.course-result th,.course-result td{border:1px solid var(--ccc-divider);padding:.35rem .6rem;text-align:left;vertical-align:top}
+.course-result th{background:var(--ccc-surface-alt);font-weight:700}
+.course-result td.num{text-align:right;font-variant-numeric:tabular-nums}
+.course-result .null{color:var(--ccc-text-muted);font-style:italic}
+.course-tabs{border:1px solid var(--ccc-divider);border-radius:12px;margin:1.4rem 0;overflow:hidden}
+.course-tablist{display:flex;gap:0;background:var(--ccc-surface-alt);border-bottom:1px solid var(--ccc-divider)}
+.course-tab{appearance:none;border:0;background:transparent;color:var(--ccc-text);padding:.6rem 1.1rem;font:inherit;font-weight:500;cursor:pointer;border-bottom:3px solid transparent}
+.course-tab[aria-selected="true"]{border-bottom-color:#F91562;font-weight:700;background:var(--ccc-surface)}
+.course-tab:focus-visible{outline:3px solid var(--ccc-focus);outline-offset:-3px}
+.course-tabpanel{padding:.2rem 1rem .6rem}
+.course-tabpanel>h4{margin:.9rem 0 .2rem;font-size:.95rem}
+.course-tabs[data-ready] .course-tabpanel>h4{display:none}
+.course-tabs[data-ready] .course-tabpanel[hidden]{display:none}
+.course-exercise{border:1px solid var(--ccc-divider);border-radius:12px;padding:1rem 1.2rem;margin:1.6rem 0;background:var(--ccc-panel)}
+.course-exercise>h3{margin-top:0}
+.course-level{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ccc-text-muted);margin-bottom:.3rem}
+.course-quiz-explain li{margin:.25rem 0}
+.course-search{margin:1rem 0}
+.course-search input{width:100%;max-width:34rem;min-height:var(--ccc-control-height,44px);padding:0 .9rem;border:1px solid var(--ccc-control-border);border-radius:var(--ccc-control-radius,8px);background:var(--ccc-surface);color:var(--ccc-text);font:inherit}
+.course-search-results{list-style:none;padding:0;margin:.6rem 0}
+.course-search-results li{margin:.3rem 0}
+.course-todo{color:var(--ccc-text-muted)}
+.course-todo li{margin:.25rem 0}
+.course-figure-note{font-size:.92rem;color:var(--ccc-text-muted)}
+@media print{.course-tabs .course-tablist{display:none}.course-tabs[data-ready] .course-tabpanel[hidden]{display:block}.course-tabs[data-ready] .course-tabpanel>h4{display:block}}
+.cs-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem 1rem;margin:1rem 0 1.4rem;padding:1rem;border:1px solid var(--ccc-divider);border-radius:12px;background:var(--ccc-panel)}
+.cs-controls[hidden]{display:none}
+.cs-controls label{display:flex;flex-direction:column;gap:.3rem;font-weight:500}
+.cs-controls input,.cs-controls select{min-height:var(--ccc-control-height,44px);padding:0 .7rem;border:1px solid var(--ccc-control-border);border-radius:var(--ccc-control-radius,8px);background:var(--ccc-surface);color:var(--ccc-text);font:inherit}
+.cs-entry{margin:1.2rem 0}
+.cs-entry[hidden],.cs-group[hidden]{display:none}
+.cs-entry h3{margin-top:0}
+.cs-compat{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;list-style:none;padding:0;margin:.6rem 0}
+.cs-chapter{font-size:.9rem;color:var(--ccc-text-muted)}
+.ccc-local-toc{margin:1rem 0}
+@media print{
+  .ccc-sidebar,body>header,.cs-controls,.ccc-page-navigation,.ccc-copy-action,.ccc-figure-open,footer,.ccc-breadcrumbs,.ccc-back-to-top{display:none!important}
+  body,main{background:#fff!important;color:#000!important;margin:0!important;max-width:none!important;display:block!important}
+  .cs-entry{break-inside:avoid;border:1px solid #999;box-shadow:none}
+  .ccc-code-block pre{white-space:pre-wrap;word-break:break-word}
+  .cs-group h2{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}

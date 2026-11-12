@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="CREATE TABLE, contraintes, ALTER, DROP" name="description"/>
+<meta content="light dark" name="color-scheme"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Créer les tables | Crystal Clear Code</title>
+<link href="../assets/c-cubed.svg" rel="icon" sizes="any" type="image/svg+xml"/>
+<script src="../assets/theme.js"></script>
+<script defer="" src="../assets/template-interactions.js"></script>
+<link href="../assets/shell.css" rel="stylesheet"/>
+<link href="../assets/academy.css" rel="stylesheet"/><link href="../assets/course.css" rel="stylesheet"/><script defer="" src="../assets/search-index.js"></script><script defer="" src="../assets/academy.js"></script><script defer="" src="../assets/figure-viewer.js"></script><script defer="" src="../assets/course.js"></script></head>
+<body>
+<a class="ccc-skip-link" href="#ccc-main">Aller au contenu</a>
+<header class="ccc-site-header" id="ccc-page-top" tabindex="-1">
+<a aria-label="Crystal Clear Code - Accueil" class="ccc-brand" href="../index.html">
+<img alt="" class="ccc-brand-logo" height="56" src="../assets/c-cubed.svg" width="56"/>
+</a>
+<div class="ccc-header-tools">
+<span class="ccc-course-title">SQL · La librairie · Préparation ENI</span>
+<a class="ccc-header-link" href="../index.html">Sommaire</a>
+<a class="ccc-header-link" href="../index.html#ccc-reading-guide">Aide</a>
+<button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button>
+</div>
+</header>
+<div class="ccc-shell">
+<aside class="ccc-sidebar"><div class="ccc-sidebar-inner"><p class="ccc-sidebar-kicker">CRYSTAL CLEAR CODE</p><details class="ccc-sidebar-disclosure" data-ccc-course-navigation="" open=""><summary class="ccc-sidebar-toggle">Sommaire du cours <span class="ccc-sidebar-current">16 chapitres disponibles sur 16</span></summary><nav aria-label="Chapitres et références"><h2 class="ccc-sidebar-title">SQL · La librairie</h2><p class="ccc-sidebar-subtitle">Préparation à la certification ENI</p><ul class="ccc-navigation-list" data-ccc-depth="0"><li><a href="../index.html">Accueil et parcours</a></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">I · Fondations</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/00-environnement.html"><span class="ccc-nav-chapter-number">00</span>Préparer son environnement</a></li><li><a href="../units/01-bases-relationnelles.html"><span class="ccc-nav-chapter-number">01</span>Découvrir les bases relationnelles</a></li><li><a href="../units/02-modeliser.html"><span class="ccc-nav-chapter-number">02</span>Modéliser notre librairie</a></li><li><a href="../units/03-creer-base.html"><span class="ccc-nav-chapter-number">03</span>Créer la base et les utilisateurs</a></li><li><a aria-current="page" href="../units/04-creer-tables.html"><span class="ccc-nav-chapter-number">04</span>Créer les tables</a></li><li><a href="../units/05-inserer.html"><span class="ccc-nav-chapter-number">05</span>Insérer les premières données</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/06-premieres-requetes.html"><span class="ccc-nav-chapter-number">06</span>Effectuer les premières requêtes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">II · Interroger (C.1/C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/07-calculs-agregats.html"><span class="ccc-nav-chapter-number">07</span>Calculer et agréger</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">III · Requêtes complexes (C.2)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/08-jointures.html"><span class="ccc-nav-chapter-number">08</span>Relier plusieurs tables</a></li><li><a href="../units/09-sous-requetes.html"><span class="ccc-nav-chapter-number">09</span>Interroger avec des sous-requêtes</a></li><li><a href="../units/10-ensembles.html"><span class="ccc-nav-chapter-number">10</span>Utiliser les opérateurs ensemblistes</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">IV · Modifier et réutiliser (C.3/C.4)</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/11-manipuler.html"><span class="ccc-nav-chapter-number">11</span>Manipuler les données en sécurité</a></li><li><a href="../units/12-tables-vues.html"><span class="ccc-nav-chapter-number">12</span>Tables temporaires et vues</a></li><li><a href="../units/13-fonctions.html"><span class="ccc-nav-chapter-number">13</span>Fonctions et techniques complémentaires</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">V · Valider</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../units/14-revisions.html"><span class="ccc-nav-chapter-number">14</span>Révisions ENI</a></li><li><a href="../units/15-examen-blanc.html"><span class="ccc-nav-chapter-number">15</span>Examen blanc</a></li></ul></li><li class="ccc-nav-group"><strong class="ccc-nav-group-title">Références</strong><ul class="ccc-navigation-list" data-ccc-depth="1"><li><a href="../docs/diagnostic.html">Diagnostic initial</a></li><li><a href="../docs/cheatsheet.html">Cheatsheet SQL</a></li><li><a href="../docs/eni-coverage.html">Matrice de couverture ENI</a></li><li><a href="../docs/sources.html">Sources et contrôles</a></li></ul></li></ul></nav></details><div class="ccc-sidebar-note"><strong>Tout fonctionne hors ligne</strong>Aucun CDN, aucun serveur : ouvrez index.html.</div></div></aside>
+<main class="ccc-reading-area" id="ccc-main" tabindex="-1"><nav aria-label="Fil d’Ariane" class="ccc-breadcrumbs"><ol><li><a href="../index.html">Accueil</a></li><li>Chapitre 04</li></ol></nav><header class="ccc-chapter-heading ccc-premium-heading" id="ccc-understand"><p class="ccc-eyebrow">I · Fondations · Chapitre 04</p><h1>Créer les tables</h1><p class="ccc-introduction">CREATE TABLE, contraintes, ALTER, DROP.</p><div class="ccc-meta-tags"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Projet fil rouge : librairie</span></div></header><nav aria-label="Parcours pédagogique" class="ccc-learning-path"><ol><li><a data-ccc-step-target="ccc-understand" href="#ccc-understand"><span class="ccc-step-number">01</span>Comprendre</a></li><li><a data-ccc-step-target="ccc-observe" href="#ccc-observe"><span class="ccc-step-number">02</span>Observer</a></li><li><a data-ccc-step-target="ccc-practise" href="#ccc-practise"><span class="ccc-step-number">03</span>Pratiquer</a></li><li><a data-ccc-step-target="ccc-validate" href="#ccc-validate"><span class="ccc-step-number">04</span>Valider</a></li></ol></nav><section class="ccc-content-section ccc-card"><p class="ccc-card-label">Objectifs pédagogiques</p><ul><li>Écrire un CREATE TABLE avec types, clés et contraintes</li><li>Choisir entre PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK et DEFAULT</li><li>Expliquer l’ordre de création des tables et les règles ON DELETE / ON UPDATE</li><li>Utiliser ALTER TABLE et DROP TABLE et en mesurer les risques</li><li>Comparer les différences de syntaxe entre PostgreSQL, MySQL et SQLite</li></ul></section><nav aria-label="Sommaire du chapitre" class="ccc-breadcrumbs ccc-local-toc"><strong>Dans ce chapitre :</strong> <a href="#s-pourquoi-dcrire-la-structure-avant-les-donnes">Pourquoi décrire la structure avant les données ?</a> · <a href="#s-anatomie-dun-create-table">Anatomie d’un CREATE TABLE</a> · <a href="#s-les-contraintes-une-par-une">Les contraintes, une par une</a> · <a href="#s-lordre-de-cration-compte">L’ordre de création compte</a> · <a href="#s-comparer-les-types">Comparer les types</a> · <a href="#s-alter-table-modifier-une-table-existante">ALTER TABLE : modifier une table existante</a> · <a href="#s-drop-table-supprimer-une-table">DROP TABLE : supprimer une table</a></nav><article class="ccc-lesson-prose" id="ccc-observe"><aside class="course-callout course-callout--eni"><span class="course-callout-title">Périmètre ENI</span><p>La création de tables (instructions de type <strong>DDL</strong>, <em>Data Definition Language</em>) est un <strong>prérequis pratique</strong> : le référentiel ENI évalue surtout le DML et les vues. Mais vous ne pouvez pas interroger des tables qui n’existent pas.</p>
+</aside><h2 id="s-pourquoi-dcrire-la-structure-avant-les-donnes">Pourquoi décrire la structure avant les données ?</h2>
+<p>Une table est un <strong>contrat</strong> : elle fixe les colonnes, leurs types et les règles que toute ligne devra respecter. <code>CREATE TABLE</code> écrit ce contrat. Les données viendront ensuite (chapitre 5).</p>
+<h2 id="s-anatomie-dun-create-table">Anatomie d’un CREATE TABLE</h2>
+<p>Voici la table <code>categories</code>, la plus simple. Elle est volontairement présentée sur les trois moteurs.</p>
+<div class="course-tabs" data-course-tabs="" id="tabs-04-9-8218"><div class="course-tabpanel" data-label="PostgreSQL" id="tabs-04-9-8218-p0"><h4>PostgreSQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">POSTGRESQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">category_id</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">CREATE TABLE categories (
+    category_id   INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    category_name VARCHAR(60) NOT NULL UNIQUE,
+    description   VARCHAR(200)
+);</textarea></label></div></div></div><div class="course-tabpanel" data-label="MySQL" id="tabs-04-9-8218-p1"><h4>MySQL</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">MYSQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">category_id</span><span class="w">   </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">CREATE TABLE categories (
+    category_id   INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(60) NOT NULL UNIQUE,
+    description   VARCHAR(200)
+) ENGINE=InnoDB;</textarea></label></div></div></div><div class="course-tabpanel" data-label="SQLite" id="tabs-04-9-8218-p2"><h4>SQLite</h4><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQLITE</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">category_id</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">CREATE TABLE categories (
+    category_id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name VARCHAR(60) NOT NULL UNIQUE,
+    description   VARCHAR(200)
+);</textarea></label></div></div></div></div><p>Ligne par ligne :</p>
+<ul>
+<li><code>CREATE TABLE categories (…)</code> : crée une table nommée <code>categories</code>. Chaque ligne entre parenthèses, séparée par une virgule, est une <strong>colonne</strong> (ou une contrainte).</li>
+<li><code>category_id … PRIMARY KEY</code> : identifiant unique et non nul. La génération <strong>automatique</strong> du numéro s’écrit différemment : <code>GENERATED BY DEFAULT AS IDENTITY</code> (PostgreSQL), <code>AUTO_INCREMENT</code> (MySQL), <code>AUTOINCREMENT</code> après <code>INTEGER PRIMARY KEY</code> (SQLite).</li>
+<li><code>VARCHAR(60) NOT NULL UNIQUE</code> : texte de 60 caractères au plus, obligatoire, sans doublon.</li>
+<li><code>description VARCHAR(200)</code> : sans <code>NOT NULL</code>, la colonne <strong>accepte NULL</strong>.</li>
+<li><code>ENGINE=InnoDB</code> (MySQL) : choisit le moteur de stockage qui gère les clés étrangères.</li>
+</ul>
+<h2 id="s-les-contraintes-une-par-une">Les contraintes, une par une</h2>
+<table>
+<thead>
+<tr>
+<th>Contrainte</th>
+<th>Rôle</th>
+<th>Exemple de la librairie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PRIMARY KEY</code></td>
+<td>Identifie chaque ligne</td>
+<td><code>book_id</code></td>
+</tr>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>Interdit l’absence de valeur</td>
+<td><code>customers.email</code></td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>Interdit les doublons</td>
+<td><code>books.isbn</code>, <code>payments.order_id</code></td>
+</tr>
+<tr>
+<td><code>CHECK (condition)</code></td>
+<td>Impose une condition</td>
+<td><code>unit_price &gt;= 0</code>, <code>quantity &gt; 0</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT valeur</code></td>
+<td>Valeur si rien n’est fourni</td>
+<td><code>status</code> vaut <code>pending</code>, <code>country</code> vaut <code>France</code></td>
+</tr>
+<tr>
+<td><code>FOREIGN KEY … REFERENCES</code></td>
+<td>Impose l’existence du parent</td>
+<td><code>orders.customer_id</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Clés étrangères et règles de suppression</h3>
+<p>Voici la table <code>orders</code> en PostgreSQL ; les deux autres moteurs écrivent la clé étrangère comme dernière ligne <code>FOREIGN KEY (customer_id) REFERENCES customers (customer_id) …</code> (voir <code>sql/mysql/02_schema.sql</code> et <code>sql/sqlite/02_schema.sql</code>).</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">order_id</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w">     </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">                 </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">order_date</span><span class="w">   </span><span class="nb">DATE</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">status</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">'pending'</span>
+<span class="w">                 </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'pending'</span><span class="p">,</span><span class="s1">'paid'</span><span class="p">,</span><span class="s1">'shipped'</span><span class="p">,</span><span class="s1">'cancelled'</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">shipped_date</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">shipped_date</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">shipped_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">order_date</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">CREATE TABLE orders (
+    order_id     INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    customer_id  INTEGER     NOT NULL
+                 REFERENCES customers (customer_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    order_date   DATE        NOT NULL,
+    status       VARCHAR(10) NOT NULL DEFAULT 'pending'
+                 CHECK (status IN ('pending','paid','shipped','cancelled')),
+    shipped_date DATE,
+    CHECK (shipped_date IS NULL OR shipped_date &gt;= order_date)
+);</textarea></label></div></div><p><code>ON DELETE RESTRICT</code> interdit de supprimer un client qui a des commandes. <code>ON DELETE CASCADE</code> (utilisé de <code>order_items</code> vers <code>orders</code>) supprime automatiquement les lignes dépendantes. <code>ON UPDATE CASCADE</code> répercute un changement de clé primaire. Le dernier <code>CHECK</code> mélange deux colonnes : une expédition ne peut pas précéder la commande, et <code>NULL</code> est autorisé tant que la commande n’est pas expédiée.</p>
+<aside class="course-callout course-callout--warning"><span class="course-callout-title">SQLite et les clés étrangères</span><p>SQLite <strong>ignore les clés étrangères par défaut</strong>. Il faut exécuter <code>PRAGMA foreign_keys = ON;</code> à <strong>chaque nouvelle connexion</strong>. Sans cela, il accepterait des commandes pour des clients inexistants. Tous les scripts du cours commencent par cette ligne.</p>
+</aside><h2 id="s-lordre-de-cration-compte">L’ordre de création compte</h2>
+<p>Une clé étrangère ne peut référencer qu’une table qui <strong>existe déjà</strong>. On crée donc les tables <strong>parents avant les enfants</strong> :</p>
+<ol>
+<li><code>categories</code> et <code>customers</code> (aucune dépendance) ;</li>
+<li><code>books</code> (dépend de <code>categories</code>) ;</li>
+<li><code>orders</code> (dépend de <code>customers</code>) ;</li>
+<li><code>order_items</code> (dépend de <code>orders</code> et <code>books</code>) et <code>payments</code> (dépend de <code>orders</code>).</li>
+</ol>
+<p>La suppression se fait dans l’ordre <strong>inverse</strong>. Le fichier <code>02_schema.sql</code> de chaque moteur respecte cet ordre.</p>
+<h2 id="s-comparer-les-types">Comparer les types</h2>
+<table>
+<thead>
+<tr>
+<th>Notion</th>
+<th>PostgreSQL</th>
+<th>MySQL</th>
+<th>SQLite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identifiant auto</td>
+<td><code>GENERATED BY DEFAULT AS IDENTITY</code></td>
+<td><code>AUTO_INCREMENT</code></td>
+<td><code>INTEGER PRIMARY KEY AUTOINCREMENT</code></td>
+</tr>
+<tr>
+<td>Montant</td>
+<td><code>NUMERIC(8,2)</code></td>
+<td><code>DECIMAL(8,2)</code></td>
+<td><code>NUMERIC(8,2)</code> (affinité, voir chapitre 1)</td>
+</tr>
+<tr>
+<td>Booléen</td>
+<td><code>BOOLEAN</code> (vrai type)</td>
+<td><code>BOOLEAN</code> = <code>TINYINT(1)</code></td>
+<td><code>BOOLEAN</code> = entier 0/1</td>
+</tr>
+<tr>
+<td>Date</td>
+<td><code>DATE</code></td>
+<td><code>DATE</code></td>
+<td><code>DATE</code> (texte ISO <code>AAAA-MM-JJ</code>)</td>
+</tr>
+<tr>
+<td><code>CHECK</code> appliqué</td>
+<td>Toujours</td>
+<td>Depuis 8.0.16</td>
+<td>Toujours</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s-alter-table-modifier-une-table-existante">ALTER TABLE : modifier une table existante</h2>
+<p><code>ALTER TABLE</code> change la <strong>structure</strong> d’une table sans la recréer. Ajoutons une colonne <code>language</code> (NULL autorisé) au catalogue :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">book_id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">book_id</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">book_id</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">ALTER TABLE books ADD COLUMN language VARCHAR(30);
+SELECT book_id, title, language FROM books WHERE book_id &lt;= 2 ORDER BY book_id;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Résultat attendu sur le jeu de données de référence (obtenu en exécutant la requête lors de la génération du cours).</p><div class="ccc-table-scroll"><table><thead><tr><th scope="col">book_id</th><th scope="col">title</th><th scope="col">language</th></tr></thead><tbody><tr><td class="num">1</td><td>Les Misérables</td><td class="null">NULL</td></tr><tr><td class="num">2</td><td>Le Rouge et le Noir</td><td class="null">NULL</td></tr></tbody></table></div></div><p>Les lignes existantes reçoivent NULL pour la nouvelle colonne. Cette syntaxe d’ajout est identique sur les trois moteurs ; ce sont les modifications plus lourdes (changer un type, supprimer une contrainte) qui divergent. <em>Cet exemple modifie une copie : la base de référence n’est pas touchée.</em></p>
+<h2 id="s-drop-table-supprimer-une-table">DROP TABLE : supprimer une table</h2>
+<p><code>DROP TABLE</code> supprime la table <strong>et toutes ses données</strong>, sans confirmation. Le moteur protège toutefois les tables référencées :</p>
+<div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categories</span><span class="p">;</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">DROP TABLE categories;</textarea></label></div></div><div class="course-result"><p class="course-result-caption">Message d’erreur obtenu avec SQLite (les messages de PostgreSQL et MySQL sont rédigés autrement, mais l’instruction est aussi refusée) :</p><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">ERREUR</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-text">IntegrityError: FOREIGN KEY constraint failed
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">IntegrityError: FOREIGN KEY constraint failed</textarea></label></div></div></div><p>Les trois moteurs refusent, chacun avec son message : PostgreSQL <em>cannot drop table categories because other objects depend on it</em>, MySQL <em>Cannot drop table 'categories' referenced by a foreign key constraint</em>. Pour supprimer, il faut d’abord supprimer les tables enfants, ou utiliser <code>DROP TABLE … CASCADE</code> sur PostgreSQL.</p>
+<aside class="course-callout course-callout--error"><span class="course-callout-title">Erreur fréquente</span><p>Exécuter <code>DROP TABLE</code> ou le script de réinitialisation sur la <strong>mauvaise base</strong>. Vérifiez toujours la connexion active avant toute instruction destructive.</p>
+</aside><section class="course-exercise" id="ccc-practise"><span class="course-level">Niveau 1 · guidé</span><br/><h3>Exercice guidé : traduire des règles en contraintes</h3><p>Règle : « un livre coûte au moins 0 €, son stock ne peut pas être négatif, et son ISBN est unique ». Écrivez les trois définitions de colonnes.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="n">isbn</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="n">unit_price</span><span class="w">     </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">unit_price</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<span class="n">stock_quantity</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w">      </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">isbn           VARCHAR(17)  NOT NULL UNIQUE,
+unit_price     NUMERIC(8,2) NOT NULL CHECK (unit_price &gt;= 0),
+stock_quantity INTEGER      NOT NULL DEFAULT 0 CHECK (stock_quantity &gt;= 0)</textarea></label></div></div><p><code>UNIQUE</code> empêche deux livres de partager l’ISBN ; chaque <code>CHECK</code> exprime une borne ; <code>DEFAULT 0</code> évite de saisir le stock d’un livre pas encore reçu. Aucune de ces règles n’a besoin du code applicatif : le moteur les fait respecter pour tous.</p>
+</details></section><section class="course-exercise"><span class="course-level">Niveau 2 · autonome</span><br/><h3>Exercice autonome : la table reviews</h3><p>Écrivez (en PostgreSQL) la table <code>reviews</code> du chapitre 2 : un avis par client et par livre, note de 1 à 5, commentaire facultatif.</p>
+<details class="ccc-native-detail"><summary>Afficher la correction détaillée</summary><div class="ccc-code-block ccc-academy-code" data-ccc-copy-container=""><div class="ccc-code-header"><span class="ccc-code-language">SQL</span><button class="ccc-secondary-action ccc-copy-action" data-ccc-copy-button="" hidden="" type="button">Copier</button></div><pre class="ccc-code-render" tabindex="0"><code class="language-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">reviews</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">review_id</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">book_id</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="p">(</span><span class="n">book_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">rating</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">rating</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span>
+<span class="w">    </span><span class="k">comment</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">500</span><span class="p">),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">book_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre><p aria-live="polite" class="ccc-copy-message" data-ccc-copy-status="" role="status"></p><div class="ccc-copy-manual" hidden=""><label>Copie manuelle du code<textarea readonly="" rows="4">CREATE TABLE reviews (
+    review_id   INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    customer_id INTEGER NOT NULL REFERENCES customers (customer_id),
+    book_id     INTEGER NOT NULL REFERENCES books (book_id),
+    rating      INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment     VARCHAR(500),
+    UNIQUE (customer_id, book_id)
+);</textarea></label></div></div><p>Les deux FK sont <code>NOT NULL</code> (un avis a toujours un auteur et un livre) ; <code>UNIQUE (customer_id, book_id)</code> est une contrainte <strong>sur deux colonnes</strong> ; <code>comment</code> reste nullable. Les tables <code>customers</code> et <code>books</code> doivent exister avant.</p>
+</details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new="" id="ccc-validate"><p class="ccc-card-label">Valider · question 1</p><fieldset><legend>Pourquoi crée-t-on books avant order_items ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="0"/><span>Par ordre alphabétique</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="1"/><span>Parce que order_items contient une clé étrangère vers books, qui doit déjà exister</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-1" type="radio" value="2"/><span>Parce que books est plus petite</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Par ordre alphabétique</strong> : L’ordre alphabétique n’a aucune importance pour le moteur.</li><li><strong>Bonne réponse — Parce que order_items contient une clé étrangère vers books, qui doit déjà exister</strong> : Un parent est toujours créé avant ses enfants.</li><li><strong>Incorrect — Parce que books est plus petite</strong> : La taille est sans effet.</li></ul></details></section><section class="ccc-content-section ccc-quiz ccc-card" data-answer="1" data-ccc-quiz-new=""><p class="ccc-card-label">Valider · question 2</p><fieldset><legend>Que se passe-t-il avec ON DELETE RESTRICT sur orders.customer_id ?</legend><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="0"/><span>Les commandes d’un client supprimé sont supprimées aussi</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="1"/><span>La suppression d’un client qui a des commandes est refusée</span></label><label class="ccc-quiz-option"><input name="ccc-quiz-2" type="radio" value="2"/><span>Le client est supprimé et les commandes passent à NULL</span></label></fieldset><div class="ccc-quiz-actions"><button class="ccc-primary-action" data-ccc-check-quiz="" hidden="" type="button">Vérifier ma réponse</button><button class="ccc-secondary-action" data-ccc-reset-quiz="" hidden="" type="button">Réessayer</button></div><p aria-live="polite" class="ccc-quiz-feedback" data-ccc-quiz-result="" role="status"></p><details class="ccc-native-detail"><summary>Voir la justification de chaque réponse</summary><ul class="course-quiz-explain"><li><strong>Incorrect — Les commandes d’un client supprimé sont supprimées aussi</strong> : C’est le comportement de CASCADE, pas de RESTRICT.</li><li><strong>Bonne réponse — La suppression d’un client qui a des commandes est refusée</strong> : RESTRICT protège le parent tant que des enfants le référencent.</li><li><strong>Incorrect — Le client est supprimé et les commandes passent à NULL</strong> : Ce serait SET NULL, et customer_id est NOT NULL.</li></ul></details></section></article><section class="ccc-completion-card ccc-card"><h2>Chapitre terminé ?</h2><p>La progression est enregistrée localement dans ce navigateur si le stockage est disponible ; rien n’est envoyé à un serveur.</p><button class="ccc-secondary-action" data-ccc-complete="04-creer-tables" hidden="">Marquer ce chapitre terminé</button><p aria-live="polite" data-ccc-progress-message=""></p></section><nav aria-label="Chapitre précédent et suivant" class="ccc-page-navigation ccc-chapter-pagination"><a class="ccc-lesson-nav-prev" href="03-creer-base.html">← Créer la base et les utilisateurs</a><a class="ccc-lesson-nav-next" href="05-inserer.html">Insérer les premières données →</a></nav></main>
+</div>
+<footer class="ccc-site-footer"><p>Crystal Clear Code · Cours SQL « La librairie » · Préparation à la certification ENI (préparation non officielle)</p><p><a href="../index.html">Sommaire</a> · <a href="../docs/cheatsheet.html">Cheatsheet</a> · <a href="../docs/eni-coverage.html">Couverture ENI</a> · <a href="../docs/sources.html">Sources</a></p></footer>
+<a aria-label="Retour en haut" class="ccc-back-to-top" data-ccc-back-to-top="" href="#ccc-page-top">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 11l6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</body>
+</html>

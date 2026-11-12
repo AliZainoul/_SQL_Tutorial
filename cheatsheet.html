@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<script src="assets/theme.js"></script>
+<link rel="icon" type="image/svg+xml" sizes="any" href="assets/c-cubed.svg">
+<title>Cheatsheet SQL | SQLite, MySQL et PostgreSQL | Windows, macOS, Linux</title>
+<meta name="description" content="Référence hors ligne complète pour administrer SQLite, MySQL et PostgreSQL sur Windows, macOS et Linux.">
+<style>@page {size:A4; margin:13mm 12mm}
+:root{color-scheme:light;--bg:#f7f7f7;--surface:#fff;--ink:#303030;--muted:#555;--border:#e7e7e7;--pink:#f91562;--wash:#fff2f6;--code-bg:#f5f5f6;--accent-shadow:rgba(249,21,98,.12);--syntax-keyword:#f91562;--syntax-string:#207046;--syntax-comment:#777;--syntax-number:#1c618f;--sidebar:#fff}
+:root[data-ccc-theme="dark"]{color-scheme:dark;--bg:#151518;--surface:#222226;--ink:#f3f3f4;--muted:#c2c2ca;--border:#424247;--pink:#ff648f;--wash:#34212b;--code-bg:#17171a;--accent-shadow:rgba(255,100,143,.16);--syntax-keyword:#f91562;--syntax-string:#9cddb4;--syntax-comment:#a1a1ab;--syntax-number:#88c0f2;--sidebar:#1d1d21}
+@media(prefers-color-scheme:dark){:root:not([data-ccc-theme]){color-scheme:dark;--bg:#151518;--surface:#222226;--ink:#f3f3f4;--muted:#c2c2ca;--border:#424247;--pink:#ff648f;--wash:#34212b;--code-bg:#17171a;--accent-shadow:rgba(255,100,143,.16);--syntax-keyword:#f91562;--syntax-string:#9cddb4;--syntax-comment:#a1a1ab;--syntax-number:#88c0f2;--sidebar:#1d1d21}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;font:15px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--pink)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--pink);outline-offset:3px}::selection{background:var(--wash)}.skip{position:absolute;left:-500px;top:0;background:var(--surface);z-index:99;padding:8px}.skip:focus{left:8px}.layout{display:grid;grid-template-columns:290px minmax(0,1fr);max-width:1480px;margin:auto;min-height:100vh}.sidebar{background:var(--sidebar);border-right:1px solid var(--border);padding:28px 18px;position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;align-items:center;gap:12px;margin-bottom:23px}.brand-symbol{display:block;width:41px;height:41px;flex-shrink:0;object-fit:contain}.brand-name{font-size:16px;letter-spacing:-.035em;font-weight:800;line-height:1.25}.brand-sub{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.search-label{display:block;font-weight:700;font-size:12px;margin-bottom:8px}.searchbox{width:100%;border:1px solid var(--border);border-radius:9px;background:var(--bg);padding:10px 12px;color:var(--ink);outline:0}.search-hint{font-size:11px;color:var(--muted);margin:6px 0 17px}.nav-label{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:800;text-transform:uppercase;margin-bottom:6px}.nav-link{display:flex;gap:11px;align-items:baseline;text-decoration:none;font-size:12.5px;line-height:1.4;padding:8px 9px;border-radius:8px;margin:2px 0;color:var(--muted)}.nav-link:hover,.nav-link.active{color:var(--ink);background:var(--wash)}.nav-num{font:700 11px ui-monospace,monospace;color:var(--pink);min-width:20px}.sidebar-footer{flex-wrap:wrap;border-top:1px solid var(--border);margin-top:23px;padding-top:15px;display:flex;gap:8px;align-items:center;justify-content:space-between}.hero-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.hero-top .ccc-theme-toggle{margin-inline-start:auto}
+@media print{.hero-top .ccc-theme-toggle{display:none!important}}
+/* Match the home page theme control without importing the course layout. */
+.ccc-theme-toggle{appearance:none;display:inline-grid;place-items:center;flex:none;min-height:2.75rem;padding:.5rem .75rem;border:1px solid light-dark(#767676,#92929b);border-radius:2rem;background:light-dark(#fff,#101012);color:light-dark(#303030,#f5f5f5);font:.85rem/1.25 "Helvetica Neue",Helvetica,Arial,sans-serif;text-align:center;cursor:pointer}
+.ccc-theme-toggle[hidden]{display:none!important}
+.ccc-theme-toggle:hover,.ccc-theme-toggle:active{background:light-dark(#f7f7f7,#202024);border-color:light-dark(#303030,#f5f5f5)}
+.ccc-theme-toggle:active{box-shadow:inset 0 0 0 1px currentColor}
+.ccc-theme-action{grid-area:1 / 1;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;visibility:hidden}
+.ccc-theme-toggle[data-ccc-active-theme="dark"] .ccc-theme-action--light,.ccc-theme-toggle[data-ccc-active-theme="light"] .ccc-theme-action--dark{visibility:visible}
+.ccc-theme-emoji{display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",emoji;font-size:1rem;line-height:1}
+.caption{font-size:11px;color:var(--muted)}.main{min-width:0;padding:42px clamp(22px,4.2vw,70px) 90px}.main-inner{max-width:1020px;margin:auto}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:750}.eyebrow:before{content:"";background:var(--pink);width:8px;height:8px;border-radius:50%}.hero{padding:0 0 25px;border-bottom:1px solid var(--border);margin-bottom:24px}.hero h1{font-size:clamp(35px,4.8vw,61px);line-height:1.09;letter-spacing:-.06em;margin:14px 0 15px;font-weight:850;max-width:900px}.hero h1 em{font-style:normal;color:var(--pink)}.hero-note{font-size:15px;color:var(--muted);max-width:820px}.chipbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:21px}.chip{border:1px solid var(--border);background:var(--surface);border-radius:100px;padding:4px 11px;font-size:12px;font-weight:680}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 20px;color:var(--muted);font-size:12px}.toolbar button{border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:6px 11px;border-radius:8px;font-weight:680}.intro>h1{display:none}.intro>p:first-of-type{font-size:15px}.topic{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:clamp(18px,2.8vw,31px);margin:21px 0 30px;box-shadow:0 4px 22px rgba(0,0,0,.02);scroll-margin-top:20px}.topic h2{display:flex;align-items:flex-start;font-size:clamp(22px,2.3vw,28px);letter-spacing:-.038em;line-height:1.2;margin:0 0 20px;padding-bottom:16px;border-bottom:1px solid var(--border)}.topic h2:before{content:"";width:5px;height:26px;background:var(--pink);border-radius:4px;margin:2px 13px 0 0;flex-shrink:0}.topic h3{font-size:18px;letter-spacing:-.025em;line-height:1.35;margin:32px 0 12px}.topic p{margin:11px 0 15px}.topic blockquote,.intro blockquote{padding:12px 18px;border-left:3px solid var(--pink);background:var(--wash);margin:16px 0 24px;border-radius:0 9px 9px 0}.topic blockquote p,.intro blockquote p{margin:0}.topic code:not(pre code),.intro code:not(pre code){background:var(--code-bg);border:1px solid var(--border);padding:1px 5px;border-radius:4px;font:12.5px/1.5 ui-monospace, SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:normal;overflow-wrap:anywhere}.topic strong{font-weight:750}.table-scroll{width:100%;overflow-x:auto;border:1px solid var(--border);border-radius:9px;margin:16px 0 20px;scrollbar-width:thin}.topic table{border-collapse:collapse;width:100%;min-width:610px;line-height:1.45;font-size:12.7px}.topic th{text-align:left;font-weight:760;background:var(--code-bg);padding:12px 12px;vertical-align:top;border-bottom:1px solid var(--border);white-space:nowrap}.topic td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:top;overflow-wrap:anywhere}.topic tbody tr:last-child td{border-bottom:0}.topic tbody tr:nth-child(even){background:color-mix(in srgb,var(--bg) 45%,transparent)}.topic td:first-child{font-weight:700;min-width:130px}.topic ul,.topic ol{padding-left:23px}.topic li{margin:6px 0}.code-panel{border:1px solid var(--border);border-radius:10px;background:var(--code-bg);overflow:hidden;margin:15px 0 20px}.code-bar{display:flex;align-items:center;justify-content:space-between;min-height:34px;padding:4px 8px 4px 14px;border-bottom:1px solid var(--border)}.lang-tag{font:700 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.copy-btn{color:var(--ink);border:1px solid var(--border);background:var(--surface);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:720}.copy-btn:hover{border-color:var(--pink)}.code-pre{padding:14px 17px 15px;margin:0;overflow-x:auto;line-height:1.63;white-space:pre;tab-size:4}.code-pre code{font:12.8px/1.63 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;color:var(--ink)}.tok-k,.tok-kc,.tok-kd,.tok-kn,.tok-kr,.tok-kt,.tok-o{color:var(--syntax-keyword);font-weight:700}.tok-s,.tok-s1,.tok-s2,.tok-sa,.tok-sb,.tok-sc,.tok-sd,.tok-se,.tok-sh,.tok-si,.tok-sr,.tok-ss{color:var(--syntax-string)}.tok-c,.tok-c1,.tok-cm{color:var(--syntax-comment)}.tok-m,.tok-mi,.tok-mf{color:var(--syntax-number)}.topic[hidden],.nav-link[hidden]{display:none!important}.no-results{padding:22px;border:1px dashed var(--border);border-radius:10px;text-align:center;color:var(--muted)}.footer{text-align:center;color:var(--muted);font-size:11px;margin:35px 0}.print-note{display:none}@media(max-width:1000px){.layout{display:block}.sidebar{height:auto;position:relative;border-right:0;border-bottom:1px solid var(--border);padding:16px 20px}.brand{margin:0 0 13px}.sidebar-nav{display:flex;overflow-x:auto;gap:6px;padding-bottom:4px}.nav-label{display:none}.nav-link{min-width:180px;max-width:210px;flex-shrink:0;border:1px solid var(--border);padding:8px}.search-hint{margin:3px 0 9px}.sidebar-footer{margin-top:10px;padding-top:10px}.main{padding:30px 20px 60px}}@media(max-width:600px){.main{padding:22px 10px 50px}.hero{padding:0 10px 20px}.topic{border-radius:9px;padding:18px 12px}.topic table{font-size:12px}.topic h2{font-size:22px}.topic h3{font-size:17px}.code-pre code{font-size:12px}.code-pre{padding:12px}.toolbar{padding:0 10px}}@media print{html{scroll-behavior:auto}body{background:#fff;color:#222;font:10pt/1.5 Arial,sans-serif}.layout{display:block;max-width:none}.sidebar,.toolbar,.copy-btn,.chipbar,.footer{display:none!important}.main{padding:0;max-width:none}.main-inner{max-width:none}.hero{margin-bottom:12px;padding-bottom:6px}.hero h1{font-size:28pt}.topic{padding:10px 0;margin:0;border:0;border-radius:0;box-shadow:none;break-before:page}.topic h2{font-size:18pt}.topic h3{font-size:13pt;break-after:avoid}.topic p,.topic li{orphans:3;widows:3}.table-scroll{overflow:visible;border-color:#ddd}.topic table{min-width:0;font-size:8pt}.topic td,.topic th{padding:5px}.code-panel{break-inside:avoid;background:#f5f5f5}.code-pre code{font-size:8pt}.topic a{color:#222}.topic a:after{content:""}.print-note{display:block}.intro{break-after:avoid} .topic[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="layout">
+<aside class="sidebar" aria-label="Navigation dans la cheatsheet">
+ <div class="brand"><img class="brand-symbol" src="assets/c-cubed.svg" width="41" height="41" alt="Crystal Clear Code"><div><div class="brand-name">Cheatsheet SQL</div><div class="brand-sub">Référence technique</div></div></div>
+ <label for="search" class="search-label">Rechercher une commande</label>
+ <input id="search" class="searchbox" type="search" placeholder="Ex. utilisateur, DROP, backup" autocomplete="off" aria-describedby="search-help">
+ <div id="search-help" class="search-hint">Filtre les sections, sans connexion Internet.</div>
+ <div class="nav-label">Sommaire</div>
+ <nav class="sidebar-nav" aria-label="Chapitres"><a href="#1-reference-immediate-les-bases-indispensables" class="nav-link"><span class="nav-num">01</span><span>Référence immédiate : les bases indispensables</span></a>
+<a href="#2-installer-sur-windows-macos-et-linux" class="nav-link"><span class="nav-num">02</span><span>Installer sur Windows, macOS et Linux</span></a>
+<a href="#3-demarrer-arreter-et-verifier-les-services" class="nav-link"><span class="nav-num">03</span><span>Démarrer, arrêter et vérifier les services</span></a>
+<a href="#4-connexions-bases-et-navigation" class="nav-link"><span class="nav-num">04</span><span>Connexions, bases et navigation</span></a>
+<a href="#5-explorer-les-bases-les-utilisateurs-et-les-objets" class="nav-link"><span class="nav-num">05</span><span>Explorer les bases, les utilisateurs et les objets</span></a>
+<a href="#6-creer-renommer-et-supprimer-des-bases" class="nav-link"><span class="nav-num">06</span><span>Créer, renommer et supprimer des bases</span></a>
+<a href="#7-utilisateurs-roles-mots-de-passe-et-droits" class="nav-link"><span class="nav-num">07</span><span>Utilisateurs, rôles, mots de passe et droits</span></a>
+<a href="#8-tables-colonnes-index-vues-et-contraintes" class="nav-link"><span class="nav-num">08</span><span>Tables, colonnes, index, vues et contraintes</span></a>
+<a href="#9-sql-quotidien-lire-ajouter-modifier-et-supprimer" class="nav-link"><span class="nav-num">09</span><span>SQL quotidien : lire, ajouter, modifier et supprimer</span></a>
+<a href="#10-executer-des-scripts-sql-csv-et-exports" class="nav-link"><span class="nav-num">10</span><span>Exécuter des scripts SQL, CSV et exports</span></a>
+<a href="#11-sauvegarder-restaurer-et-controler-l-integrite" class="nav-link"><span class="nav-num">11</span><span>Sauvegarder, restaurer et contrôler l&#x27;intégrité</span></a>
+<a href="#12-administration-diagnostics-et-performances" class="nav-link"><span class="nav-num">12</span><span>Administration, diagnostics et performances</span></a>
+<a href="#13-depannage-messages-frequents" class="nav-link"><span class="nav-num">13</span><span>Dépannage : messages fréquents</span></a>
+<a href="#14-aide-integree-raccourcis-et-documentation" class="nav-link"><span class="nav-num">14</span><span>Aide intégrée, raccourcis et documentation</span></a></nav>
+ <div class="sidebar-footer"><span class="caption">Novembre 2026 · hors ligne</span></div>
+</aside>
+<main class="main" id="main"><div class="main-inner">
+<header class="hero"><div class="hero-top"><div class="eyebrow">Documentation de poche</div><button aria-label="Activer le thème sombre" class="ccc-theme-toggle" data-ccc-theme-toggle="" hidden="" type="button">
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--dark">
+<span class="ccc-theme-emoji">🌙</span><span>Thème sombre</span>
+</span>
+<span aria-hidden="true" class="ccc-theme-action ccc-theme-action--light">
+<span class="ccc-theme-emoji">☀️</span><span>Thème clair</span>
+</span>
+</button></div><h1>SQLite, MySQL <em>&amp;</em> PostgreSQL</h1><p class="hero-note">Toutes les bases utiles pour naviguer, créer, administrer, diagnostiquer et sauvegarder, avec les différences Windows, macOS et Linux.</p><div class="chipbar"><span class="chip">3 SGBD</span><span class="chip">3 systèmes d'exploitation</span><span class="chip">14 sections</span><span class="chip">100 % autonome</span></div></header>
+<div class="intro"><div class="intro"><h1>Cheatsheet SQL : SQLite, MySQL et PostgreSQL</h1>
+<p><strong>Windows, macOS et Linux | Installation, connexions, bases, tables, utilisateurs, rôles, administration, sauvegardes et dépannage</strong></p>
+<p>Édition du 10 novembre 2026. Versions de référence : SQLite 3, MySQL 8.4 LTS et PostgreSQL 18. Les commandes peuvent varier selon la distribution et la version effectivement installée.</p>
+<blockquote>
+<p><strong>Repères.</strong> Les commandes <code>sqlite3</code>, <code>mysql</code>, <code>psql</code>, <code>mysqldump</code> et <code>pg_dump</code> se lancent dans le <strong>terminal</strong>. Les commandes précédées de <code>.</code> s'exécutent dans le client SQLite ; celles précédées de <code>\</code> dans le client PostgreSQL <code>psql</code>. Les commandes SQL se terminent normalement par <code>;</code>. Remplacer <code>ma_base</code>, <code>alice</code>, <code>users</code> et les chemins par leurs valeurs réelles. Les commandes destructives sont à exécuter sur une cible vérifiée et sauvegardée.</p>
+</blockquote>
+</div></div>
+<div class="toolbar"><span id="result-count" role="status" aria-live="polite">14 sections affichées sur 14</span><button type="button" onclick="window.print()">Imprimer / PDF</button></div>
+<div id="no-results" class="no-results" hidden>Aucune section ne correspond à cette recherche. Essayez un autre terme.</div>
+<section aria-labelledby="1-reference-immediate-les-bases-indispensables-title" class="topic" id="1-reference-immediate-les-bases-indispensables"><h2 id="1-reference-immediate-les-bases-indispensables-title">1. Référence immédiate : les bases indispensables</h2>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Objectif</th>
+<th scope="col">SQLite (<code>sqlite3</code>)</th>
+<th scope="col">MySQL (<code>mysql</code>)</th>
+<th scope="col">PostgreSQL (<code>psql</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Se connecter</td>
+<td><code>sqlite3 ma_base.db</code></td>
+<td><code>mysql -u alice -p -D ma_base</code></td>
+<td><code>psql -U alice -d ma_base</code></td>
+</tr>
+<tr>
+<td>Connexion distante</td>
+<td>Pas de serveur natif</td>
+<td><code>mysql -h serveur -P 3306 -u alice -p -D ma_base</code></td>
+<td><code>psql -h serveur -p 5432 -U alice -d ma_base</code></td>
+</tr>
+<tr>
+<td>Lister les bases</td>
+<td><code>.databases</code> (bases ouvertes seulement)</td>
+<td><code>SHOW DATABASES;</code></td>
+<td><code>\l</code></td>
+</tr>
+<tr>
+<td>Changer de base</td>
+<td><code>.open autre.db</code></td>
+<td><code>USE autre_base;</code></td>
+<td><code>\c autre_base</code></td>
+</tr>
+<tr>
+<td>Lister les utilisateurs</td>
+<td>Non applicable</td>
+<td><code>SELECT user,host FROM mysql.user;</code> (droits requis)</td>
+<td><code>\du</code></td>
+</tr>
+<tr>
+<td>Utilisateur actuel</td>
+<td>Non applicable</td>
+<td><code>SELECT USER(),CURRENT_USER();</code></td>
+<td><code>SELECT current_user,session_user;</code></td>
+</tr>
+<tr>
+<td>Changer d'utilisateur</td>
+<td>Non applicable</td>
+<td>Quitter puis <code>mysql -u autre -p</code></td>
+<td><code>\c ma_base autre</code> ; ou <code>SET ROLE autre;</code> si autorisé</td>
+</tr>
+<tr>
+<td>Lister les tables</td>
+<td><code>.tables</code></td>
+<td><code>SHOW TABLES;</code></td>
+<td><code>\dt</code></td>
+</tr>
+<tr>
+<td>Toutes les tables</td>
+<td><code>SELECT name FROM sqlite_schema WHERE type='table';</code></td>
+<td><code>SELECT table_schema,table_name FROM information_schema.tables WHERE table_type='BASE TABLE';</code></td>
+<td><code>\dt *.*</code> (inclut tables systèmes)</td>
+</tr>
+<tr>
+<td>Structure de table</td>
+<td><code>.schema users</code></td>
+<td><code>DESCRIBE users;</code></td>
+<td><code>\d users</code></td>
+</tr>
+<tr>
+<td>Supprimer table</td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+</tr>
+<tr>
+<td>Quitter</td>
+<td><code>.quit</code></td>
+<td><code>exit</code></td>
+<td><code>\q</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>À retenir.</strong> SQLite travaille avec des fichiers et n'a ni comptes ni rôles SQL natifs. MySQL distingue <code>'alice'@'localhost'</code> de <code>'alice'@'autre_hôte'</code>. PostgreSQL possède des rôles globaux au cluster et des schémas dans chaque base. Il n'a pas de commande <code>USE</code> : <code>\c</code> ouvre une nouvelle connexion.</p>
+</section><section aria-labelledby="2-installer-sur-windows-macos-et-linux-title" class="topic" id="2-installer-sur-windows-macos-et-linux"><h2 id="2-installer-sur-windows-macos-et-linux-title">2. Installer sur Windows, macOS et Linux</h2>
+<h3>Windows 10/11 (PowerShell)</h3>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Moteur</th>
+<th scope="col">Installation</th>
+<th scope="col">Vérification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite</td>
+<td><code>winget install --id SQLite.SQLite -e</code></td>
+<td><code>sqlite3 --version</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><a href="https://dev.mysql.com/downloads/mysql/">MSI officiel MySQL 8.4</a>, puis MySQL Configurator</td>
+<td><code>mysql --version</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><a href="https://www.postgresql.org/download/windows/">Installateur officiel PostgreSQL</a></td>
+<td><code>psql --version</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">PowerShell</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-powershell"><span class="tok-n">winget</span> <span class="tok-n">search</span> <span class="tok-p">-</span><span class="tok-n">-id</span> <span class="tok-n">SQLite</span><span class="tok-p">.</span><span class="tok-n">SQLite</span>
+<span class="tok-n">winget</span> <span class="tok-n">install</span> <span class="tok-p">-</span><span class="tok-n">-id</span> <span class="tok-n">SQLite</span><span class="tok-p">.</span><span class="tok-n">SQLite</span> <span class="tok-n">-e</span>
+<span class="tok-nb">Get-Command</span> <span class="tok-n">sqlite3</span><span class="tok-p">,</span> <span class="tok-n">mysql</span><span class="tok-p">,</span> <span class="tok-n">psql</span> <span class="tok-n">-ErrorAction</span> <span class="tok-n">SilentlyContinue</span>
+</code></pre></div>
+<p>L'installation MySQL exige une <strong>configuration du serveur et de l'authentification</strong> ; le serveur ne démarre pas tant que cette étape n'est pas terminée. PostgreSQL propose souvent un rôle administrateur initial <code>postgres</code>. Si les programmes sont introuvables, rouvrir PowerShell et vérifier le <code>PATH</code> ainsi que le répertoire <code>bin</code> de l'installation.</p>
+<h3>macOS (Homebrew)</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">brew<span class="tok-w"> </span>install<span class="tok-w"> </span>sqlite
+brew<span class="tok-w"> </span>install<span class="tok-w"> </span>mysql@8.4
+brew<span class="tok-w"> </span>install<span class="tok-w"> </span>postgresql@18
+brew<span class="tok-w"> </span>services<span class="tok-w"> </span>start<span class="tok-w"> </span>mysql@8.4
+brew<span class="tok-w"> </span>services<span class="tok-w"> </span>start<span class="tok-w"> </span>postgresql@18
+sqlite3<span class="tok-w"> </span>--version
+<span class="tok-s2">"</span><span class="tok-k">$(</span>brew<span class="tok-w"> </span>--prefix<span class="tok-w"> </span>mysql@8.4<span class="tok-k">)</span><span class="tok-s2">/bin/mysql"</span><span class="tok-w"> </span>--version
+<span class="tok-s2">"</span><span class="tok-k">$(</span>brew<span class="tok-w"> </span>--prefix<span class="tok-w"> </span>postgresql@18<span class="tok-k">)</span><span class="tok-s2">/bin/psql"</span><span class="tok-w"> </span>--version
+</code></pre></div>
+<p>Les formules versionnées peuvent ne pas être liées automatiquement au <code>PATH</code>. Pour <strong>ce terminal seulement</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash"><span class="tok-nb">export</span><span class="tok-w"> </span><span class="tok-nv">PATH</span><span class="tok-o">=</span><span class="tok-s2">"</span><span class="tok-k">$(</span>brew<span class="tok-w"> </span>--prefix<span class="tok-w"> </span>mysql@8.4<span class="tok-k">)</span><span class="tok-s2">/bin:</span><span class="tok-k">$(</span>brew<span class="tok-w"> </span>--prefix<span class="tok-w"> </span>postgresql@18<span class="tok-k">)</span><span class="tok-s2">/bin:</span><span class="tok-nv">$PATH</span><span class="tok-s2">"</span>
+<span class="tok-nb">command</span><span class="tok-w"> </span>-v<span class="tok-w"> </span>sqlite3
+<span class="tok-nb">command</span><span class="tok-w"> </span>-v<span class="tok-w"> </span>mysql
+<span class="tok-nb">command</span><span class="tok-w"> </span>-v<span class="tok-w"> </span>psql
+</code></pre></div>
+<p>Sur les anciens macOS, vérifier l'existence de paquets précompilés avant une installation Homebrew : des compilations ou mises à jour importantes peuvent être nécessaires. macOS fournit parfois déjà une version de SQLite.</p>
+<h3>Linux : Debian / Ubuntu (APT)</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sudo<span class="tok-w"> </span>apt<span class="tok-w"> </span>update
+sudo<span class="tok-w"> </span>apt<span class="tok-w"> </span>install<span class="tok-w"> </span>sqlite3<span class="tok-w"> </span>mysql-server<span class="tok-w"> </span>postgresql<span class="tok-w"> </span>postgresql-contrib
+sqlite3<span class="tok-w"> </span>--version
+mysql<span class="tok-w"> </span>--version
+psql<span class="tok-w"> </span>--version
+sudo<span class="tok-w"> </span>systemctl<span class="tok-w"> </span>status<span class="tok-w"> </span>mysql
+sudo<span class="tok-w"> </span>systemctl<span class="tok-w"> </span>status<span class="tok-w"> </span>postgresql
+</code></pre></div>
+<p>Les versions proviennent des dépôts de la distribution. Si une version précise de PostgreSQL est indispensable, consulter <a href="https://www.postgresql.org/download/linux/ubuntu/">le dépôt PostgreSQL officiel</a>. Sur Ubuntu, PostgreSQL utilise souvent l'authentification locale <code>peer</code> et MySQL <code>root</code> peut utiliser l'authentification par socket.</p>
+<h3>Linux : Fedora (DNF)</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sudo<span class="tok-w"> </span>dnf<span class="tok-w"> </span>install<span class="tok-w"> </span>sqlite<span class="tok-w"> </span>mysql-server<span class="tok-w"> </span>postgresql<span class="tok-w"> </span>postgresql-server
+sudo<span class="tok-w"> </span>postgresql-setup<span class="tok-w"> </span>--initdb<span class="tok-w"> </span>--unit<span class="tok-w"> </span>postgresql
+sudo<span class="tok-w"> </span>systemctl<span class="tok-w"> </span><span class="tok-nb">enable</span><span class="tok-w"> </span>--now<span class="tok-w"> </span>mysqld
+sudo<span class="tok-w"> </span>systemctl<span class="tok-w"> </span><span class="tok-nb">enable</span><span class="tok-w"> </span>--now<span class="tok-w"> </span>postgresql
+sqlite3<span class="tok-w"> </span>--version
+mysql<span class="tok-w"> </span>--version
+psql<span class="tok-w"> </span>--version
+</code></pre></div>
+<p><strong>Initialisation Fedora :</strong> <code>postgresql-setup --initdb</code> est destinée uniquement à un nouveau cluster non initialisé. Les noms de services et les paquets changent selon les distributions et les dépôts.</p>
+</section><section aria-labelledby="3-demarrer-arreter-et-verifier-les-services-title" class="topic" id="3-demarrer-arreter-et-verifier-les-services"><h2 id="3-demarrer-arreter-et-verifier-les-services-title">3. Démarrer, arrêter et vérifier les services</h2>
+<p>SQLite n'a <strong>aucun service</strong> à démarrer. Les deux autres moteurs utilisent normalement 3306 (MySQL) et 5432 (PostgreSQL), sauf configuration différente.</p>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Action</th>
+<th scope="col">Windows (PowerShell administrateur)</th>
+<th scope="col">macOS (Homebrew)</th>
+<th scope="col">Ubuntu / Debian</th>
+<th scope="col">Fedora</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voir MySQL</td>
+<td><code>Get-Service -Name 'MySQL*'</code></td>
+<td><code>brew services list</code></td>
+<td><code>sudo systemctl status mysql</code></td>
+<td><code>sudo systemctl status mysqld</code></td>
+</tr>
+<tr>
+<td>Démarrer MySQL</td>
+<td><code>Start-Service -Name 'MySQL84'</code>*</td>
+<td><code>brew services start mysql@8.4</code></td>
+<td><code>sudo systemctl start mysql</code></td>
+<td><code>sudo systemctl start mysqld</code></td>
+</tr>
+<tr>
+<td>Arrêter MySQL</td>
+<td><code>Stop-Service -Name 'MySQL84'</code>*</td>
+<td><code>brew services stop mysql@8.4</code></td>
+<td><code>sudo systemctl stop mysql</code></td>
+<td><code>sudo systemctl stop mysqld</code></td>
+</tr>
+<tr>
+<td>Voir PostgreSQL</td>
+<td><code>Get-Service -Name 'postgresql*'</code></td>
+<td><code>brew services list</code></td>
+<td><code>sudo systemctl status postgresql</code></td>
+<td><code>sudo systemctl status postgresql</code></td>
+</tr>
+<tr>
+<td>Démarrer PostgreSQL</td>
+<td><code>Start-Service -Name 'postgresql-x64-18'</code>*</td>
+<td><code>brew services start postgresql@18</code></td>
+<td><code>sudo systemctl start postgresql</code></td>
+<td><code>sudo systemctl start postgresql</code></td>
+</tr>
+<tr>
+<td>Arrêter PostgreSQL</td>
+<td><code>Stop-Service -Name 'postgresql-x64-18'</code>*</td>
+<td><code>brew services stop postgresql@18</code></td>
+<td><code>sudo systemctl stop postgresql</code></td>
+<td><code>sudo systemctl stop postgresql</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>* Les noms des services <strong>Windows sont indicatifs</strong> : relever le vrai nom via <code>Get-Service</code> avant de l'utiliser.</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">pg_isready<span class="tok-w"> </span>-h<span class="tok-w"> </span>localhost<span class="tok-w"> </span>-p<span class="tok-w"> </span><span class="tok-m">5432</span>
+mysqladmin<span class="tok-w"> </span>-h<span class="tok-w"> </span><span class="tok-m">127</span>.0.0.1<span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>ping
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">PowerShell</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-powershell"><span class="tok-nb">Get-Service</span> <span class="tok-n">-Name</span> <span class="tok-s1">'MySQL*'</span><span class="tok-p">,</span> <span class="tok-s1">'postgresql*'</span>
+<span class="tok-nb">Get-NetTCPConnection</span> <span class="tok-n">-State</span> <span class="tok-n">Listen</span> <span class="tok-n">-LocalPort</span> <span class="tok-n">3306</span><span class="tok-p">,</span><span class="tok-n">5432</span> <span class="tok-n">-ErrorAction</span> <span class="tok-n">SilentlyContinue</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">ss<span class="tok-w"> </span>-ltn<span class="tok-w"> </span><span class="tok-p">|</span><span class="tok-w"> </span>grep<span class="tok-w"> </span>-E<span class="tok-w"> </span><span class="tok-s1">':(3306|5432)\b'</span>
+</code></pre></div>
+<p>La dernière commande concerne essentiellement Linux. Un port ouvert ne prouve pas qu'un compte donné peut se connecter.</p>
+</section><section aria-labelledby="4-connexions-bases-et-navigation-title" class="topic" id="4-connexions-bases-et-navigation"><h2 id="4-connexions-bases-et-navigation-title">4. Connexions, bases et navigation</h2>
+<h3>SQLite : ouvrir, créer et basculer entre fichiers</h3>
+<p>Dans le terminal :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sqlite3<span class="tok-w"> </span>ma_base.db
+sqlite3<span class="tok-w"> </span>-readonly<span class="tok-w"> </span>ma_base.db
+sqlite3<span class="tok-w"> </span>:memory:
+</code></pre></div>
+<p>Dans le client SQLite :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">.help
+.open ma_base.db
+.open --ifexists ma_base.db
+.open --readonly ma_base.db
+.databases
+.tables
+.schema
+.schema users
+.indexes users
+.quit
+</code></pre></div>
+<p><code>sqlite3 ma_base.db</code> crée le fichier s'il n'existe pas et si le dossier est accessible. <code>.databases</code> affiche <strong>les bases de la connexion</strong> (<code>main</code>, <code>temp</code> et fichiers attachés), pas tous les fichiers du disque. Pour voir les fichiers <code>.db</code> du répertoire, employer <code>ls *.db</code> (macOS/Linux) ou <code>Get-ChildItem *.db</code> (PowerShell).</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">ATTACH</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-s1">'archives.db'</span><span class="tok-w"> </span><span class="tok-k">AS</span><span class="tok-w"> </span><span class="tok-n">archives</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">archives</span><span class="tok-p">.</span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-n">DETACH</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">archives</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">database_list</span><span class="tok-p">;</span>
+</code></pre></div>
+<h3>MySQL : connexion locale et distante</h3>
+<p>Dans le terminal :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">mysql<span class="tok-w"> </span>-u<span class="tok-w"> </span>root<span class="tok-w"> </span>-p
+mysql<span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>-D<span class="tok-w"> </span>ma_base
+mysql<span class="tok-w"> </span>-h<span class="tok-w"> </span><span class="tok-m">127</span>.0.0.1<span class="tok-w"> </span>-P<span class="tok-w"> </span><span class="tok-m">3306</span><span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>ma_base
+mysql<span class="tok-w"> </span>-h<span class="tok-w"> </span>db.exemple.fr<span class="tok-w"> </span>-P<span class="tok-w"> </span><span class="tok-m">3306</span><span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>--ssl-mode<span class="tok-o">=</span>REQUIRED<span class="tok-w"> </span>ma_base
+mysql<span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>-e<span class="tok-w"> </span><span class="tok-s2">"SHOW DATABASES;"</span>
+</code></pre></div>
+<p>Sur Ubuntu, si <code>root</code> est configuré pour une authentification par socket :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sudo<span class="tok-w"> </span>mysql
+</code></pre></div>
+<p>Dans le client MySQL :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">DATABASES</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-p">();</span>
+<span class="tok-n">USE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">TABLES</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">FULL</span><span class="tok-w"> </span><span class="tok-n">TABLES</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-p">(),</span><span class="tok-w"> </span><span class="tok-k">CURRENT_USER</span><span class="tok-p">();</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">VERSION</span><span class="tok-p">();</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">status
+help
+exit
+</code></pre></div>
+<p>Pour <strong>changer d'utilisateur</strong>, quitter puis se reconnecter avec <code>mysql -u autre -p -D ma_base</code>. <code>USE</code> ne change que de base. <code>USER()</code> reflète le compte demandé pour la connexion, <code>CURRENT_USER()</code> le compte utilisé pour contrôler les privilèges.</p>
+<h3>PostgreSQL : connexion locale et distante</h3>
+<p>Dans le terminal :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">psql<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base
+psql<span class="tok-w"> </span>-h<span class="tok-w"> </span><span class="tok-m">127</span>.0.0.1<span class="tok-w"> </span>-p<span class="tok-w"> </span><span class="tok-m">5432</span><span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base
+psql<span class="tok-w"> </span><span class="tok-s2">"host=db.exemple.fr port=5432 dbname=ma_base user=alice sslmode=require"</span>
+psql<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>-c<span class="tok-w"> </span><span class="tok-s2">"SELECT current_user, current_database();"</span>
+psql<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>-v<span class="tok-w"> </span><span class="tok-nv">ON_ERROR_STOP</span><span class="tok-o">=</span><span class="tok-m">1</span><span class="tok-w"> </span>-f<span class="tok-w"> </span>setup.sql
+</code></pre></div>
+<p>Sur Debian / Ubuntu :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sudo<span class="tok-w"> </span>-u<span class="tok-w"> </span>postgres<span class="tok-w"> </span>psql<span class="tok-w"> </span>-d<span class="tok-w"> </span>postgres
+</code></pre></div>
+<p>Sur macOS, avec un cluster Homebrew initialisé sous votre compte utilisateur :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">psql<span class="tok-w"> </span>-U<span class="tok-w"> </span><span class="tok-s2">"</span><span class="tok-k">$(</span>whoami<span class="tok-k">)</span><span class="tok-s2">"</span><span class="tok-w"> </span>-d<span class="tok-w"> </span>postgres
+psql<span class="tok-w"> </span>-U<span class="tok-w"> </span><span class="tok-s2">"</span><span class="tok-k">$(</span>whoami<span class="tok-k">)</span><span class="tok-s2">"</span><span class="tok-w"> </span>-d<span class="tok-w"> </span>postgres<span class="tok-w"> </span>-c<span class="tok-w"> </span><span class="tok-s1">'\du'</span>
+</code></pre></div>
+<p><strong>Important :</strong> le rôle <code>postgres</code> n'est <strong>pas systématiquement créé</strong> lors de l'initialisation d'un cluster macOS. L'administrateur initial peut porter le nom de l'utilisateur du système. Pour les accès distants sensibles, <code>--ssl-mode=REQUIRED</code> (MySQL) et <code>sslmode=require</code> (PostgreSQL) chiffrent le trafic, mais ne garantissent pas à eux seuls la vérification de l'identité du serveur : configurer la validation du certificat (<code>VERIFY_IDENTITY</code> ou <code>verify-full</code>) et l'autorité de certification adaptée.</p>
+<p>Dans <code>psql</code> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\conninfo
+\l
+\c ma_base
+\c ma_base alice
+\c postgres
+\du
+\dn
+\dt
+\dt *.*
+\d users
+\d+ users
+\q
+</code></pre></div>
+<p><code>\c ma_base alice</code> se reconnecte avec l'identité <code>alice</code>. <code>SET ROLE autre_role;</code> change seulement le rôle SQL actif, sous réserve des autorisations de rôle ; <code>RESET ROLE;</code> le restaure.</p>
+</section><section aria-labelledby="5-explorer-les-bases-les-utilisateurs-et-les-objets-title" class="topic" id="5-explorer-les-bases-les-utilisateurs-et-les-objets"><h2 id="5-explorer-les-bases-les-utilisateurs-et-les-objets-title">5. Explorer les bases, les utilisateurs et les objets</h2>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Besoin</th>
+<th scope="col">SQLite</th>
+<th scope="col">MySQL</th>
+<th scope="col">PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base courante</td>
+<td><code>PRAGMA database_list;</code></td>
+<td><code>SELECT DATABASE();</code></td>
+<td><code>SELECT current_database();</code></td>
+</tr>
+<tr>
+<td>Liste des bases</td>
+<td><code>.databases</code> (attachées seulement)</td>
+<td><code>SHOW DATABASES;</code></td>
+<td><code>\l</code></td>
+</tr>
+<tr>
+<td>Utilisateurs et rôles</td>
+<td>Aucun système interne</td>
+<td><code>SELECT user,host FROM mysql.user;</code>*</td>
+<td><code>\du</code> ou <code>SELECT rolname FROM pg_roles;</code></td>
+</tr>
+<tr>
+<td>Schémas</td>
+<td><code>main</code>, <code>temp</code> et alias attachés</td>
+<td><code>SHOW DATABASES;</code>**</td>
+<td><code>\dn</code></td>
+</tr>
+<tr>
+<td>Tables</td>
+<td><code>.tables</code></td>
+<td><code>SHOW TABLES;</code></td>
+<td><code>\dt</code></td>
+</tr>
+<tr>
+<td>Tables, tous schémas</td>
+<td><code>sqlite_schema</code> par fichier</td>
+<td><code>information_schema.tables</code></td>
+<td><code>\dt *.*</code> (inclut systèmes)</td>
+</tr>
+<tr>
+<td>Vues</td>
+<td><code>SELECT name FROM sqlite_schema WHERE type='view';</code></td>
+<td><code>SHOW FULL TABLES WHERE Table_type='VIEW';</code></td>
+<td><code>\dv</code></td>
+</tr>
+<tr>
+<td>Index</td>
+<td><code>.indexes users</code></td>
+<td><code>SHOW INDEX FROM users;</code></td>
+<td><code>\di</code></td>
+</tr>
+<tr>
+<td>Colonnes</td>
+<td><code>PRAGMA table_info(users);</code></td>
+<td><code>SHOW COLUMNS FROM users;</code></td>
+<td><code>\d users</code></td>
+</tr>
+<tr>
+<td>Définition table</td>
+<td><code>.schema users</code></td>
+<td><code>SHOW CREATE TABLE users;</code></td>
+<td><code>\d+ users</code></td>
+</tr>
+<tr>
+<td>Clés étrangères</td>
+<td><code>PRAGMA foreign_key_list(users);</code></td>
+<td><code>information_schema.KEY_COLUMN_USAGE</code></td>
+<td><code>\d users</code></td>
+</tr>
+<tr>
+<td>Privilèges</td>
+<td>Permissions du fichier OS</td>
+<td><code>SHOW GRANTS;</code></td>
+<td><code>\dp</code> ou <code>\z</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>SELECT sqlite_version();</code></td>
+<td><code>SELECT VERSION();</code></td>
+<td><code>SELECT version();</code></td>
+</tr>
+<tr>
+<td>Port</td>
+<td>Sans port</td>
+<td><code>SHOW VARIABLES LIKE 'port';</code></td>
+<td><code>SHOW port;</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>* Lire <code>mysql.user</code> nécessite les privilèges nécessaires. Sans accès, <code>SHOW GRANTS;</code> montre les droits de votre session. ** En MySQL, <code>DATABASE</code> et <code>SCHEMA</code> sont généralement synonymes ; PostgreSQL distingue nettement base et schéma.</p>
+<p><strong>SQLite</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">type</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">sqlite_schema</span>
+<span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-k">type</span><span class="tok-w"> </span><span class="tok-k">IN</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-s1">'table'</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s1">'view'</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s1">'index'</span><span class="tok-p">)</span>
+<span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-k">type</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>MySQL</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">table_schema</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">table_name</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">table_type</span>
+<span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">information_schema</span><span class="tok-p">.</span><span class="tok-n">tables</span>
+<span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">table_schema</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s1">'ma_base'</span>
+<span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-k">table_name</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>PostgreSQL</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">schemaname</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">tablename</span>
+<span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">pg_catalog</span><span class="tok-p">.</span><span class="tok-n">pg_tables</span>
+<span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">schemaname</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">IN</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-s1">'pg_catalog'</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s1">'information_schema'</span><span class="tok-p">)</span>
+<span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-n">schemaname</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">tablename</span><span class="tok-p">;</span>
+</code></pre></div>
+</section><section aria-labelledby="6-creer-renommer-et-supprimer-des-bases-title" class="topic" id="6-creer-renommer-et-supprimer-des-bases"><h2 id="6-creer-renommer-et-supprimer-des-bases-title">6. Créer, renommer et supprimer des bases</h2>
+<h3>SQLite</h3>
+<p>Ouvrir <code>sqlite3 nouvelle.db</code> suffit pour créer une base locale. Pour accéder simultanément à un autre fichier :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">ATTACH</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-s1">'autre.db'</span><span class="tok-w"> </span><span class="tok-k">AS</span><span class="tok-w"> </span><span class="tok-n">autre</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">autre</span><span class="tok-p">.</span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-n">DETACH</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">autre</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>SQLite ne possède pas <code>CREATE DATABASE</code>, <code>SHOW DATABASES</code>, <code>DROP DATABASE</code> ou <code>USE</code> au sens des serveurs SQL. Pour supprimer une base SQLite, fermer toutes les connexions puis supprimer le <strong>fichier</strong> par l'explorateur de fichiers. En mode WAL, ne pas supprimer arbitrairement les fichiers auxiliaires <code>-wal</code> et <code>-shm</code> d'une base ouverte.</p>
+<h3>MySQL</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-nb">CHARACTER</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">utf8mb4</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-nb">CHARACTER</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">utf8mb4</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-n">USE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-nb">CHARACTER</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">utf8mb4</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>MySQL ne fournit pas de commande directe standard <code>RENAME DATABASE</code>. Prévoir une migration contrôlée (création de la nouvelle base, transfert, vérification, suppression de l'ancienne).</p>
+<h3>PostgreSQL</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-k">OWNER</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-k">OWNER</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-k">RENAME</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">autre_base</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Les outils système associés :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">createdb<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>ma_base
+createdb<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-O<span class="tok-w"> </span>alice<span class="tok-w"> </span>ma_base
+dropdb<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>ma_base
+</code></pre></div>
+<p>Pour supprimer une base, se connecter à <strong>une autre base</strong> (par exemple <code>postgres</code>) et s'assurer qu'aucune autre session ne l'utilise. <code>CREATE DATABASE</code> et <code>DROP DATABASE</code> ne s'exécutent pas dans une transaction SQL explicite.</p>
+<h3>Schémas PostgreSQL</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">cours</span><span class="tok-p">;</span>
+<span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">search_path</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">cours</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">search_path</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">current_schema</span><span class="tok-p">();</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-n">cours</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-n">cours</span><span class="tok-w"> </span><span class="tok-k">CASCADE</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><code>DROP SCHEMA ... CASCADE</code> supprime aussi les objets dépendants ; examiner les objets et faire une sauvegarde avant de l'exécuter.</p>
+</section><section aria-labelledby="7-utilisateurs-roles-mots-de-passe-et-droits-title" class="topic" id="7-utilisateurs-roles-mots-de-passe-et-droits"><h2 id="7-utilisateurs-roles-mots-de-passe-et-droits-title">7. Utilisateurs, rôles, mots de passe et droits</h2>
+<h3>SQLite : pas d'utilisateurs SQL</h3>
+<p>SQLite ne possède ni <code>CREATE USER</code>, ni <code>CREATE ROLE</code>, ni <code>GRANT</code> natifs. L'accès dépend principalement des <strong>permissions sur le fichier et son dossier</strong>. Une table <code>users</code> dans une application représente des comptes métiers, pas des comptes d'administration du moteur.</p>
+<h3>MySQL : utilisateurs et droits</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">user</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">host</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">mysql</span><span class="tok-p">.</span><span class="tok-k">user</span><span class="tok-w"> </span><span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-k">user</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">host</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-p">(),</span><span class="tok-w"> </span><span class="tok-k">CURRENT_USER</span><span class="tok-p">();</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">GRANTS</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">GRANTS</span><span class="tok-w"> </span><span class="tok-k">FOR</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-w"> </span><span class="tok-n">IDENTIFIED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-s1">'mot_de_passe_fort'</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-w"> </span><span class="tok-n">IDENTIFIED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-s1">'nouveau_mot_de_passe_fort'</span><span class="tok-p">;</span>
+<span class="tok-k">RENAME</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'alice2'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-s1">'alice2'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">INSERT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">UPDATE</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">.</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">REVOKE</span><span class="tok-w"> </span><span class="tok-k">UPDATE</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">.</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">ALL</span><span class="tok-w"> </span><span class="tok-k">PRIVILEGES</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">.</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">GRANTS</span><span class="tok-w"> </span><span class="tok-k">FOR</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><code>CREATE USER</code> ne donne pas de privilèges métier par défaut. Ne pas privilégier <code>'alice'@'%'</code> ou <code>GRANT ALL ON *.*</code> sans besoin explicite. <code>FLUSH PRIVILEGES</code> n'est <strong>pas nécessaire</strong> après des commandes normales <code>CREATE USER</code>, <code>GRANT</code> et <code>REVOKE</code>.</p>
+<p><strong>Rôles MySQL et activation</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-p">.</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">GRANTS</span><span class="tok-w"> </span><span class="tok-k">FOR</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">CURRENT_ROLE</span><span class="tok-p">();</span>
+<span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-p">;</span>
+<span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-p">;</span>
+<span class="tok-k">REVOKE</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-s1">'alice'</span><span class="tok-o">@</span><span class="tok-s1">'localhost'</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-s1">'lecture_seule'</span><span class="tok-o">@</span><span class="tok-s1">'%'</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Le <code>@'%'</code> du rôle précise sa forme de nom dans l'exemple ; cela ne doit pas être confondu avec l'autorisation réseau d'un <strong>compte de connexion</strong> <code>'alice'@'%'</code>. <code>SET ROLE</code> active un rôle accordé, mais ne change pas le compte connecté.</p>
+<h3>PostgreSQL : rôles, groupes et propriétaires</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">rolname</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">rolcanlogin</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">rolsuper</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">rolcreatedb</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">rolcreaterole</span>
+<span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">pg_roles</span><span class="tok-w"> </span><span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-n">rolname</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">current_user</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">session_user</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-w"> </span><span class="tok-n">LOGIN</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-n">carol</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-n">carol</span><span class="tok-w"> </span><span class="tok-k">CREATEDB</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">USER</span><span class="tok-w"> </span><span class="tok-n">carol</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">bob</span><span class="tok-w"> </span><span class="tok-n">LOGIN</span><span class="tok-w"> </span><span class="tok-k">CREATEDB</span><span class="tok-p">;</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">lecture_seule</span><span class="tok-w"> </span><span class="tok-n">NOLOGIN</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-w"> </span><span class="tok-k">WITH</span><span class="tok-w"> </span><span class="tok-n">LOGIN</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-w"> </span><span class="tok-k">WITH</span><span class="tok-w"> </span><span class="tok-n">PASSWORD</span><span class="tok-w"> </span><span class="tok-s1">'mot_de_passe_fort'</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-w"> </span><span class="tok-k">WITH</span><span class="tok-w"> </span><span class="tok-k">NOCREATEDB</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">bob</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-n">lecture_seule</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">REVOKE</span><span class="tok-w"> </span><span class="tok-n">lecture_seule</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">lecture_seule</span><span class="tok-p">;</span>
+<span class="tok-k">RESET</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Dans PostgreSQL, <code>CREATE USER</code> et <code>ALTER USER</code> sont des variantes pratiques de <code>CREATE ROLE ... LOGIN</code> et <code>ALTER ROLE</code>. Pour définir un mot de passe sans l'inscrire dans une instruction SQL et dans l'historique :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\password alice
+\du
+\du+
+</code></pre></div>
+<p><strong>Accorder une lecture des tables existantes</strong> dans une base, une fois connecté à cette base avec les droits nécessaires :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">CONNECT</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">USAGE</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-k">ALL</span><span class="tok-w"> </span><span class="tok-n">TABLES</span><span class="tok-w"> </span><span class="tok-k">IN</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">REVOKE</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-k">ALL</span><span class="tok-w"> </span><span class="tok-n">TABLES</span><span class="tok-w"> </span><span class="tok-k">IN</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Pour les <strong>futures tables</strong>, en tant que leur propriétaire ou sous un rôle autorisé :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">PRIVILEGES</span><span class="tok-w"> </span><span class="tok-k">FOR</span><span class="tok-w"> </span><span class="tok-k">ROLE</span><span class="tok-w"> </span><span class="tok-n">proprietaire</span><span class="tok-w"> </span><span class="tok-k">IN</span><span class="tok-w"> </span><span class="tok-k">SCHEMA</span><span class="tok-w"> </span><span class="tok-k">public</span>
+<span class="tok-k">GRANT</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">TABLES</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Cette dernière instruction s'applique aux tables <strong>futures créées par <code>proprietaire</code></strong>, pas rétroactivement et pas automatiquement à tous les créateurs possibles. Le simple <code>GRANT CONNECT</code> n'autorise pas la lecture des tables. Des accès peuvent exister via les privilèges <code>PUBLIC</code> ou l'appartenance à d'autres rôles.</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-p">.</span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">OWNER</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+<span class="tok-k">ALTER</span><span class="tok-w"> </span><span class="tok-k">DATABASE</span><span class="tok-w"> </span><span class="tok-n">ma_base</span><span class="tok-w"> </span><span class="tok-k">OWNER</span><span class="tok-w"> </span><span class="tok-k">TO</span><span class="tok-w"> </span><span class="tok-n">alice</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Dans <code>psql</code>, consulter les droits avec <code>\dp</code> (ou <code>\z</code>) et la liste des rôles avec <code>\du</code>.</p>
+</section><section aria-labelledby="8-tables-colonnes-index-vues-et-contraintes-title" class="topic" id="8-tables-colonnes-index-vues-et-contraintes"><h2 id="8-tables-colonnes-index-vues-et-contraintes-title">8. Tables, colonnes, index, vues et contraintes</h2>
+<h3>Exemple de création d'une table par moteur</h3>
+<p><strong>SQLite</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-p">(</span>
+<span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-nb">INTEGER</span><span class="tok-w"> </span><span class="tok-k">PRIMARY</span><span class="tok-w"> </span><span class="tok-k">KEY</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-nb">TEXT</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">NULL</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">email</span><span class="tok-w"> </span><span class="tok-nb">TEXT</span><span class="tok-w"> </span><span class="tok-k">UNIQUE</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">created_at</span><span class="tok-w"> </span><span class="tok-nb">TEXT</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">CURRENT_TIMESTAMP</span>
+<span class="tok-p">);</span>
+</code></pre></div>
+<p><strong>MySQL</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-p">(</span>
+<span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-nb">BIGINT</span><span class="tok-w"> </span><span class="tok-n">AUTO_INCREMENT</span><span class="tok-w"> </span><span class="tok-k">PRIMARY</span><span class="tok-w"> </span><span class="tok-k">KEY</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-nb">VARCHAR</span><span class="tok-p">(</span><span class="tok-mi">120</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">NULL</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">email</span><span class="tok-w"> </span><span class="tok-nb">VARCHAR</span><span class="tok-p">(</span><span class="tok-mi">255</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">UNIQUE</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">created_at</span><span class="tok-w"> </span><span class="tok-k">TIMESTAMP</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">CURRENT_TIMESTAMP</span>
+<span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">ENGINE</span><span class="tok-o">=</span><span class="tok-n">InnoDB</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>PostgreSQL</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-k">public</span><span class="tok-p">.</span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-p">(</span>
+<span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-nb">BIGINT</span><span class="tok-w"> </span><span class="tok-k">GENERATED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">AS</span><span class="tok-w"> </span><span class="tok-k">IDENTITY</span><span class="tok-w"> </span><span class="tok-k">PRIMARY</span><span class="tok-w"> </span><span class="tok-k">KEY</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-nb">VARCHAR</span><span class="tok-p">(</span><span class="tok-mi">120</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">NULL</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">email</span><span class="tok-w"> </span><span class="tok-nb">VARCHAR</span><span class="tok-p">(</span><span class="tok-mi">255</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">UNIQUE</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-n">created_at</span><span class="tok-w"> </span><span class="tok-n">TIMESTAMPTZ</span><span class="tok-w"> </span><span class="tok-k">DEFAULT</span><span class="tok-w"> </span><span class="tok-k">CURRENT_TIMESTAMP</span>
+<span class="tok-p">);</span>
+</code></pre></div>
+<p>L'identifiant auto-généré et certains types ne sont pas interchangeables entre les trois moteurs. PostgreSQL propose encore <code>SERIAL</code>, mais <code>IDENTITY</code> est une option moderne pour les nouveaux schémas.</p>
+<h3>Opérations sur les tables</h3>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Action</th>
+<th scope="col">SQLite</th>
+<th scope="col">MySQL</th>
+<th scope="col">PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ajouter une colonne</td>
+<td><code>ALTER TABLE users ADD COLUMN age INTEGER;</code></td>
+<td><code>ALTER TABLE users ADD COLUMN age INT;</code></td>
+<td><code>ALTER TABLE users ADD COLUMN age INTEGER;</code></td>
+</tr>
+<tr>
+<td>Renommer colonne</td>
+<td><code>ALTER TABLE users RENAME COLUMN name TO full_name;</code></td>
+<td><code>ALTER TABLE users RENAME COLUMN name TO full_name;</code></td>
+<td><code>ALTER TABLE users RENAME COLUMN name TO full_name;</code></td>
+</tr>
+<tr>
+<td>Supprimer colonne</td>
+<td><code>ALTER TABLE users DROP COLUMN age;</code>*</td>
+<td><code>ALTER TABLE users DROP COLUMN age;</code></td>
+<td><code>ALTER TABLE users DROP COLUMN age;</code></td>
+</tr>
+<tr>
+<td>Modifier type</td>
+<td>Reconstruction de table parfois nécessaire</td>
+<td><code>ALTER TABLE users MODIFY COLUMN age BIGINT;</code></td>
+<td><code>ALTER TABLE users ALTER COLUMN age TYPE BIGINT;</code></td>
+</tr>
+<tr>
+<td>Renommer table</td>
+<td><code>ALTER TABLE users RENAME TO clients;</code></td>
+<td><code>RENAME TABLE users TO clients;</code></td>
+<td><code>ALTER TABLE users RENAME TO clients;</code></td>
+</tr>
+<tr>
+<td>Supprimer table</td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+<td><code>DROP TABLE IF EXISTS users;</code></td>
+</tr>
+<tr>
+<td>Vider table</td>
+<td><code>DELETE FROM users;</code></td>
+<td><code>TRUNCATE TABLE users;</code></td>
+<td><code>TRUNCATE TABLE users;</code></td>
+</tr>
+<tr>
+<td>Supprimer avec dépendances</td>
+<td>Pas de <code>CASCADE</code> général</td>
+<td>Pas de <code>CASCADE</code> opérationnel pour <code>DROP TABLE</code></td>
+<td><code>DROP TABLE users CASCADE;</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>* <code>DROP COLUMN</code> est disponible dans SQLite moderne, mais échoue si les contraintes, index ou dépendances ne permettent pas la suppression.</p>
+<p><strong>Index et vues</strong>, exemples indépendants :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">INDEX</span><span class="tok-w"> </span><span class="tok-n">idx_users_name</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">(</span><span class="tok-n">name</span><span class="tok-p">);</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">UNIQUE</span><span class="tok-w"> </span><span class="tok-k">INDEX</span><span class="tok-w"> </span><span class="tok-n">idx_users_email</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">(</span><span class="tok-n">email</span><span class="tok-p">);</span>
+<span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">VIEW</span><span class="tok-w"> </span><span class="tok-n">vue_users</span><span class="tok-w"> </span><span class="tok-k">AS</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">VIEW</span><span class="tok-w"> </span><span class="tok-k">IF</span><span class="tok-w"> </span><span class="tok-k">EXISTS</span><span class="tok-w"> </span><span class="tok-n">vue_users</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Pour supprimer un index :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">INDEX</span><span class="tok-w"> </span><span class="tok-n">idx_users_name</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>L'exemple précédent s'applique à <strong>SQLite et PostgreSQL</strong>. En <strong>MySQL</strong>, la syntaxe est :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">DROP</span><span class="tok-w"> </span><span class="tok-k">INDEX</span><span class="tok-w"> </span><span class="tok-n">idx_users_name</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>Inspection</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">table_info</span><span class="tok-p">(</span><span class="tok-n">users</span><span class="tok-p">);</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">foreign_key_list</span><span class="tok-p">(</span><span class="tok-n">users</span><span class="tok-p">);</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">index_list</span><span class="tok-p">(</span><span class="tok-n">users</span><span class="tok-p">);</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">DESCRIBE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">CREATE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">INDEX</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\d users
+\d+ users
+\di
+\dv
+\df
+</code></pre></div>
+<p><strong>Attention à <code>TRUNCATE</code>.</strong> SQLite ne propose pas <code>TRUNCATE</code>. MySQL effectue généralement un commit implicite pour cette opération DDL, tandis que PostgreSQL permet de l'inclure dans une transaction. Les clés étrangères peuvent empêcher certaines suppressions.</p>
+</section><section aria-labelledby="9-sql-quotidien-lire-ajouter-modifier-et-supprimer-title" class="topic" id="9-sql-quotidien-lire-ajouter-modifier-et-supprimer"><h2 id="9-sql-quotidien-lire-ajouter-modifier-et-supprimer-title">9. SQL quotidien : lire, ajouter, modifier et supprimer</h2>
+<p>Les requêtes suivantes sont compatibles avec les trois moteurs si la table et les colonnes existent :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">INSERT</span><span class="tok-w"> </span><span class="tok-k">INTO</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">name</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">email</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">VALUES</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-s1">'Ada'</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s1">'ada@example.org'</span><span class="tok-p">);</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">ORDER</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-k">DESC</span><span class="tok-w"> </span><span class="tok-k">LIMIT</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-k">COUNT</span><span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">COUNT</span><span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">AS</span><span class="tok-w"> </span><span class="tok-n">total</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">GROUP</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">email</span><span class="tok-w"> </span><span class="tok-k">IS</span><span class="tok-w"> </span><span class="tok-k">NOT</span><span class="tok-w"> </span><span class="tok-k">NULL</span><span class="tok-p">;</span>
+<span class="tok-k">UPDATE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s1">'Ada Lovelace'</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">DELETE</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>Sécurité.</strong> <code>UPDATE</code> ou <code>DELETE</code> sans <code>WHERE</code> s'applique à <strong>toutes</strong> les lignes. Vérifier la sélection avant de modifier des données sensibles. Les transactions suivantes constituent des exemples <strong>indépendants</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">BEGIN</span><span class="tok-p">;</span>
+<span class="tok-k">UPDATE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s1">'Test'</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">ROLLBACK</span><span class="tok-p">;</span>
+<span class="tok-k">BEGIN</span><span class="tok-p">;</span>
+<span class="tok-k">UPDATE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">SET</span><span class="tok-w"> </span><span class="tok-n">name</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s1">'Validé'</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">COMMIT</span><span class="tok-p">;</span>
+</code></pre></div>
+<p>Pour MySQL, privilégier le moteur transactionnel <strong>InnoDB</strong> ; de nombreuses instructions DDL effectuent un commit implicite. Pour SQLite, activer explicitement les clés étrangères si elles doivent être vérifiées dans cette connexion :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">foreign_keys</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-k">ON</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">foreign_keys</span><span class="tok-p">;</span>
+</code></pre></div>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Besoin</th>
+<th scope="col">SQLite</th>
+<th scope="col">MySQL</th>
+<th scope="col">PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Limiter 10 lignes</td>
+<td><code>LIMIT 10</code></td>
+<td><code>LIMIT 10</code></td>
+<td><code>LIMIT 10</code></td>
+</tr>
+<tr>
+<td>Concaténer</td>
+<td>`'a'</td>
+<td></td>
+<td>'b'`</td>
+</tr>
+<tr>
+<td>Date courante</td>
+<td><code>CURRENT_TIMESTAMP</code></td>
+<td><code>CURRENT_TIMESTAMP</code></td>
+<td><code>CURRENT_TIMESTAMP</code></td>
+</tr>
+<tr>
+<td>Insertion, ignorer doublon</td>
+<td><code>INSERT OR IGNORE ...</code></td>
+<td><code>INSERT IGNORE ...</code></td>
+<td><code>INSERT ... ON CONFLICT DO NOTHING</code></td>
+</tr>
+<tr>
+<td>Mise à jour si conflit</td>
+<td><code>INSERT ... ON CONFLICT(...) DO UPDATE ...</code></td>
+<td><code>INSERT ... ON DUPLICATE KEY UPDATE ...</code></td>
+<td><code>INSERT ... ON CONFLICT(...) DO UPDATE ...</code></td>
+</tr>
+<tr>
+<td>Plan de requête</td>
+<td><code>EXPLAIN QUERY PLAN SELECT ...;</code></td>
+<td><code>EXPLAIN SELECT ...;</code></td>
+<td><code>EXPLAIN SELECT ...;</code></td>
+</tr>
+<tr>
+<td>Plan avec exécution</td>
+<td>Selon les outils</td>
+<td><code>EXPLAIN ANALYZE SELECT ...;</code></td>
+<td><code>EXPLAIN ANALYZE SELECT ...;</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><code>EXPLAIN ANALYZE</code> <strong>exécute réellement</strong> la requête dans MySQL et PostgreSQL. Les variantes UPSERT doivent se fonder sur des clés ou contraintes uniques appropriées. Pour les jointures, agrégations, <code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, <code>HAVING</code> et <code>JOIN</code>, la syntaxe SQL de base est largement commune aux trois systèmes.</p>
+</section><section aria-labelledby="10-executer-des-scripts-sql-csv-et-exports-title" class="topic" id="10-executer-des-scripts-sql-csv-et-exports"><h2 id="10-executer-des-scripts-sql-csv-et-exports-title">10. Exécuter des scripts SQL, CSV et exports</h2>
+<h3>Exécuter un fichier SQL</h3>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Moteur</th>
+<th scope="col">macOS / Linux (Bash, Zsh)</th>
+<th scope="col">Windows PowerShell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite</td>
+<td><code>sqlite3 ma_base.db &lt; schema.sql</code></td>
+<td><code>sqlite3 ma_base.db ".read C:/sql/schema.sql"</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><code>mysql -u alice -p ma_base &lt; schema.sql</code></td>
+<td><code>mysql -u alice -p ma_base -e "source C:/sql/schema.sql"</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>psql -U alice -d ma_base -v ON_ERROR_STOP=1 -f schema.sql</code></td>
+<td><code>psql -U alice -d ma_base -v ON_ERROR_STOP=1 -f .\schema.sql</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Les exemples PowerShell évitent <code>&lt;</code>, dont la prise en charge diffère de Bash, notamment dans Windows PowerShell 5.1. Selon les chemins utilisés, vérifier les guillemets et privilégier les chemins absolus en présence d'espaces.</p>
+<p><strong>Depuis les clients interactifs</strong> :</p>
+<p>SQLite :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">.read schema.sql
+</code></pre></div>
+<p>MySQL :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">source schema.sql
+</code></pre></div>
+<p>PostgreSQL :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\i schema.sql
+</code></pre></div>
+<h3>CSV : importer et exporter</h3>
+<p><strong>SQLite</strong>, dans le client <code>sqlite3</code>, après création de la table cible :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">.mode csv
+.import --skip 1 users.csv users
+.headers on
+.once export_users.csv
+SELECT * FROM users;
+</code></pre></div>
+<p><strong>MySQL</strong>, si le client et le serveur autorisent <code>LOCAL INFILE</code> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">LOAD</span><span class="tok-w"> </span><span class="tok-k">DATA</span><span class="tok-w"> </span><span class="tok-k">LOCAL</span><span class="tok-w"> </span><span class="tok-n">INFILE</span><span class="tok-w"> </span><span class="tok-s1">'/chemin/users.csv'</span>
+<span class="tok-k">INTO</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-n">users</span>
+<span class="tok-n">FIELDS</span><span class="tok-w"> </span><span class="tok-n">TERMINATED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-s1">','</span><span class="tok-w"> </span><span class="tok-n">ENCLOSED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-s1">'"'</span>
+<span class="tok-n">LINES</span><span class="tok-w"> </span><span class="tok-n">TERMINATED</span><span class="tok-w"> </span><span class="tok-k">BY</span><span class="tok-w"> </span><span class="tok-s1">'\n'</span>
+<span class="tok-k">IGNORE</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-w"> </span><span class="tok-n">LINES</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><strong>PostgreSQL</strong>, dans le client <code>psql</code> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\copy users(name,email) FROM 'users.csv' WITH (FORMAT csv, HEADER true)
+\copy users TO 'export_users.csv' WITH (FORMAT csv, HEADER true)
+</code></pre></div>
+<p><code>\copy</code> lit et écrit <strong>côté client</strong>. <code>COPY</code> SQL lit et écrit <strong>côté serveur</strong>, avec des contraintes de permissions différentes. Pour les fichiers sous Windows, on peut employer <code>C:/data/users.csv</code>. Vérifier séparateurs, en-têtes, fins de ligne, jeu de caractères et types de colonnes.</p>
+</section><section aria-labelledby="11-sauvegarder-restaurer-et-controler-l-integrite-title" class="topic" id="11-sauvegarder-restaurer-et-controler-l-integrite"><h2 id="11-sauvegarder-restaurer-et-controler-l-integrite-title">11. Sauvegarder, restaurer et contrôler l'intégrité</h2>
+<h3>SQLite : sauvegarde native et dump SQL</h3>
+<p>Dans le client SQLite :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">.backup sauvegarde.db
+.restore sauvegarde.db
+.output export.sql
+.dump
+.output stdout
+</code></pre></div>
+<p>Dans un terminal macOS ou Linux :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">sqlite3<span class="tok-w"> </span>ma_base.db<span class="tok-w"> </span><span class="tok-s2">".backup sauvegarde.db"</span>
+sqlite3<span class="tok-w"> </span>ma_base.db<span class="tok-w"> </span><span class="tok-s2">".dump"</span><span class="tok-w"> </span>&gt;<span class="tok-w"> </span>sauvegarde.sql
+sqlite3<span class="tok-w"> </span>nouvelle_base.db<span class="tok-w"> </span>&lt;<span class="tok-w"> </span>sauvegarde.sql
+sqlite3<span class="tok-w"> </span>ma_base.db<span class="tok-w"> </span><span class="tok-s2">"PRAGMA integrity_check;"</span>
+</code></pre></div>
+<p>Pour <strong>PowerShell</strong>, exécuter plutôt <code>.backup</code>, <code>.restore</code> ou <code>.read</code> dans le client, afin d'éviter les problèmes de redirection/encodage des anciennes versions. <code>.backup</code> s'appuie sur le mécanisme de sauvegarde SQLite et convient mieux qu'une simple copie à chaud du fichier actif.</p>
+<h3>MySQL : mysqldump et import</h3>
+<p><strong>macOS / Linux</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">mysqldump<span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>--single-transaction<span class="tok-w"> </span>--quick<span class="tok-w"> </span>--routines<span class="tok-w"> </span>--events<span class="tok-w"> </span>--triggers<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>&gt;<span class="tok-w"> </span>sauvegarde.sql
+mysql<span class="tok-w"> </span>-u<span class="tok-w"> </span>alice<span class="tok-w"> </span>-p<span class="tok-w"> </span>-D<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>&lt;<span class="tok-w"> </span>sauvegarde.sql
+mysqldump<span class="tok-w"> </span>-u<span class="tok-w"> </span>root<span class="tok-w"> </span>-p<span class="tok-w"> </span>--single-transaction<span class="tok-w"> </span>--databases<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>&gt;<span class="tok-w"> </span>sauvegarde_avec_base.sql
+</code></pre></div>
+<p><strong>Windows PowerShell</strong> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">PowerShell</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-powershell"><span class="tok-n">mysqldump</span> <span class="tok-n">-u</span> <span class="tok-n">alice</span> <span class="tok-n">-p</span> <span class="tok-p">-</span><span class="tok-n">-single-transaction</span> <span class="tok-p">-</span><span class="tok-n">-quick</span> <span class="tok-p">-</span><span class="tok-n">-routines</span> <span class="tok-p">-</span><span class="tok-n">-events</span> <span class="tok-p">-</span><span class="tok-n">-triggers</span> <span class="tok-p">-</span><span class="tok-n">-result</span><span class="tok-o">-file</span><span class="tok-p">=</span><span class="tok-n">sauvegarde</span><span class="tok-p">.</span><span class="tok-n">sql</span> <span class="tok-n">ma_base</span>
+<span class="tok-n">mysql</span> <span class="tok-n">-u</span> <span class="tok-n">alice</span> <span class="tok-n">-p</span> <span class="tok-n">-D</span> <span class="tok-n">ma_base</span> <span class="tok-n">-e</span> <span class="tok-s2">"source C:/backups/sauvegarde.sql"</span>
+</code></pre></div>
+<p>L'option <code>--result-file</code> évite notamment certaines difficultés d'encodage liées à la redirection PowerShell. L'option <code>--databases</code> ajoute les instructions de création/sélection de la base. <code>--single-transaction</code> garantit une capture cohérente pour InnoDB <strong>dans les conditions documentées</strong>, sans DDL concurrent modifiant les objets sauvegardés.</p>
+<h3>PostgreSQL : pg_dump, pg_restore et pg_dumpall</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">pg_dump<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>-F<span class="tok-w"> </span>c<span class="tok-w"> </span>-f<span class="tok-w"> </span>sauvegarde.dump
+createdb<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>restauration
+pg_restore<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>restauration<span class="tok-w"> </span>--no-owner<span class="tok-w"> </span>--exit-on-error<span class="tok-w"> </span>sauvegarde.dump
+pg_dump<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>ma_base<span class="tok-w"> </span>-f<span class="tok-w"> </span>sauvegarde.sql
+psql<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>-d<span class="tok-w"> </span>restauration<span class="tok-w"> </span>-v<span class="tok-w"> </span><span class="tok-nv">ON_ERROR_STOP</span><span class="tok-o">=</span><span class="tok-m">1</span><span class="tok-w"> </span>-f<span class="tok-w"> </span>sauvegarde.sql
+</code></pre></div>
+<p>Les archives <code>-F c</code> se restaurent avec <code>pg_restore</code>; les dumps SQL texte, avec <code>psql</code>. La base <code>restauration</code> doit exister pour ces exemples.</p>
+<p><strong>Rôles et objets globaux</strong>, absents d'une sauvegarde individuelle <code>pg_dump</code> :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">pg_dumpall<span class="tok-w"> </span>-U<span class="tok-w"> </span>alice<span class="tok-w"> </span>--globals-only<span class="tok-w"> </span>-f<span class="tok-w"> </span>roles_et_globals.sql
+</code></pre></div>
+<p>Cette commande nécessite des droits suffisants pour extraire les données globales, particulièrement celles liées aux rôles. <code>alice</code> n'est qu'un exemple : utiliser un véritable compte administrateur approprié. Selon l'installation, ce compte peut être <code>postgres</code> ou porter un autre nom.</p>
+<p><strong>Bonnes pratiques</strong> : tester la restauration dans une base de test, vérifier les fichiers et les codes de sortie, éviter les mots de passe visibles dans les scripts, chiffrer/protéger les archives et contrôler la compatibilité des versions, extensions et rôles avant une migration.</p>
+</section><section aria-labelledby="12-administration-diagnostics-et-performances-title" class="topic" id="12-administration-diagnostics-et-performances"><h2 id="12-administration-diagnostics-et-performances-title">12. Administration, diagnostics et performances</h2>
+<h3>SQLite</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">foreign_keys</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">integrity_check</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">quick_check</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">journal_mode</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">journal_mode</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">WAL</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">busy_timeout</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">5000</span><span class="tok-p">;</span>
+<span class="tok-n">PRAGMA</span><span class="tok-w"> </span><span class="tok-n">database_list</span><span class="tok-p">;</span>
+<span class="tok-k">VACUUM</span><span class="tok-p">;</span>
+<span class="tok-k">ANALYZE</span><span class="tok-p">;</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">.timer on
+.eqp on
+.mode box
+.headers on
+</code></pre></div>
+<p>WAL modifie la journalisation et implique potentiellement des fichiers auxiliaires. <code>VACUUM</code> peut exiger un espace disque supplémentaire et interrompre des opérations selon le contexte.</p>
+<h3>MySQL</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">PROCESSLIST</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">FULL</span><span class="tok-w"> </span><span class="tok-n">PROCESSLIST</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">VARIABLES</span><span class="tok-w"> </span><span class="tok-k">LIKE</span><span class="tok-w"> </span><span class="tok-s1">'max_connections'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">VARIABLES</span><span class="tok-w"> </span><span class="tok-k">LIKE</span><span class="tok-w"> </span><span class="tok-s1">'port'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-k">GLOBAL</span><span class="tok-w"> </span><span class="tok-n">STATUS</span><span class="tok-w"> </span><span class="tok-k">LIKE</span><span class="tok-w"> </span><span class="tok-s1">'Threads_connected'</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">ENGINE</span><span class="tok-w"> </span><span class="tok-n">INNODB</span><span class="tok-w"> </span><span class="tok-n">STATUS</span><span class="tok-p">;</span>
+<span class="tok-k">EXPLAIN</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">ANALYZE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-n">OPTIMIZE</span><span class="tok-w"> </span><span class="tok-k">TABLE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Bash / Zsh</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-bash">mysqladmin<span class="tok-w"> </span>-u<span class="tok-w"> </span>root<span class="tok-w"> </span>-p<span class="tok-w"> </span>status
+mysqladmin<span class="tok-w"> </span>-u<span class="tok-w"> </span>root<span class="tok-w"> </span>-p<span class="tok-w"> </span>ping
+</code></pre></div>
+<p>Pour arrêter <strong>une connexion précisément identifiée</strong> avec les privilèges nécessaires :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-n">KILL</span><span class="tok-w"> </span><span class="tok-k">CONNECTION</span><span class="tok-w"> </span><span class="tok-mi">123</span><span class="tok-p">;</span>
+</code></pre></div>
+<p><code>OPTIMIZE TABLE</code> peut être coûteux et provoquer une reconstruction : évaluer l'effet en production.</p>
+<h3>PostgreSQL</h3>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pg_backend_pid</span><span class="tok-p">();</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">port</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">data_directory</span><span class="tok-p">;</span>
+<span class="tok-k">SHOW</span><span class="tok-w"> </span><span class="tok-n">search_path</span><span class="tok-p">;</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pid</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">usename</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">datname</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-k">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">query</span>
+<span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">pg_stat_activity</span><span class="tok-p">;</span>
+<span class="tok-k">EXPLAIN</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">EXPLAIN</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-k">ANALYZE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">BUFFERS</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-w"> </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-n">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-k">ANALYZE</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+<span class="tok-k">VACUUM</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-k">ANALYZE</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">users</span><span class="tok-p">;</span>
+</code></pre></div>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">Client interactif</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-text">\timing on
+\x auto
+\pset pager off
+\watch 5
+</code></pre></div>
+<p><code>\watch 5</code> répète la dernière requête environ toutes les cinq secondes : arrêter avec <code>Ctrl+C</code>. Selon les droits, annuler une requête ou terminer une connexion après vérification du PID :</p>
+<div class="code-panel"><div class="code-bar"><span class="lang-tag">SQL</span><button aria-label="Copier la commande" class="copy-btn" type="button">Copier</button></div><pre class="code-pre"><code class="language-sql"><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pg_cancel_backend</span><span class="tok-p">(</span><span class="tok-mi">12345</span><span class="tok-p">);</span>
+<span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pg_terminate_backend</span><span class="tok-p">(</span><span class="tok-mi">12345</span><span class="tok-p">);</span>
+</code></pre></div>
+<p><code>pg_cancel_backend</code> tente d'annuler la requête en cours ; <code>pg_terminate_backend</code> termine la connexion. Ne pas confondre <code>VACUUM</code> avec <code>VACUUM FULL</code>, beaucoup plus intrusif.</p>
+</section><section aria-labelledby="13-depannage-messages-frequents-title" class="topic" id="13-depannage-messages-frequents"><h2 id="13-depannage-messages-frequents-title">13. Dépannage : messages fréquents</h2>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Problème</th>
+<th scope="col">Cause plausible</th>
+<th scope="col">Diagnostic ou solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FATAL: role "postgres" does not exist</code></td>
+<td>Cluster PostgreSQL initialisé sous un autre rôle (cas possible avec Homebrew)</td>
+<td>Sur macOS : <code>psql -U "$(whoami)" -d postgres -c '\du'</code>. Ne pas créer un autre superutilisateur sans nécessité.</td>
+</tr>
+<tr>
+<td><code>FATAL: database "alice" does not exist</code></td>
+<td><code>psql -U alice</code> cherche par défaut la base <code>alice</code></td>
+<td>Préciser <code>-d postgres</code> ou <code>-d ma_base</code>.</td>
+</tr>
+<tr>
+<td><code>Peer authentication failed</code></td>
+<td>Méthode d'authentification PostgreSQL liée au compte OS</td>
+<td>Sur Ubuntu/Debian : <code>sudo -u postgres psql -d postgres</code>, si le rôle existe.</td>
+</tr>
+<tr>
+<td><code>connection refused</code></td>
+<td>Serveur arrêté, mauvais port/hôte ou blocage réseau</td>
+<td>Vérifier service, <code>pg_isready</code>, <code>mysqladmin ping</code>, hôte et port.</td>
+</tr>
+<tr>
+<td><code>Access denied for user 'root'@'localhost'</code> (MySQL)</td>
+<td>Mot de passe ou méthode d'authentification non conforme</td>
+<td>Sur Ubuntu, essayer <code>sudo mysql</code> si l'authentification par socket est configurée.</td>
+</tr>
+<tr>
+<td><code>Unknown database 'ma_base'</code> (MySQL)</td>
+<td>Base inexistante ou mauvais serveur</td>
+<td>Se connecter sans <code>-D</code>, lancer <code>SHOW DATABASES;</code>.</td>
+</tr>
+<tr>
+<td><code>No database selected</code> (MySQL)</td>
+<td>Aucune base active</td>
+<td><code>USE ma_base;</code> ou connexion avec <code>-D ma_base</code>.</td>
+</tr>
+<tr>
+<td><code>relation "users" does not exist</code> (PostgreSQL)</td>
+<td>Mauvaise base ou mauvais schéma</td>
+<td><code>\conninfo</code>, <code>\dt *.*</code>, <code>SHOW search_path;</code>, <code>SELECT * FROM public.users;</code>.</td>
+</tr>
+<tr>
+<td><code>database is locked</code> (SQLite)</td>
+<td>Transaction concurrente en écriture</td>
+<td>Identifier la connexion, finir sa transaction, essayer <code>PRAGMA busy_timeout=5000;</code>.</td>
+</tr>
+<tr>
+<td><code>unable to open database file</code> (SQLite)</td>
+<td>Chemin erroné, droits insuffisants ou dossier absent</td>
+<td>Vérifier le dossier, les permissions, le chemin absolu et <code>.open --ifexists</code>.</td>
+</tr>
+<tr>
+<td>Commande introuvable</td>
+<td>Outil absent du <code>PATH</code></td>
+<td>Vérifier installation et dossier <code>bin</code>, puis rouvrir le terminal.</td>
+</tr>
+<tr>
+<td><code>permission denied for table</code></td>
+<td>Privilèges manquants</td>
+<td>PostgreSQL : <code>\dp</code>, <code>GRANT USAGE</code> sur schéma et droits sur table ; MySQL : <code>SHOW GRANTS;</code>.</td>
+</tr>
+</tbody>
+</table></div>
+</section><section aria-labelledby="14-aide-integree-raccourcis-et-documentation-title" class="topic" id="14-aide-integree-raccourcis-et-documentation"><h2 id="14-aide-integree-raccourcis-et-documentation-title">14. Aide intégrée, raccourcis et documentation</h2>
+<div aria-label="Tableau comparatif défilable" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th scope="col">Fonction</th>
+<th scope="col">SQLite</th>
+<th scope="col">MySQL</th>
+<th scope="col">PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aide</td>
+<td><code>.help</code></td>
+<td><code>help</code> ou <code>\h</code></td>
+<td><code>\?</code> (client), <code>\h</code> (SQL)</td>
+</tr>
+<tr>
+<td>Lire un script</td>
+<td><code>.read fichier.sql</code></td>
+<td><code>source fichier.sql</code></td>
+<td><code>\i fichier.sql</code></td>
+</tr>
+<tr>
+<td>Tableau lisible</td>
+<td><code>.mode box</code></td>
+<td><code>\G</code> à la fin d'une requête</td>
+<td><code>\x auto</code></td>
+</tr>
+<tr>
+<td>Temps d'exécution</td>
+<td><code>.timer on</code></td>
+<td>Mesurer via client ou Performance Schema</td>
+<td><code>\timing on</code></td>
+</tr>
+<tr>
+<td>Connexion</td>
+<td><code>.databases</code></td>
+<td><code>status</code></td>
+<td><code>\conninfo</code></td>
+</tr>
+<tr>
+<td>Quitter</td>
+<td><code>.quit</code></td>
+<td><code>exit</code></td>
+<td><code>\q</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Sécurité et production :</strong> appliquer le principe du moindre privilège, préférer une connexion TLS vérifiée à distance, conserver les secrets hors des historiques et des dépôts Git, tester les sauvegardes et contrôler soigneusement toute action <code>DROP</code>, <code>TRUNCATE</code>, <code>CASCADE</code>, <code>KILL</code>, restauration ou terminaison de processus.</p>
+<h3>Sources officielles</h3>
+<ul>
+<li><a href="https://www.sqlite.org/cli.html">SQLite : shell en ligne de commande</a></li>
+<li><a href="https://www.sqlite.org/pragma.html">SQLite : instructions PRAGMA</a></li>
+<li><a href="https://www.sqlite.org/backup.html">SQLite : sauvegardes</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.4/en/">MySQL 8.4 : manuel officiel</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.4/en/grant.html">MySQL : GRANT</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.4/en/show-grants.html">MySQL : SHOW GRANTS</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html">MySQL : mysqldump</a></li>
+<li><a href="https://www.postgresql.org/docs/18/app-psql.html">PostgreSQL 18 : psql</a></li>
+<li><a href="https://www.postgresql.org/docs/18/database-roles.html">PostgreSQL 18 : rôles</a></li>
+<li><a href="https://www.postgresql.org/docs/18/app-pgdump.html">PostgreSQL 18 : pg_dump</a></li>
+<li><a href="https://www.postgresql.org/download/linux/ubuntu/">PostgreSQL : installation sur Ubuntu</a></li>
+<li><a href="https://formulae.brew.sh/formula/sqlite">Homebrew : SQLite</a></li>
+<li><a href="https://formulae.brew.sh/formula/mysql@8.4">Homebrew : MySQL 8.4</a></li>
+<li><a href="https://formulae.brew.sh/formula/postgresql@18">Homebrew : PostgreSQL 18</a></li>
+<li><a href="https://learn.microsoft.com/fr-fr/windows/package-manager/winget/install">Microsoft : installation avec winget</a></li>
+</ul>
+<p><em>Périmètre : usages locaux et administratifs courants. La compatibilité exacte dépend des versions, des distributions, des droits et des politiques de sécurité. Les opérations en production nécessitent des procédures adaptées.</em></p>
+</section>
+<footer class="footer">Cheatsheet SQL · Markdown source et HTML autonome · 10 novembre 2026</footer>
+</div></main>
+</div>
+<script>(() => {
+  const search = document.getElementById('search');
+  const topics = Array.from(document.querySelectorAll('.topic'));
+  const links = Array.from(document.querySelectorAll('.nav-link'));
+  const count = document.getElementById('result-count');
+  const empty = document.getElementById('no-results');
+  const normalize = value => value.toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const searchCorpus = topics.map(topic => normalize(topic.textContent));
+  search.addEventListener('input', () => {
+    const words = normalize(search.value.trim()).split(/\s+/).filter(Boolean);
+    let visible = 0;
+    topics.forEach((topic, i) => {
+      const show = words.every(w => searchCorpus[i].includes(w));
+      topic.hidden = !show;
+      links[i].hidden = !show;
+      if (show) visible++;
+    });
+    count.textContent = `${visible} section${visible > 1 ? 's' : ''} affichée${visible > 1 ? 's' : ''} sur ${topics.length}`;
+    empty.hidden = visible !== 0;
+  });
+  document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', async () => {
+      const code = button.parentElement.parentElement.querySelector('pre code');
+      const value = code ? code.textContent : '';
+      let ok = false;
+      try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(value); ok = true } } catch {}
+      if (!ok) {
+        const range = document.createRange(); const selection = window.getSelection();
+        range.selectNodeContents(code); selection.removeAllRanges(); selection.addRange(range);
+        try { ok = document.execCommand('copy') } catch {}
+        selection.removeAllRanges();
+      }
+      const original = button.textContent;
+      button.textContent = ok ? 'Copié' : 'Sélectionnez le texte';
+      window.setTimeout(() => {button.textContent = original}, 1600);
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        links.forEach(l => { const selected = l.getAttribute('href') === `#${entry.target.id}`; l.classList.toggle('active', selected); if (selected) l.setAttribute('aria-current', 'location'); else l.removeAttribute('aria-current'); });
+      });
+    }, {rootMargin:'-10% 0px -70% 0px'});
+    topics.forEach(t => observer.observe(t));
+  }
+})();</script>
+</body>
+</html>
